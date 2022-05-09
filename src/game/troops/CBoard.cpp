@@ -23,7 +23,7 @@ void CBoard::print () const {
         c++;
     }
 
-    char h = 'h';
+    char h = ' ';
     const char *s = "+-----";
     int num = 8;
 
@@ -39,7 +39,11 @@ void CBoard::print () const {
         printf ( "%d", num );
         num--;
         for ( size_t j = 0; j < 8; j++ ) {
-            printf ( "%5c ", h ); // TODO printing pieces
+            if( m_Board[i][j] )
+                printf ( "%5s ", m_Board[i][j]->getName().c_str() ); // TODO printing pieces
+            else {
+                printf ( "%5c ", h );
+            }
         }
         printf ( "\n");
     }

@@ -1,14 +1,11 @@
-//
-// Created by tiendat on 09.05.22.
-//
+#pragma once
+#include "CTroop.h"
 
-#ifndef CHESS_CROOK_H
-#define CHESS_CROOK_H
+class CRook : public CTroop {
 
-
-class CRook {
-
+public:
+    CRook ( std::string name, SIDE side, CCoord coord ) : CTroop ( move(name), side, coord ) {};
+    std::set<CCoord> getPossibleMoves () const override;
 };
 
 
-#endif //CHESS_CROOK_H

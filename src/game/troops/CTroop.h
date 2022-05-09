@@ -19,6 +19,7 @@ public:
     virtual ~CTroop() noexcept = default;
     virtual std::set<CCoord>  getPossibleMoves ( ) const = 0;
     const CCoord & getCoord () const { return m_Coord; };
+    const std::string & getName  () const { return m_Name; };
 
 protected:
     std::string m_Name;
