@@ -73,4 +73,3 @@ std::set<CCoord> CElephant::getPossibleMoves ( const std::unique_ptr<CTroop> (*c
     return s_coord;
 }
 
-

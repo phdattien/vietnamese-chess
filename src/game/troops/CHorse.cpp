@@ -23,8 +23,6 @@ bool CHorse::inWay ( const CCoord &newCoord, const std::unique_ptr<CTroop> (*cur
     return false;
 }
 
-}
-
 std::set<CCoord> CHorse::getPossibleMoves ( const std::unique_ptr<CTroop> (*currBoard)[8] ) const {
     std::set<CCoord> s_coord;
     for ( size_t i = 0; i < POS_COLL.size(); i++ ) {
