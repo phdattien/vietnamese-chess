@@ -4,7 +4,7 @@
 
 
 CCoord::CCoord ( const std::string & coord ) {
-    m_Colum = 8 - ( coord[1] - '0' );
+    m_Colum = 10 - ( coord[1] - '0' );
     m_Row = _toupper(coord[0]) - 'A';
 }
 
