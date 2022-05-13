@@ -53,7 +53,7 @@ std::set<CCoord> CAdvisor::getPossibleMoves ( const std::unique_ptr<CTroop> (*cu
         // if newCoord is outside of board or there is a troop but, on the same side or it is outside of the palace
 
         if (     ! newCoord.isInsideBoard ()
-                 ||  ( troopOnPos && troopOnPos->getSide() != m_Side )
+                 ||  ( troopOnPos && troopOnPos->getSide() == m_Side )
                  ||  !  isInsideAdvisorMovements( newCoord ) )
         {
             continue;
