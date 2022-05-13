@@ -2,7 +2,7 @@
 // Created by tiendat on 09.05.22.
 //
 
-#include "CBoard.h"
+#include "src/game/CBoard.h"
 #include <cstdio>
 
 CBoard::CBoard (  std::vector<std::unique_ptr<CTroop>> &troops ) {
