@@ -1,5 +1,5 @@
 #pragma once
-#include "CTroop.h"
+#include "src/game/troops/CTroop.h"
 #include <vector>
 #include <memory>
 
