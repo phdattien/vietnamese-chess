@@ -41,7 +41,7 @@ std::set<CCoord> CGeneral::getPossibleMoves ( const std::unique_ptr<CTroop> curr
 
         // if newCoord is outside of board or there is a troop but, on the same side or it is outside of the palace
         if (     ! newCoord.isInsideBoard ()
-             ||  ( troopOnPos && troopOnPos->getSide() != m_Side )
+             ||  ( troopOnPos && troopOnPos->getSide() != m_Side ) // troop on new pos already exist a troop but he is on same side
              ||  !  isInsideGeneralMovements ( newCoord ) )
         {
             continue;

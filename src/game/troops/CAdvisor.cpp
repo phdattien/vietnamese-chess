@@ -41,8 +41,8 @@ bool CAdvisor::isInsideAdvisorMovements ( const CCoord &newCoord ) const {
 std::set<CCoord> CAdvisor::getPossibleMoves ( const std::unique_ptr<CTroop> (*currBoard)[8] ) const {
 
     std::set<CCoord> s_coord;
-    // general can only move inside his "palace"
-    // generate all possible moves for CGeneral
+    //  advisor can only move inside his "palace"
+    // generate all possible moves for Advisor
     for ( size_t i = 0; i < 4; i++ ) {
         int newPosI = m_Coord.m_Colum + pos_coll[i];
         int newPosJ = m_Coord.m_Row + pos_row[i];
@@ -61,6 +61,6 @@ std::set<CCoord> CAdvisor::getPossibleMoves ( const std::unique_ptr<CTroop> (*cu
 
         s_coord.insert (newCoord );
     }
-
+    return s_coord;
 }
 
