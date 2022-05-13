@@ -27,7 +27,7 @@ bool CGeneral::isInsideGeneralMovements ( const CCoord &newCoord ) const {
 }
 
 
-std::set<CCoord> CGeneral::getPossibleMoves ( const std::unique_ptr<CTroop> currBoard[8][8] ) const {
+std::set<CCoord> CGeneral::getPossibleMoves ( const std::unique_ptr<CTroop> currBoard[10][9] ) const {
     std::set<CCoord> s_coord;
 
     // general can only move inside his "palace"

@@ -37,7 +37,7 @@ bool CElephant::isInsideElephantMovements ( const CCoord &newCoord ) const {
     return m_Side == SIDE::RED ? ELEPHANT_MOVEMENTS_RED.count (newCoord) : ELEPHANT_MOVEMENTS_BLACK.count (newCoord);
 }
 
-bool CElephant::inWay ( const CCoord &newCoord, const std::unique_ptr<CTroop> (*currBoard)[8] ) const {
+bool CElephant::inWay ( const CCoord &newCoord, const std::unique_ptr<CTroop> (*currBoard)[9] ) const {
     // test if between new Coords and  currCoord is standing something if does remove the new cord from set
     int testCol = ( m_Coord.m_Colum + newCoord.m_Colum ) / 2;
     int testRow = ( m_Coord.m_Row + newCoord.m_Row ) / 2;
@@ -48,7 +48,7 @@ bool CElephant::inWay ( const CCoord &newCoord, const std::unique_ptr<CTroop> (*
     return false;
 }
 
-std::set<CCoord> CElephant::getPossibleMoves ( const std::unique_ptr<CTroop> (*currBoard)[8] ) const {
+std::set<CCoord> CElephant::getPossibleMoves ( const std::unique_ptr<CTroop> currBoard[10][9] ) const {
     std::set<CCoord> s_coord;
     //  advisor can't cross river
     // generate all possible moves for Elephant

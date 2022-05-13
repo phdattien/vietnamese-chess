@@ -38,7 +38,7 @@ bool CAdvisor::isInsideAdvisorMovements ( const CCoord &newCoord ) const {
 }
 
 
-std::set<CCoord> CAdvisor::getPossibleMoves ( const std::unique_ptr<CTroop> (*currBoard)[8] ) const {
+std::set<CCoord> CAdvisor::getPossibleMoves ( const std::unique_ptr<CTroop> currBoard[10][9] ) const {
 
     std::set<CCoord> s_coord;
     //  advisor can only move inside his "palace"

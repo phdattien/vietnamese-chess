@@ -12,8 +12,8 @@ public:
 private:
 
 public:
-    std::set<CCoord> getPossibleMoves ( const std::unique_ptr<CTroop> (*currBoard)[8] ) const override;
-    bool inWay ( const CCoord& newCoord, const std::unique_ptr<CTroop> (*currBoard)[8] ) const;
+    std::set<CCoord> getPossibleMoves ( const std::unique_ptr<CTroop> currBoard[10][9] ) const override;
+    bool inWay ( const CCoord& newCoord, const std::unique_ptr<CTroop> (*currBoard)[9] ) const;
 };
 
 

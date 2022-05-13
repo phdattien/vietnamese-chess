@@ -13,9 +13,9 @@ public:
 
 private:
 public:
-    std::set<CCoord> getPossibleMoves ( const std::unique_ptr<CTroop> (*currBoard)[8] ) const override;
+    std::set<CCoord> getPossibleMoves ( const std::unique_ptr<CTroop> currBoard[10][9] ) const override;
     // control if on a newCoord on a currBoard state is a ally troop
-    bool isValidCoord ( const CCoord& newCoord, const std::unique_ptr<CTroop> (*currBoard)[8]) const;
-    void getSideCoords ( int start, char still, int direction, int end, const std::unique_ptr<CTroop> (*currBoard)[8],  std::set<CCoord> & cords ) const;
+    bool isValidCoord ( const CCoord& newCoord, const std::unique_ptr<CTroop> (*currBoard)[9]) const;
+    void getSideCoords ( int start, char still, int direction, int end, const std::unique_ptr<CTroop> (*currBoard)[9],  std::set<CCoord> & cords ) const;
 };
 

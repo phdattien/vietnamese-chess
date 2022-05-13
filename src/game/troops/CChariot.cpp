@@ -6,7 +6,7 @@
 
 CChariot::CChariot ( const std::string &name, SIDE side, const CCoord &coord ) : CTroop ( name, side, coord ) {}
 
-bool CChariot::isValidCoord ( const CCoord &newCoord, const std::unique_ptr<CTroop> (*currBoard)[8] ) const {
+bool CChariot::isValidCoord ( const CCoord &newCoord, const std::unique_ptr<CTroop> (*currBoard)[9] ) const {
     // if newCoord is outside of board or there is a troop but, on the same side or it is outside of the palace
     auto & troopOnPos = currBoard[newCoord.m_Colum][newCoord.m_Row];
     if ( troopOnPos && troopOnPos->getSide() == m_Side )
@@ -16,7 +16,7 @@ bool CChariot::isValidCoord ( const CCoord &newCoord, const std::unique_ptr<CTro
 
 
 void CChariot::getSideCoords ( int start, char still, int direction, int end,
-                                          const std::unique_ptr<CTroop> (*currBoard)[8],
+                                          const std::unique_ptr<CTroop> (*currBoard)[9],
                                           std::set<CCoord> & cords ) const {
     if ( start == end )
         return;
@@ -34,7 +34,7 @@ void CChariot::getSideCoords ( int start, char still, int direction, int end,
 
 
 
-std::set<CCoord> CChariot::getPossibleMoves ( const std::unique_ptr<CTroop> (*currBoard)[8] ) const {
+std::set<CCoord> CChariot::getPossibleMoves ( const std::unique_ptr<CTroop> currBoard[10][9] ) const {
     std::set<CCoord> s_coord;
     // add coords right directions, 9 - is width of board
     getSideCoords ( m_Coord.m_Row, 'r', 1, 8, currBoard, s_coord ) ; // right cords

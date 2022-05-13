@@ -5,6 +5,7 @@
 
 
 
+
 class CBoard {
 public:
     // takes all troops in vector and fill the board
@@ -14,6 +15,6 @@ public:
     void print () const;
 
 private:
-    std::unique_ptr<CTroop> m_Board[8][8];
+    std::unique_ptr<CTroop> m_Board[10][9];
 };
 
