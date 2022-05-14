@@ -3,7 +3,10 @@
 #include <vector>
 #include <memory>
 
+const size_t ROW_SIZE = 9;
+const size_t COL_SIZE = 10;
 
+// board.isLegalMove ( m_board[3][8],  dest - CCoord ( "41" )
 
 
 class CBoard {
@@ -11,10 +14,14 @@ public:
     // takes all troops in vector and fill the board
     explicit CBoard ( std::vector<std::unique_ptr<CTroop>> & troops );
     CBoard () = default;
-    bool validateMove () const;
+    bool isLegalMove ( const std::unique_ptr<CTroop> & troopOnPos, const CCoord & dest ) const;
+    // find if two generals face each other return false
+    bool isGeneralsFace   ();
     void print () const;
 
 private:
-    std::unique_ptr<CTroop> m_Board[10][9];
+    std::unique_ptr<CTroop> m_Board[COL_SIZE][ROW_SIZE];
+
+    const std::unique_ptr<CTroop> & findKing ( ) const;
 };
 

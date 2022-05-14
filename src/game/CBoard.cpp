@@ -11,8 +11,9 @@ CBoard::CBoard (  std::vector<std::unique_ptr<CTroop>> &troops ) {
     }
 }
 
-bool CBoard::validateMove () const {
-    return false;
+bool CBoard::isLegalMove ( const std::unique_ptr<CTroop> &troopOnPos, const CCoord &dest ) const {
+    // if destination is in set of a troops all possible moves thatn true
+    return troopOnPos->getPossibleMoves ( m_Board ).count (dest);
 }
 
 void CBoard::print () const {
@@ -52,4 +53,29 @@ void CBoard::print () const {
     for ( size_t j = 0; j < 8; j++ ) {
         printf ( "%s", s );
     }
+}
+
+
+const std::unique_ptr<CTroop> &CBoard::findKing () const {
+    int kingCol;
+    int kingRow;
+    for (auto & i : m_Board) {
+        for (auto & j : i) {
+            if ( j->getName() == "K") { // find da black general
+                return j;
+            }
+        }
+    }
+    return nullptr;
+}
+
+bool CBoard::isGeneralsFace ( ) {
+    auto & King = findKing();
+    int i = King->getCoord().m_Colum + 1;
+    for ( ; i < COL_SIZE; i++ ) {
+        auto & newCord =  m_Board[i][King->getCoord().m_Row];
+        if (  newCord && newCord->getName() != "K" )
+            return false;
+    }
+    return true;
 }
