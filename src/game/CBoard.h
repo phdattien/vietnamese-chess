@@ -1,5 +1,5 @@
 #pragma once
-#include "src/game/troops/CTroop.h"
+#include "troops/CTroop.h"
 #include <vector>
 #include <memory>
 
@@ -12,16 +12,20 @@ const size_t COL_SIZE = 10;
 class CBoard {
 public:
     // takes all troops in vector and fill the board
-    explicit CBoard ( std::vector<std::unique_ptr<CTroop>> & troops );
+    CBoard ( std::vector<std::shared_ptr<CTroop>> & troops );
     CBoard () = default;
-    bool isLegalMove ( const std::unique_ptr<CTroop> & troopOnPos, const CCoord & dest ) const;
+
+
+    bool isLegalMove ( const std::shared_ptr<CTroop> & troopOnPos, const CCoord & dest ) const;
     // find if two generals face each other return false
     bool isGeneralsFace   ();
     void print () const;
 
-private:
-    std::unique_ptr<CTroop> m_Board[COL_SIZE][ROW_SIZE];
 
-    const std::unique_ptr<CTroop> & findKing ( ) const;
+private:
+//    std::shared_ptr<CTroop> m_Board[COL_SIZE][ROW_SIZE];
+
+    std::shared_ptr<CTroop> m_Board[COL_SIZE][ROW_SIZE];
+    const std::shared_ptr<CTroop> & findKing ( ) const;
 };
 
