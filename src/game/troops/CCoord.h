@@ -3,6 +3,7 @@
 
 struct CCoord {
     CCoord ( int c, int r ) : m_Colum (c), m_Row(r) {};
+    CCoord () = default;
     /* coord is a sttring with human readible string */
     explicit CCoord ( const std::string & coord );
     bool isInsideBoard() const;

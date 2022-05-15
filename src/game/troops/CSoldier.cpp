@@ -11,7 +11,7 @@ const std::vector<int> CSoldier::POS_ROW  {  1, -1 };
 
 CSoldier::CSoldier ( const std::string &name, SIDE side, const CCoord &coord ) : CTroop ( name, side, coord ) {}
 
-bool CSoldier::isValidCoord ( const CCoord &newCoord, const std::unique_ptr<CTroop> (*currBoard)[9] ) const {
+bool CSoldier::isValidCoord ( const CCoord &newCoord, const std::shared_ptr<CTroop> (*currBoard)[9] ) const {
     // if newCoord is outside of board or there is a troop but, on the same side or it is outside of the palace
     auto & troopOnPos = currBoard[newCoord.m_Colum][newCoord.m_Row];
     if (     ! newCoord.isInsideBoard ()
@@ -23,7 +23,7 @@ bool CSoldier::isValidCoord ( const CCoord &newCoord, const std::unique_ptr<CTro
 }
 
 
-std::set<CCoord> CSoldier::getPossibleMoves ( const std::unique_ptr<CTroop> currBoard[10][9] ) const {
+std::set<CCoord> CSoldier::getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const {
     std::set<CCoord> s_coords;
 
     int direction = m_Side == SIDE::RED ? -1 : 1;
@@ -33,8 +33,8 @@ std::set<CCoord> CSoldier::getPossibleMoves ( const std::unique_ptr<CTroop> curr
     if ( isValidCoord ( newCoord, currBoard ) )
         s_coords.insert (newCoord);
 
-    if ( ( m_Side == SIDE::RED && ( m_Coord.m_Colum <= 4)
-           || m_Side == SIDE::BLACK && ( m_Coord.m_Colum >= 5 )) ) {
+    if ( ( m_Side == SIDE::RED && ( m_Coord.m_Colum <= 4) )
+           || ( m_Side == SIDE::BLACK && ( m_Coord.m_Colum >= 5 ) ) ) {
 
         for ( size_t i = 0; i < POS_COL.size(); i++ ) {
             int newPosI = m_Coord.m_Colum + POS_COL[i];

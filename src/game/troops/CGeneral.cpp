@@ -5,8 +5,8 @@
 #include <vector>
 #include "CGeneral.h"
 
-std::vector<int> pos_coll { 1, -1, 0,  0, 1,  1, -1, -1 };
-std::vector<int> pos_row  { 0,  0, 1, -1, 1, -1,  1, -1};
+const std::vector<int> CGeneral::pos_coll { 1, -1, 0,  0, 1,  1, -1, -1 };
+const std::vector<int> CGeneral::pos_row  { 0,  0, 1, -1, 1, -1,  1, -1};
 
 // could be better if all the new cords are initiliaze at the start
 bool CGeneral::isInsideGeneralMovements ( const CCoord &newCoord ) const {
@@ -27,7 +27,7 @@ bool CGeneral::isInsideGeneralMovements ( const CCoord &newCoord ) const {
 }
 
 
-std::set<CCoord> CGeneral::getPossibleMoves ( const std::unique_ptr<CTroop> currBoard[10][9] ) const {
+std::set<CCoord> CGeneral::getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const {
     std::set<CCoord> s_coord;
 
     // general can only move inside his "palace"
