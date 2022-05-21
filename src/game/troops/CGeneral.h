@@ -7,11 +7,13 @@
 
 class CGeneral : public CTroop {
 public:
-    CGeneral ( std::string name, SIDE side, CCoord coord ) : CTroop ( move( name), side, coord ) {};
+    CGeneral ( SIDE side, const CCoord &coord );
 
     std::set<CCoord> getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const override;
+    const std::string &getName () const override;
 
 private:
+    std::string m_Name = "G";
     bool isInsideGeneralMovements ( const CCoord& newCoord ) const;
     static const std::vector<int> pos_coll;
     static const std::vector<int> pos_row;

@@ -8,21 +8,28 @@ enum class SIDE {
     BLACK,
     RED
 };
-
+/**
+ * Abstract class of all troops in game
+ */
 class CTroop {
 public:
-    CTroop ( std::string name, SIDE side, CCoord coord ) :
-            m_Name ( move ( name ) ),
+    CTroop ( SIDE side, CCoord coord ) :
             m_Side (side),
             m_Coord ( coord ) {};
     virtual ~CTroop() noexcept = default;
+    // virtual method for a troop to get all of his possible moves from the his position and boardState
     virtual std::set<CCoord> getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const = 0;
-    const CCoord & getCoord () const { return m_Coord; };
-    const std::string & getName  () const { return m_Name; };
+    // Every troop has his own default unique name - can't be chanched
+    virtual const std::string & getName () const = 0;
+    // get side of a troop
     const SIDE & getSide  () const { return m_Side; };
+    // setter for a newCoordinate
+    void setCoord ( const CCoord & newCoord ) { m_Coord = newCoord; };
+    // get a current Coordinate of a troop
+    const CCoord & getCoord () const { return m_Coord; };
 
 protected:
-    std::string m_Name;
+    // which color Troop belongs to
     SIDE m_Side;
     // where the troop is currently on the board
     CCoord m_Coord;

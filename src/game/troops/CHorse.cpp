@@ -9,8 +9,6 @@
 const std::vector<int> POS_COLL {  2, 2, -2, -2, -1, 1, -1,  1 };
 const std::vector<int> POS_ROW  { -1, 1, -1,  1,  2, 2, -2, -2};
 
-CHorse::CHorse ( const std::string &name, SIDE side, const CCoord &coord ) : CTroop ( name, side, coord ) {}
-
 
 bool CHorse::inWay ( const CCoord &newCoord, const std::shared_ptr<CTroop> (*currBoard)[9] ) const {
     // test if between new Coords and  currCoord is standing something if does remove the new cord from set
@@ -44,3 +42,9 @@ std::set<CCoord> CHorse::getPossibleMoves ( const std::shared_ptr<CTroop> currBo
     }
     return s_coord;
 }
+
+const std::string &CHorse::getName () const {
+    return m_Name;
+}
+
+CHorse::CHorse ( SIDE side, const CCoord &coord ) : CTroop ( side, coord ) {}

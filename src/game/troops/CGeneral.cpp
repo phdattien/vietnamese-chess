@@ -50,3 +50,9 @@ std::set<CCoord> CGeneral::getPossibleMoves ( const std::shared_ptr<CTroop> curr
     }
     return s_coord;
 }
+
+const std::string &CGeneral::getName () const {
+    return m_Name;
+}
+
+CGeneral::CGeneral ( SIDE side, const CCoord &coord ) : CTroop ( side, coord ) {}

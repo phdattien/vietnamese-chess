@@ -4,7 +4,6 @@
 
 #include "CChariot.h"
 
-CChariot::CChariot ( const std::string &name, SIDE side, const CCoord &coord ) : CTroop ( name, side, coord ) {}
 
 bool CChariot::isValidCoord ( const CCoord &newCoord, const std::shared_ptr<CTroop> (*currBoard)[9] ) const {
     // if newCoord is outside of board or there is a troop but, on the same side or it is outside of the palace
@@ -15,9 +14,9 @@ bool CChariot::isValidCoord ( const CCoord &newCoord, const std::shared_ptr<CTro
 }
 
 
-void CChariot::getSideCoords ( int start, char still, int direction, int end,
-                                          const std::shared_ptr<CTroop> (*currBoard)[9],
-                                          std::set<CCoord> & cords ) const {
+void CChariot::getSlidingCoords ( int start, char still, int direction, int end,
+                                  const std::shared_ptr<CTroop> (*currBoard)[9],
+                                  std::set<CCoord> & cords ) const {
     if ( start == end )
         return;
 
@@ -28,6 +27,13 @@ void CChariot::getSideCoords ( int start, char still, int direction, int end,
         CCoord newCoord = still == 'r' ? CCoord( m_Coord.m_Colum, start ) : CCoord ( start, m_Coord.m_Row );
         if ( ! isValidCoord ( newCoord, currBoard ) )
             break;
+
+        auto & troopOnPos = currBoard[newCoord.m_Colum][newCoord.m_Row];
+        // if is a capture troop add and break
+        if ( troopOnPos && troopOnPos->getSide() != m_Side ) {
+            cords.insert (newCoord);
+            break;
+        }
         cords.insert (newCoord);
     }
 }
@@ -37,11 +43,17 @@ void CChariot::getSideCoords ( int start, char still, int direction, int end,
 std::set<CCoord> CChariot::getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const {
     std::set<CCoord> s_coord;
     // add coords right directions, 9 - is width of board
-    getSideCoords ( m_Coord.m_Row, 'r', 1, 8, currBoard, s_coord ) ; // right cords
-    getSideCoords ( m_Coord.m_Row, 'r', -1, 0, currBoard, s_coord ); // left cords
-    getSideCoords ( m_Coord.m_Colum, 'c', 1, 9, currBoard, s_coord ); // up cords
-    getSideCoords ( m_Coord.m_Colum, 'c', -1, 0, currBoard, s_coord ); // down cords
+    getSlidingCoords ( m_Coord.m_Row, 'r', 1, 8, currBoard, s_coord ) ; // right cords
+    getSlidingCoords ( m_Coord.m_Row, 'r', -1, 0, currBoard, s_coord ); // left cords
+    getSlidingCoords ( m_Coord.m_Colum, 'c', 1, 9, currBoard, s_coord ); // up cords
+    getSlidingCoords ( m_Coord.m_Colum, 'c', -1, 0, currBoard, s_coord ); // down cords
     return s_coord;
 }
+
+const std::string &CChariot::getName () const {
+    return m_Name;
+}
+
+CChariot::CChariot ( SIDE side, const CCoord &coord ) : CTroop ( side, coord ) {}
 
 

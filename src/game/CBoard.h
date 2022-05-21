@@ -19,6 +19,9 @@ public:
     bool isLegalMove ( const std::shared_ptr<CTroop> & troopOnPos, const CCoord & dest ) const;
     // find if two generals face each other return false
     bool isGeneralsFace   ();
+    std::shared_ptr<CTroop> & getTroopOnCoord ( const CCoord & from );
+    std::shared_ptr<CTroop> getTroopOnCoord ( const CCoord & from ) const;
+    void Move ( const CCoord &from, const CCoord & to);
     void print () const;
 
 

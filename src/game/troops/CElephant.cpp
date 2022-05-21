@@ -73,3 +73,9 @@ std::set<CCoord> CElephant::getPossibleMoves ( const std::shared_ptr<CTroop> cur
     return s_coord;
 }
 
+const std::string &CElephant::getName () const {
+    return m_Name;
+}
+
+CElephant::CElephant ( SIDE side, const CCoord &coord ) : CTroop ( side, coord ) {}
+

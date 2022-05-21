@@ -90,3 +90,18 @@ bool CBoard::isGeneralsFace ( ) {
     return true;
 }
 
+std::shared_ptr<CTroop> &CBoard::getTroopOnCoord ( const CCoord &from ) {
+    return m_Board[from.m_Colum][from.m_Row];
+}
+
+std::shared_ptr<CTroop> CBoard::getTroopOnCoord ( const CCoord &from ) const {
+    return m_Board[from.m_Colum][from.m_Row];
+}
+
+void CBoard::Move ( const CCoord &from, const CCoord &to )  {
+    auto & troopOnPos =  m_Board[from.m_Colum][from.m_Row];
+    troopOnPos->setCoord (to); // set new coordinates
+    m_Board[to.m_Colum][to.m_Row] = move ( troopOnPos );
+
+}
+

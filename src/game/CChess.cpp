@@ -11,7 +11,7 @@
 CChess::CChess ( CBoard board ) : m_GameBoard ( std::move (board ) ), m_PlayerTurn ( SIDE::RED ) {}
 
 void CChess::PrintGameState () const {
-    printf ( "%s TURN\n", m_PlayerTurn == SIDE::RED ? "RED" : "WHITE" ); // header
+//    printf ( "%s TURN\n", m_PlayerTurn == SIDE::RED ? "RED" : "WHITE" ); // header
     m_GameBoard.print (); // printing game state
     printf ( "press: (h)elp | (s)save <file> | (q)uit | (m)move <xy> <zw>\n");
 }
@@ -19,7 +19,7 @@ void CChess::PrintGameState () const {
 void CChess::doCommand () {
     std::string command;
     while ( std::getline ( std::cin, command ) ) {
-        printf( "$ ");
+        printf ( "%s TURN's\n", m_PlayerTurn == SIDE::RED ? "RED" : "WHITE" ); // header
         switch ( tolower (command[0])) {
             case 'q': // quit
                 std::cout << "Good bye have a nice day";
@@ -28,7 +28,7 @@ void CChess::doCommand () {
                 printHelpMenu ();
                 break;
             case 'm': // move
-                GetNextTurn ( command ); // move a1 3p
+                makeNextTurn ( command ); // move a1 3p
                 break;
             case 's': // save
                 safeGame ( command );
@@ -45,21 +45,46 @@ void CChess::doCommand () {
     }
 }
 
-void CChess::GetNextTurn ( const std::string &movement ) {
+bool CChess::validatePlayerMovement ( const CCoord &from, const CCoord &to ) {
+    if ( ! from.isInsideBoard() || ! to.isInsideBoard() ) {
+        printf ( "Coordinates not inside board!\n");
+        return false;
+    }
+
+    // check if movement is done by right player
+    auto & currPiece = m_GameBoard.getTroopOnCoord (from);
+
+    //check if at from position is a troop and the troop is player's side
+    if ( ! currPiece || currPiece->getSide() != m_PlayerTurn ) {
+        printf ( "Troop is not yours!\n");
+        return false;
+    }
+
+    if ( ! m_GameBoard.isLegalMove (currPiece, to ) ) {
+        printf ( "Not a Legal move!\n");
+        return false;
+    }
+    return true;
+}
+
+void CChess::makeNextTurn ( const std::string &movement ) {
     CCoord from{};
     CCoord to{};
+
+    // all theses check probably should be some command class handler
     if ( ! parseMovement ( movement, from, to ) ) {
         printf ( "Bad move format!\n");
         return;
     }
 
-    if ( ! from.isInsideBoard() || ! to.isInsideBoard() ) {
-        printf ( "Coordinates not inside board!\n");
+    if ( ! validatePlayerMovement ( from, to ) )
         return;
-    }
 
-
-
+    // make the move
+    // get a troop on to position
+    auto toTroop =  m_GameBoard.getTroopOnCoord (to);
+    m_GameBoard.Move ( from, to );
+    if ( m_GameBoard.isGeneralsFace() )
 
 
 
@@ -93,6 +118,7 @@ bool CChess::parseMovement ( const std::string &movement, CCoord & first, CCoord
     first = CCoord(second);
     return true;
 }
+
 
 
 

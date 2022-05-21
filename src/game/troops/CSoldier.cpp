@@ -51,3 +51,9 @@ std::set<CCoord> CSoldier::getPossibleMoves ( const std::shared_ptr<CTroop> curr
 
     return s_coords;
 }
+
+const std::string &CSoldier::getName () const {
+    return m_Name;
+}
+
+CSoldier::CSoldier ( SIDE side, const CCoord &coord ) : CTroop ( side, coord ) {}

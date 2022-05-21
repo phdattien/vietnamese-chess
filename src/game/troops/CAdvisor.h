@@ -4,11 +4,14 @@
 
 class CAdvisor : public CTroop {
 public:
-    CAdvisor ( const std::string &name, SIDE side, const CCoord &coord );
+    CAdvisor ( SIDE side, const CCoord &coord );
 
     std::set<CCoord> getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const override;
 
+    const std::string &getName () const override;
+
 private:
+    const std::string m_Name = "A";
     bool isInsideAdvisorMovements ( const CCoord& newCoord ) const;
 };
 
