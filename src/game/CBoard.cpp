@@ -6,8 +6,23 @@
 #include <cstdio>
 #include <iostream>
 
+
+
 CBoard::CBoard (  std::vector<std::shared_ptr<CTroop>> &troops ) {
     for ( auto & troop : troops ) {
+        if ( troop->getSide() == SIDE::RED ) {
+            if ( troop->getName() == GENERAL )
+                m_RedGeneral = troop;
+            else
+                m_RedTroops.push_back (troop);
+        }
+        else {
+            if ( troop->getName() == GENERAL )
+                m_BlackGeneral = troop;
+            else
+                m_BlackTroops.push_back (troop);
+        }
+
         m_Board[troop->getCoord().m_Colum][troop->getCoord().m_Row] = move ( troop ) ;
     }
 }

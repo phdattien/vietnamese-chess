@@ -15,7 +15,6 @@ public:
     CBoard ( std::vector<std::shared_ptr<CTroop>> & troops );
     CBoard () = default;
 
-
     bool isLegalMove ( const std::shared_ptr<CTroop> & troopOnPos, const CCoord & dest ) const;
     // find if two generals face each other return false
     bool isGeneralsFace   ();
@@ -26,9 +25,14 @@ public:
 
 
 private:
-//    std::shared_ptr<CTroop> m_Board[COL_SIZE][ROW_SIZE];
-
+    std::vector<std::shared_ptr<CTroop>> m_BlackTroops;
+    std::vector<std::shared_ptr<CTroop>> m_RedTroops;
+    std::shared_ptr<CTroop> m_RedGeneral;
+    std::shared_ptr<CTroop> m_BlackGeneral;
+    // who is moving right now
+    bool RedToMove = true;
     std::shared_ptr<CTroop> m_Board[COL_SIZE][ROW_SIZE];
     const std::shared_ptr<CTroop> & findKing ( ) const;
+    std::string GENERAL = "G";
 };
 
