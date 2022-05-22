@@ -3,10 +3,12 @@
 //
 
 #include <vector>
+#include <ostream>
+#include <iostream>
 #include "CGeneral.h"
 
-const std::vector<int> CGeneral::pos_coll { 1, -1, 0,  0, 1,  1, -1, -1 };
-const std::vector<int> CGeneral::pos_row  { 0,  0, 1, -1, 1, -1,  1, -1};
+const std::vector<int> CGeneral::pos_coll { 1, -1, 0,  0, 1,  1, -1, -1, 0 };
+const std::vector<int> CGeneral::pos_row  { 0,  0, 1, -1, 1, -1,  1, -1, 0};
 
 // could be better if all the new cords are initiliaze at the start
 bool CGeneral::isInsideGeneralMovements ( const CCoord &newCoord ) const {
@@ -15,7 +17,7 @@ bool CGeneral::isInsideGeneralMovements ( const CCoord &newCoord ) const {
     // general on red side all his movements from E2 otherwise from E9
     CCoord start = m_Side == SIDE::RED ? CCoord("E2") : CCoord("E9");
 
-    for ( size_t i = 0; i < 8; i++ ) {
+    for ( size_t i = 0; i < pos_coll.size(); i++ ) {
         int newPosI = start.m_Colum + pos_coll[i];
         int newPosJ = start.m_Row + pos_row[i];
 
@@ -37,11 +39,14 @@ std::set<CCoord> CGeneral::getPossibleMoves ( const std::shared_ptr<CTroop> curr
         int newPosJ = m_Coord.m_Row + pos_row[i];
 
         CCoord newCoord ( newPosI, newPosJ );
+
+        if ( ! newCoord.isInsideBoard() )
+            continue;
+
         auto & troopOnPos = currBoard[newCoord.m_Colum][newCoord.m_Row];
 
         // if newCoord is outside of board or there is a troop but, on the same side or it is outside of the palace
-        if (     ! newCoord.isInsideBoard ()
-             ||  ( troopOnPos && troopOnPos->getSide() == m_Side ) // troop on new pos already exist a troop but he is on same side
+        if ( ( troopOnPos && troopOnPos->getSide() == m_Side ) // troop on new pos already exist a troop but he is on same side
              ||  !  isInsideGeneralMovements ( newCoord ) )
         {
             continue;

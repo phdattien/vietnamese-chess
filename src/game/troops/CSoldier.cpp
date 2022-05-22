@@ -9,7 +9,6 @@ const std::vector<int> CSoldier::POS_ROW  {  1, -1 };
 
 
 
-CSoldier::CSoldier ( const std::string &name, SIDE side, const CCoord &coord ) : CTroop ( name, side, coord ) {}
 
 bool CSoldier::isValidCoord ( const CCoord &newCoord, const std::shared_ptr<CTroop> (*currBoard)[9] ) const {
     // if newCoord is outside of board or there is a troop but, on the same side or it is outside of the palace

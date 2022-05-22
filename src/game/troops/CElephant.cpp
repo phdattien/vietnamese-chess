@@ -31,7 +31,6 @@ std::set<CCoord> ELEPHANT_MOVEMENTS_BLACK
                 CCoord("G6")
         };
 
-CElephant::CElephant ( const std::string &name, SIDE side, const CCoord &coord ) : CTroop ( name, side, coord ) {}
 
 bool CElephant::isInsideElephantMovements ( const CCoord &newCoord ) const {
     return m_Side == SIDE::RED ? ELEPHANT_MOVEMENTS_RED.count (newCoord) : ELEPHANT_MOVEMENTS_BLACK.count (newCoord);

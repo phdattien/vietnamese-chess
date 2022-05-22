@@ -4,6 +4,7 @@
 
 #include "CHorse.h"
 #include <vector>
+#include <iostream>
 
 
 const std::vector<int> POS_COLL {  2, 2, -2, -2, -1, 1, -1,  1 };
@@ -15,7 +16,7 @@ bool CHorse::inWay ( const CCoord &newCoord, const std::shared_ptr<CTroop> (*cur
     int testCol =  m_Coord.m_Colum > newCoord.m_Colum ? 1 : -1;
     int testRow =  m_Coord.m_Row > newCoord.m_Row ? 1 : -1;
 
-    if (  currBoard[testCol][testRow ] ) // there is someting in between
+    if (  currBoard[testCol + newCoord.m_Colum][testRow + newCoord.m_Row] ) // there is someting in between
         return true;
 
     return false;

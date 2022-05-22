@@ -4,6 +4,7 @@
 
 #include "CAdvisor.h"
 #include <vector>
+#include <iostream>
 
 
 std::vector<int> pos_coll { 1,  1, -1, -1 };
@@ -18,7 +19,6 @@ const std::set<CCoord> AdvisorCoord
     CCoord("E2")
 };
 
-CAdvisor::CAdvisor ( const std::string &name, SIDE side, const CCoord &coord ) : CTroop ( name, side, coord ) {}
 
 bool CAdvisor::isInsideAdvisorMovements ( const CCoord &newCoord ) const {
     std::set<CCoord> movements;
@@ -47,20 +47,27 @@ std::set<CCoord> CAdvisor::getPossibleMoves ( const std::shared_ptr<CTroop> curr
         int newPosI = m_Coord.m_Colum + pos_coll[i];
         int newPosJ = m_Coord.m_Row + pos_row[i];
 
+
         CCoord newCoord ( newPosI, newPosJ );
+
+        if ( ! newCoord.isInsideBoard() )
+            continue;
+
+
         auto & troopOnPos = currBoard[newCoord.m_Colum][newCoord.m_Row];
+
 
         // if newCoord is outside of board or there is a troop but, on the same side or it is outside of the palace
 
-        if (     ! newCoord.isInsideBoard ()
-                 ||  ( troopOnPos && troopOnPos->getSide() == m_Side )
-                 ||  !  isInsideAdvisorMovements( newCoord ) )
+        if ( ( troopOnPos && troopOnPos->getSide() == m_Side )
+                ||  !  isInsideAdvisorMovements( newCoord ) )
         {
             continue;
         }
-
+//
         s_coord.insert (newCoord );
     }
+//    std::cout << "Size: " << s_coord.size() << std::endl;
     return s_coord;
 }
 

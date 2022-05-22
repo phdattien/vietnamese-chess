@@ -3,6 +3,7 @@
 //
 
 #include "CCannon.h"
+#include <iostream>
 
 CCannon::CCannon ( SIDE side, const CCoord &coord ) : CTroop ( side, coord ) {}
 
@@ -12,8 +13,7 @@ const std::string &CCannon::getName () const {
 }
 
 
-void
-CCannon::getSlidingCoords ( int start, char still, int direction, int end, const std::shared_ptr<CTroop> (*currBoard)[9],
+void CCannon::getSlidingCoords ( int start, char still, int direction, int end, const std::shared_ptr<CTroop> (*currBoard)[9],
                             std::set<CCoord> &cords ) const {
     if ( start == end )
         return;
@@ -27,10 +27,11 @@ CCannon::getSlidingCoords ( int start, char still, int direction, int end, const
 
         auto & troopOnPos = currBoard[newCoord.m_Colum][newCoord.m_Row];
         // any troop on this position
-        if ( troopOnPos ) {
+        if ( troopOnPos && !skip ) {
             skip = true;
             continue;
         }
+
 
         if ( troopOnPos && skip && troopOnPos->getSide() != m_Side ) { // adding a jump take movement
             cords.insert (newCoord);
