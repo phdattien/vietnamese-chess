@@ -8,7 +8,6 @@
 #include <algorithm>
 
 
-
 CBoard::CBoard (  std::vector<std::shared_ptr<CTroop>> &troops ) {
     for ( auto & troop : troops ) {
         if ( troop->getSide() == SIDE::RED ) {
@@ -206,8 +205,6 @@ const std::vector<Move> &CBoard::generateMoves () {
         auto res = std::find_if(opponentMoves.begin(), opponentMoves.end(), [&generalCoord]  (const Move & a ) {
             return a.m_To == generalCoord;
         });
-
-        std::cout << "General COord: " << generalCoord.m_Colum << " " << generalCoord.m_Row << std::endl;
 
         if ( res == opponentMoves.end() &&  ! isGeneralsFacing() ) {
             possibleMoves.push_back (possibleMov);

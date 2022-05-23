@@ -3,6 +3,7 @@
 //
 #pragma once
 #include "troops/CCoord.h"
+#include <ostream>
 
 
 /**
@@ -10,9 +11,11 @@
  */
 struct Move {
     Move ( const CCoord &mFrom, const CCoord &mTo );
+    Move () = default;
 
     CCoord m_From;
     CCoord m_To;
+    friend std::ostream & operator << ( std::ostream & os, const Move & move );
 };
 
 

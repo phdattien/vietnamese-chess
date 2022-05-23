@@ -12,7 +12,7 @@ CChess::CChess ( CBoard board ) : m_GameBoard ( std::move (board ) ), m_PlayerTu
 
 void CChess::PrintGameState () const {
 //    printf ( "%s TURN\n", m_PlayerTurn == SIDE::RED ? "RED" : "WHITE" ); // header
-    m_GameBoard.print (); // printing game state
+    m_GameBoard.printBoard (); // printing game state
     printf ( "press: (h)elp | (s)save <file> | (q)uit | (m)move <xy> <zw>\n");
 }
 
@@ -35,7 +35,7 @@ void CChess::doCommand () {
                 std::cin.get();
                 PrintGameState();
                 break;
-            case 'p': // print gameboard again
+            case 'p': // printBoard gameboard again
                 PrintGameState ();
                 break;
             default:
@@ -84,7 +84,7 @@ void CChess::makeNextTurn ( const std::string &movement ) {
     // get a troop on to position
     auto toTroop =  m_GameBoard.getTroopOnCoord (to);
     m_GameBoard.Move ( from, to );
-    if ( m_GameBoard.isGeneralsFace() )
+    if ( m_GameBoard.isGeneralsFacing () )
 
 
 
