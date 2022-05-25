@@ -10,12 +10,11 @@
 #include <optional>
 
 
-const std::string startBoard = "rheagaehr/9/1c5c1/s1s1s1s1s/9/9/S1S1S1S1S/1C5C1/9/RHEAGAEHR r";
 
 class CFen {
 public:
     CFen() = default;
-    static std::optional<CPositionInf> loadTroops ( const std::string &fen = startBoard );
+    static std::optional<CPositionInf> loadTroops ( const std::string &fen );
     static std::string getFen ( const CBoard & currBoard );
 
 private:
