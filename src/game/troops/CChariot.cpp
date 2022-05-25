@@ -50,7 +50,7 @@ std::set<CCoord> CChariot::getPossibleMoves ( const std::shared_ptr<CTroop> curr
     return s_coord;
 }
 
-const std::string &CChariot::getName () const {
+const char CChariot::getName () const {
     return m_Name;
 }
 

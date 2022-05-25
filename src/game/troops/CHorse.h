@@ -9,9 +9,9 @@ class CHorse : public CTroop {
 public:
     CHorse ( SIDE side, const CCoord &coord );
 
-    const std::string &getName () const override;
+    const char getName () const override;
 private:
-    std::string m_Name = "H";
+    const char m_Name = 'H';
     std::set<CCoord> getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const override;
     bool inWay ( const CCoord& newCoord, const std::shared_ptr<CTroop> (*currBoard)[9] ) const;
 

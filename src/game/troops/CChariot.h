@@ -12,10 +12,10 @@ public:
 
     CChariot ( SIDE side, const CCoord &coord );
 
-    const std::string &getName () const override;
+    const char getName () const override;
 
 private:
-    std::string m_Name = "R";
+    const char m_Name = 'R';
 
     std::set<CCoord> getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const override;
     // control if on a newCoord on a currBoard state is a ally troop

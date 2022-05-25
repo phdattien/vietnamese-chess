@@ -8,7 +8,7 @@
 CCannon::CCannon ( SIDE side, const CCoord &coord ) : CTroop ( side, coord ) {}
 
 
-const std::string &CCannon::getName () const {
+const char CCannon::getName () const {
     return m_Name;
 }
 

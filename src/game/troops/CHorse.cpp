@@ -44,7 +44,7 @@ std::set<CCoord> CHorse::getPossibleMoves ( const std::shared_ptr<CTroop> currBo
     return s_coord;
 }
 
-const std::string &CHorse::getName () const {
+const char CHorse::getName () const {
     return m_Name;
 }
 

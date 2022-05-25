@@ -20,7 +20,7 @@ public:
     // virtual method for a troop to get all of his possible moves from the his position and boardState
     virtual std::set<CCoord> getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const = 0;
     // Every troop has his own default unique name - can't be chanched
-    virtual const std::string & getName () const = 0;
+    virtual const char getName () const = 0;
     // get side of a troop
     const SIDE & getSide  () const { return m_Side; };
     // setter for a newCoordinate
