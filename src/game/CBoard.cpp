@@ -6,10 +6,18 @@
 #include <cstdio>
 #include <iostream>
 #include <algorithm>
+#include "utility/CFen.h"
+#include <exception>
 
 
-CBoard::CBoard (  std::vector<std::shared_ptr<CTroop>> &troops ) {
-    for ( auto & troop : troops ) {
+
+CBoard::CBoard ( const std::string &  fen  ) {
+    auto inf = CFen::loadTroops (fen);
+    if ( ! inf ) {
+        throw std::invalid_argument ("Bad Fen");
+    }
+
+    for ( auto & troop : inf->troopsOnBoard ) {
         if ( troop->getSide() == SIDE::RED ) {
             if ( troop->getName() == GENERAL )
                 m_RedGeneral = troop;
@@ -23,62 +31,68 @@ CBoard::CBoard (  std::vector<std::shared_ptr<CTroop>> &troops ) {
 
         m_Board[troop->getCoord().m_Colum][troop->getCoord().m_Row] = move ( troop ) ;
     }
+    RedToMove = inf->isRedOnPlay;
 }
+
 
 bool CBoard::isLegalMove ( const std::shared_ptr<CTroop> &troopOnPos, const CCoord &dest ) const {
     // if destination is in set of a troops all possible moves thatn true
     return troopOnPos->getPossibleMoves ( m_Board ).count (dest);
 }
 
-void CBoard::printBoard () const {
-    // --------------- printing header  -----------------------
-    char c = 'A';
-    for ( size_t i = 0; i < ROW_SIZE; i++ ) {
-        printf ( "%5c", c );
-        c++;
-    }
-    // --------------- printing header  -----------------------
-
-    printf("\n\n");
-    // ------------------ board -----------------------------
-    int num = 10;
-    char sep = '|';
-    const char * dash = "----";
-    const char * space = " ";
-    for ( size_t i = 0; i < COL_SIZE; i++ ) {
-        // printBoard left side
-        printf ( "%2d", num--);
-        printf ( "%2s", space);
-
-        // printing board
-        for ( size_t j = 0; j < ROW_SIZE; j++ ) {
-            if ( m_Board[i][j] )
-                printf ( "%s", m_Board[i][j]->getName().c_str() );
-            else
-                printf ( "+" );
-            if ( j != ROW_SIZE - 1 )
-                printf ( "%s", dash );
-        }
-
-        printf("\n");
-        // printing bar
-        if ( i != COL_SIZE - 1 )
-            for ( size_t j = 0; j < ROW_SIZE; j++ ) {
-                printf ( "%5c", sep );
-        }
-        printf("\n");
-    }
-
-    // --------------- printing footer  -----------------------
-    c = 'A';
-    for ( size_t i = 0; i < ROW_SIZE; i++ ) {
-        printf ( "%5c", c );
-        c++;
-    }
-    // --------------- printing footer  -----------------------
-    printf("\n");
-}
-
+//void CBoard::printInside () const {
+//    // --------------- printing header  -----------------------
+//    char c = 'A';
+//    for ( size_t i = 0; i < ROW_SIZE; i++ ) {
+//        printf ( "%5c", c );
+//        c++;
+//    }
+//    // --------------- printing header  -----------------------
+//
+//    printf("\n\n");
+//    // ------------------ board -----------------------------
+//    int num = 10;
+//    char sep = '|';
+//    const char * dash = "----";
+//    const char * space = " ";
+//    for ( size_t i = 0; i < COL_SIZE; i++ ) {
+//        // printInside left side
+//        printf ( "%2d", num--);
+//        printf ( "%2s", space);
+//
+//        // printing board
+//        for ( size_t j = 0; j < ROW_SIZE; j++ ) {
+//            if ( m_Board[i][j] ) {
+//               std::cout << "\u001b[" <<
+//                printf ( " \"\\u001b[\" << START_COL << \";1mS\\u001b[0m\"    %c", m_Board[i][j]->getName() );
+//                "\u001b[" << START_COL << ";1mS\u001b[0m"
+//
+//            }
+//            else
+//                printf ( "+" );
+//            if ( j != ROW_SIZE - 1 )
+//                printf ( "%s", dash );
+//        }
+//
+//        printf("\n");
+//        // printing bar
+//        if ( i != COL_SIZE - 1 )
+//            for ( size_t j = 0; j < ROW_SIZE; j++ ) {
+//                printf ( "%5c", sep );
+//        }
+//        printf("\n");
+//    }
+//
+//    // --------------- printing footer  -----------------------
+//    c = 'A';
+//    for ( size_t i = 0; i < ROW_SIZE; i++ ) {
+//        printf ( "%5c", c );
+//        c++;
+//    }
+//    // --------------- printing footer  -----------------------
+//    printf("\n");
+//}
+//
 
 bool CBoard::isGeneralsFacing ( ) {
     if ( m_BlackGeneral->getCoord().m_Row != m_RedGeneral->getCoord().m_Row)
@@ -222,6 +236,11 @@ const CCoord &CBoard::getGeneralOnPlayCoord () const {
 const CCoord &CBoard::getGeneralOnOppositePlayCoord () const {
     return RedToMove ? m_BlackGeneral->getCoord() : m_RedGeneral->getCoord();
 }
+
+bool CBoard::isRedToMove () const {
+    return RedToMove;
+}
+
 
 
 

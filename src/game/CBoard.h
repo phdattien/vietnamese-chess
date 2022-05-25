@@ -3,18 +3,16 @@
 #include <vector>
 #include <memory>
 #include "Move.h"
+//#include "utility/CBoardUi.h"
 
 const size_t ROW_SIZE = 9;
 const size_t COL_SIZE = 10;
-
-// board.isLegalMove ( m_board[3][8],  dest - CCoord ( "41" )
 
 
 class CBoard {
 public:
     // takes all troops in vector and fill the board
-    CBoard ( std::vector<std::shared_ptr<CTroop>> & troops );
-    CBoard () = default;
+    CBoard ( const std::string & fen = "rheagaehr/9/1c5c1/s1s1s1s1s/9/9/S1S1S1S1S/1C5C1/9/RHEAGAEHR r" );
 
     bool isLegalMove ( const std::shared_ptr<CTroop> & troopOnPos, const CCoord & dest ) const;
     // return true if two generals are facing each other
@@ -28,7 +26,7 @@ public:
 
     // void Move ( const CCoord &from, const CCoord & to);
 
-    void printBoard () const;
+//    void printInside () const;
 
     //getAllpseudoLegalMoves
     std::vector<Move> generatePseudoLegalMoves ();
@@ -47,11 +45,14 @@ public:
 
     void UnMakeMove ( const Move & movement );
 
-
     const std::vector<Move> & generateMoves ();
 
+    bool isRedToMove () const;
+
+    friend class CBoardUi;
+
 private:
-    std::string GENERAL = "G";
+    char GENERAL = 'G';
     std::shared_ptr<CTroop> m_Board[COL_SIZE][ROW_SIZE];
     std::vector<std::shared_ptr<CTroop>> m_BlackTroops;
     std::vector<std::shared_ptr<CTroop>> m_RedTroops;
