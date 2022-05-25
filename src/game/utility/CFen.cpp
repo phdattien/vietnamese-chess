@@ -34,7 +34,7 @@ std::optional<CPositionInf> CFen::loadTroops ( const std::string &fen ) {
             row = 0;
         }
         else if  ( isalpha(c) )  {
-            side = isupper (c) ? SIDE::BLACK : SIDE::RED;
+            side = isupper (c) ? SIDE::RED: SIDE::BLACK;
             coord = CCoord( col, row );
             std::shared_ptr<CTroop> troop = getTroopByType ( c, side, coord );
             if ( ! troop )
@@ -79,5 +79,30 @@ std::shared_ptr<CTroop> CFen::getTroopByType ( char name, SIDE side, const CCoor
 }
 
 std::string CFen::getFen ( const CBoard &currBoard ) {
-    return std::string ();
+    std::string fen;
+    for ( size_t i = 0; i < COL_SIZE; i++ ) {
+        int empty = 0;
+        for ( size_t j = 0; j < ROW_SIZE; j++ ) {
+            const auto & troop = currBoard.getTroopOnCoord ( CCoord (i, j ) );
+            if ( ! troop )  {
+                empty++;
+            }
+            else {
+                if ( empty != 0 )
+                    fen.push_back ( ( empty + '0') );
+                char c = troop->getSide() == SIDE::RED ? toupper (troop->getName()) : tolower (troop->getName());
+                fen.push_back (c);
+            }
+        }
+        if ( empty != 0 ) // in case whole row is empty
+            fen.push_back ( ( empty + '0') );
+        fen.push_back ('\\');
+    }
+
+    // add colour on play
+
+    char sideOnPlay = currBoard.isRedToMove() ? 'r' : 'b';
+    fen.push_back (' ');
+    fen.push_back (sideOnPlay);
+    return fen;
 }
