@@ -3,10 +3,16 @@
 //
 
 #include "CPlayerAI.h"
+#include "cstdio"
 
 
-Move CPlayerAI::ChooseMove ( CBoard &board ) {
+std::optional<Move> CPlayerAI::TakeAction ( CBoard &board ) {
+
     std::vector<Move> moves =  board.generateMoves();
-    return moves[0];
+    if ( moves.empty() ) {
+        return {};
+    }
+    int k = rand();
+    return moves[k % moves.size()];
 }
 

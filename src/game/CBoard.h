@@ -18,17 +18,16 @@ public:
     // return true if two generals are facing each other
     bool isGeneralsFacing   ();
 
+    bool isGeneralAttacked ();
+
     std::shared_ptr<CTroop> & getTroopOnCoord ( const CCoord & from );
 
     std::shared_ptr<CTroop> getTroopOnCoord ( const CCoord & from ) const;
 
     std::vector<std::shared_ptr<CTroop>> & getTroopsOnPlay ();
 
-    // void Move ( const CCoord &from, const CCoord & to);
+    bool isRedToMove () const;
 
-//    void printInside () const;
-
-    //getAllpseudoLegalMoves
     std::vector<Move> generatePseudoLegalMoves ();
 
     void printAttackedMoves ();
@@ -47,9 +46,11 @@ public:
 
     const std::vector<Move> & generateMoves ();
 
-    bool isRedToMove () const;
+    bool isDraw();
 
     friend class CBoardUi;
+
+
 
 private:
     char GENERAL = 'G';
@@ -62,5 +63,11 @@ private:
     std::vector<Move> possibleMoves;
     // who is moving right now
     bool RedToMove = true;
+
+
+    std::vector<Move> generatePseudoLegalMovesByColour ( const std::vector<std::shared_ptr<CTroop>>& troops );
+
+    std::vector<std::shared_ptr<CTroop>> & getTroopsOnOpositePlay ();
+    bool canCross ( const std::vector<char>& troopNames );
 };
 

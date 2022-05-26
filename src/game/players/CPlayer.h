@@ -4,15 +4,15 @@
 #pragma once
 
 #include "../Move.h"
-#include "game/CBoard.h"
+#include "../CBoard.h"
+#include "optional"
 
 class CPlayer {
 public:
     virtual ~CPlayer() noexcept = default;
     // virtual function to make a player choose a movement on board
-    virtual Move ChooseMove ( CBoard &board ) = 0;
+    virtual std::optional<Move> TakeAction ( CBoard &board ) = 0;
 protected:
-
 };
 
 

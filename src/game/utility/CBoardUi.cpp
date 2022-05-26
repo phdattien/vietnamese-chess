@@ -38,6 +38,8 @@ void CBoardUi::printSep () {
 
 
 void CBoardUi::printBoard ( const CBoard &currBoard ) {
+//    std::cout << "\x1b[1J" << "\x1b[H"; //-> clear screan
+    printf ( "%s TURN\n", currBoard.isRedToMove()  ? "RED" : "BLACK" ); // header
     // --------------- printing header  -----------------------
     auto & Board = currBoard.m_Board;
     printHead();
@@ -78,6 +80,29 @@ void CBoardUi::printBoard ( const CBoard &currBoard ) {
     printHead();
     // --------------- printing footer  -----------------------
     printf("\n");
+    printf ( "press: (h)elp | (s)save <file> | (q)uit | (m)move | (p)rint\n");
+}
+
+void CBoardUi::printHelpMenu () {
+    printf ( "=========== GAME HELP MENU ========================\n");
+    printf ( "(s)save\n");
+    printf ( "save game state to file\n");
+    printf ( "(m)ove \n");
+    printf ( "move Troop from current position to destination:  \n");
+    printf ( "(q)uit\n");
+    printf ( "quit chess game and go back to user menu\n");
+    printf ( "(p)rint\n");
+    printf ( "=========== HELP MENU ========================\n");
+}
+
+void CBoardUi::printUserMenu () {
+    printf ("============== VIETNAMESE CHESS =====================\n");
+    printf ( "(1)PVP\n");
+    printf ( "(2)PVCo\n");
+    printf ( "(3)CoVCo\n");
+    printf ( "(l)load game\n");
+    printf ( "(q)uit\n");
+    printf ("============== VIETNAMESE CHESS =====================\n");
 }
 
 

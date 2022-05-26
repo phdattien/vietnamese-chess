@@ -8,6 +8,7 @@
 #include <algorithm>
 #include "utility/CFen.h"
 #include <exception>
+#include "utility/CPositionInf.h"
 
 
 
@@ -126,13 +127,8 @@ std::vector<std::shared_ptr<CTroop>> &CBoard::getTroopsOnPlay ()  {
     return RedToMove ? m_RedTroops : m_BlackTroops;
 }
 
-std::vector<Move> CBoard::generatePseudoLegalMoves () {
-    std::vector<Move> moves;
-    std::vector<std::shared_ptr<CTroop>> troops = getTroopsOnPlay();
-    for ( const auto & troop : troops ) {
-        addMoves ( troop->getCoord(), troop->getPossibleMoves (m_Board), moves );
-    }
-    return moves;
+std::vector<std::shared_ptr<CTroop>> &CBoard::getTroopsOnOpositePlay () {
+    return RedToMove ? m_BlackTroops : m_RedTroops;
 }
 
 void CBoard::addMoves ( const CCoord & start, const std::set<CCoord>& cords, std::vector<Move>& moves ) {
@@ -241,6 +237,64 @@ bool CBoard::isRedToMove () const {
     return RedToMove;
 }
 
+bool CBoard::isGeneralAttacked ()  {
+    std::vector<Move> moves = generatePseudoLegalMovesByColour ( getTroopsOnOpositePlay() );
+    CCoord generalCoord = getGeneralOnPlayCoord();
+
+    auto res = std::find_if( moves.begin(), moves.end(), [&generalCoord]  (const Move & a ) {
+        return a.m_To == generalCoord;
+    });
+
+    if ( res == moves.end()) { // meaning our King is not under attacked
+        return false;
+    }
+    return true;
+}
+
+std::vector<Move> CBoard::generatePseudoLegalMovesByColour ( const std::vector<std::shared_ptr<CTroop>>& troops ) {
+    std::vector<Move> moves;
+    for ( const auto & troop : troops ) {
+        addMoves ( troop->getCoord(), troop->getPossibleMoves (m_Board), moves );
+    }
+    return moves;
+}
+
+
+
+std::vector<Move> CBoard::generatePseudoLegalMoves () {
+    return generatePseudoLegalMovesByColour ( getTroopsOnPlay() );
+}
+
+bool CBoard::isDraw () {
+    if ( m_RedTroops.size() <= 2 && m_BlackTroops.size() <= 2)
+        return true;
+    std::vector<char> redTroops;
+    std::vector<char> blackTroops;
+
+    for ( const auto& x : m_RedTroops ) {
+        redTroops.push_back (x->getName());
+    }
+
+    for ( const auto& x : m_BlackTroops ) {
+        blackTroops.push_back (x->getName());
+    }
+
+    if ( ! canCross (blackTroops) && !canCross (redTroops))
+        return true;
+
+    return false;
+
+
+}
+
+bool CBoard::canCross ( const std::vector<char>& troopNames ) {
+    std::vector<char> low { 'S', 'R', 'H'};
+    for ( auto c : low ) {
+        if ( std::find(troopNames.begin(), troopNames.end(), c) != troopNames.end() )
+            return true;
+    }
+    return false;
+}
 
 
 

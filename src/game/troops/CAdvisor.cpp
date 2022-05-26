@@ -71,7 +71,7 @@ std::set<CCoord> CAdvisor::getPossibleMoves ( const std::shared_ptr<CTroop> curr
     return s_coord;
 }
 
-const char CAdvisor::getName () const {
+char CAdvisor::getName () const {
     return m_Name;
 }
 

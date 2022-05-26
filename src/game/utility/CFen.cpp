@@ -92,11 +92,12 @@ std::string CFen::getFen ( const CBoard &currBoard ) {
                     fen.push_back ( ( empty + '0') );
                 char c = troop->getSide() == SIDE::RED ? toupper (troop->getName()) : tolower (troop->getName());
                 fen.push_back (c);
+                empty = 0;
             }
         }
         if ( empty != 0 ) // in case whole row is empty
             fen.push_back ( ( empty + '0') );
-        fen.push_back ('\\');
+        fen.push_back ('/');
     }
 
     // add colour on play

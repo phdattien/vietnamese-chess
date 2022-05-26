@@ -8,10 +8,10 @@ public:
 
     std::set<CCoord> getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const override;
 
-    const char getName () const override;
+    char getName () const override;
 
 private:
-    const char m_Name = 'A';
+    char m_Name = 'A';
     bool isInsideAdvisorMovements ( const CCoord& newCoord ) const;
 };
 

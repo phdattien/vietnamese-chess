@@ -13,10 +13,10 @@ public:
 
     std::set<CCoord> getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const override;
 
-    const char getName () const override;
+    char getName () const override;
 
 private:
-    const char m_Name = 'S';
+    char m_Name = 'S';
     static const std::vector<int> POS_COL;
     static const std::vector<int> POS_ROW;
     bool isValidCoord ( const CCoord &newCoord, const std::shared_ptr<CTroop> (*currBoard)[9] ) const;

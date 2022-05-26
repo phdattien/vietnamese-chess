@@ -51,7 +51,7 @@ std::set<CCoord> CSoldier::getPossibleMoves ( const std::shared_ptr<CTroop> curr
     return s_coords;
 }
 
-const char CSoldier::getName () const {
+char CSoldier::getName () const {
     return m_Name;
 }
 

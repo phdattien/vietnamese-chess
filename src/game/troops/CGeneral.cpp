@@ -56,7 +56,7 @@ std::set<CCoord> CGeneral::getPossibleMoves ( const std::shared_ptr<CTroop> curr
     return s_coord;
 }
 
-const char CGeneral::getName () const {
+char CGeneral::getName () const {
     return m_Name;
 }
 

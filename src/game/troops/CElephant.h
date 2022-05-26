@@ -6,10 +6,10 @@ public:
     CElephant ( SIDE side, const CCoord &coord );
 
     std::set<CCoord> getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const override;
-    const char getName () const override;
+    char getName () const override;
 
 private:
-    const char m_Name = 'E';
+    char m_Name = 'E';
     bool isInsideElephantMovements( const CCoord& newCoord ) const;
     bool inWay ( const CCoord& newCoord, const std::shared_ptr<CTroop> (*currBoard)[9] ) const;
 };

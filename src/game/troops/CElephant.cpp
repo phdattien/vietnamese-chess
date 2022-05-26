@@ -72,7 +72,7 @@ std::set<CCoord> CElephant::getPossibleMoves ( const std::shared_ptr<CTroop> cur
     return s_coord;
 }
 
-const char CElephant::getName () const {
+char CElephant::getName () const {
     return m_Name;
 }
 

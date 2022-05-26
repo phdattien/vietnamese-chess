@@ -7,6 +7,8 @@
 class CBoardUi {
 public:
     static void printBoard ( const CBoard &currBoard );
+    static void printHelpMenu();
+    static void printUserMenu();
 
 private:
     static const std::string ESCAPE;
@@ -15,7 +17,6 @@ private:
 
     static void printHead ();
     static void printSep ();
-    static void printInside( const CBoard & board);
 };
 
 
