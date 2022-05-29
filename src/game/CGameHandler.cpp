@@ -38,9 +38,9 @@ void CGameHandler::CreatePlayer ( CGameHandler::Player & player, PLAYER_TYPE typ
 
 
 void CGameHandler::Play () {
-    CBoardUi::printBoard (m_GameBoard);
     while ( true ) {
         //getState  -- playerOnTrun ( under attack > checked, takeAction
+        CBoardUi::printBoard (m_GameBoard);
         if ( m_GameBoard.isDraw() ) {
             printf ( "DRAW\n");
             return;
@@ -54,12 +54,11 @@ void CGameHandler::Play () {
             PrintResult();
             break;
         }
-        m_GameBoard.MakeMove (move.value() );
         std::cout << move.value() << std::endl;
+        m_GameBoard.MakeMove (move.value() );
         changePlayer ();
 //        std::cin.get();
         std::this_thread::sleep_for(SLEEP_TIME);
-        CBoardUi::printBoard (m_GameBoard);
     }
 }
 

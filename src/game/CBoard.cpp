@@ -11,7 +11,6 @@
 #include "utility/CPositionInf.h"
 
 
-
 CBoard::CBoard ( const std::string &  fen  ) {
     auto inf = CFen::loadTroops (fen);
     if ( ! inf ) {
@@ -40,60 +39,6 @@ bool CBoard::isLegalMove ( const std::shared_ptr<CTroop> &troopOnPos, const CCoo
     // if destination is in set of a troops all possible moves thatn true
     return troopOnPos->getPossibleMoves ( m_Board ).count (dest);
 }
-
-//void CBoard::printInside () const {
-//    // --------------- printing header  -----------------------
-//    char c = 'A';
-//    for ( size_t i = 0; i < ROW_SIZE; i++ ) {
-//        printf ( "%5c", c );
-//        c++;
-//    }
-//    // --------------- printing header  -----------------------
-//
-//    printf("\n\n");
-//    // ------------------ board -----------------------------
-//    int num = 10;
-//    char sep = '|';
-//    const char * dash = "----";
-//    const char * space = " ";
-//    for ( size_t i = 0; i < COL_SIZE; i++ ) {
-//        // printInside left side
-//        printf ( "%2d", num--);
-//        printf ( "%2s", space);
-//
-//        // printing board
-//        for ( size_t j = 0; j < ROW_SIZE; j++ ) {
-//            if ( m_Board[i][j] ) {
-//               std::cout << "\u001b[" <<
-//                printf ( " \"\\u001b[\" << START_COL << \";1mS\\u001b[0m\"    %c", m_Board[i][j]->getName() );
-//                "\u001b[" << START_COL << ";1mS\u001b[0m"
-//
-//            }
-//            else
-//                printf ( "+" );
-//            if ( j != ROW_SIZE - 1 )
-//                printf ( "%s", dash );
-//        }
-//
-//        printf("\n");
-//        // printing bar
-//        if ( i != COL_SIZE - 1 )
-//            for ( size_t j = 0; j < ROW_SIZE; j++ ) {
-//                printf ( "%5c", sep );
-//        }
-//        printf("\n");
-//    }
-//
-//    // --------------- printing footer  -----------------------
-//    c = 'A';
-//    for ( size_t i = 0; i < ROW_SIZE; i++ ) {
-//        printf ( "%5c", c );
-//        c++;
-//    }
-//    // --------------- printing footer  -----------------------
-//    printf("\n");
-//}
-//
 
 bool CBoard::isGeneralsFacing ( ) {
     if ( m_BlackGeneral->getCoord().m_Row != m_RedGeneral->getCoord().m_Row)
@@ -138,9 +83,9 @@ void CBoard::addMoves ( const CCoord & start, const std::set<CCoord>& cords, std
 }
 
 void CBoard::printAttackedMoves () {
-    std::vector<Move> moves = generatePseudoLegalMoves();
-    for ( const auto [from, to] : moves ) {
-        printf ( "from: %d %d to: %d %d\n", from.m_Colum, from.m_Row, to.m_Colum, to.m_Row );
+    std::vector<Move> moves = generateMoves();
+    for ( const auto move : moves ) {
+        std::cout << move << std::endl;
     }
 }
 
@@ -167,29 +112,30 @@ void CBoard::printAttackedMap () {
 }
 
 void CBoard::MakeMove ( const Move &movement ) {
-    RedToMove = !RedToMove; // after making movements switch sides
-    std::vector<std::shared_ptr<CTroop>> &troops = getTroopsOnPlay();
 //    std::vector<std::shared_ptr<CTroop>> troops = m_BlackTroops;
     CCoord from = movement.m_From;
     CCoord to = movement.m_To;
 
-    auto & troopOnPos = getTroopOnCoord (from);
+
     m_PrevCapturedTroop = getTroopOnCoord (to); // can be null
+    std::vector<std::shared_ptr<CTroop>> &troops = getTroopsOnOpositePlay();
     auto it = std::find(troops.begin(), troops.end(), m_PrevCapturedTroop);
 
     if ( it != troops.end() ) {
         troops.erase ( it );
     }
 
+    auto & troopOnPos = getTroopOnCoord (from);
     troopOnPos->setCoord (to); // set new coordinates
 
     // move troop to desired destination
     m_Board[to.m_Colum][to.m_Row] = move ( troopOnPos );
+    RedToMove = !RedToMove; // after making movements switch sides
 }
 
 // can only used after MakeMove
 void CBoard::UnMakeMove ( const Move &movement ) {
-    std::vector<std::shared_ptr<CTroop>> troops = getTroopsOnPlay();
+    std::vector<std::shared_ptr<CTroop>> &troops = getTroopsOnPlay();
     RedToMove = !RedToMove; // after making movements switch sides
     CCoord from = movement.m_From;
     CCoord to = movement.m_To;
@@ -200,7 +146,8 @@ void CBoard::UnMakeMove ( const Move &movement ) {
     // move troop to desired destination
     m_Board[from.m_Colum][from.m_Row] = move ( troopOnPos );
     m_Board[to.m_Colum][to.m_Row] = m_PrevCapturedTroop;
-    troops.push_back (m_PrevCapturedTroop);
+    if (  m_PrevCapturedTroop )
+        troops.push_back (m_PrevCapturedTroop);
 }
 
 const std::vector<Move> &CBoard::generateMoves () {
@@ -216,6 +163,7 @@ const std::vector<Move> &CBoard::generateMoves () {
             return a.m_To == generalCoord;
         });
 
+        // if there is any move that will make out King in danger
         if ( res == opponentMoves.end() &&  ! isGeneralsFacing() ) {
             possibleMoves.push_back (possibleMov);
         }
