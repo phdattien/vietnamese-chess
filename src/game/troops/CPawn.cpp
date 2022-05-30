@@ -2,15 +2,15 @@
 // Created by tiendat on 13.05.22.
 //
 
-#include "CSoldier.h"
+#include "CPawn.h"
 
-const std::vector<int> CSoldier::POS_COL  {  0, 0 };
-const std::vector<int> CSoldier::POS_ROW  {  1, -1 };
-
-
+const std::vector<int> CPawn::POS_COL  { 0, 0 };
+const std::vector<int> CPawn::POS_ROW  { 1, -1 };
 
 
-bool CSoldier::isValidCoord ( const CCoord &newCoord, const std::shared_ptr<CTroop> (*currBoard)[9] ) const {
+
+
+bool CPawn::isValidCoord ( const CCoord &newCoord, const std::shared_ptr<CTroop> (*currBoard)[9] ) const {
     // if newCoord is outside of board or there is a troop but, on the same side or it is outside of the palace
     auto & troopOnPos = currBoard[newCoord.m_Colum][newCoord.m_Row];
     if (     ! newCoord.isInsideBoard ()
@@ -22,7 +22,7 @@ bool CSoldier::isValidCoord ( const CCoord &newCoord, const std::shared_ptr<CTro
 }
 
 
-std::set<CCoord> CSoldier::getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const {
+std::set<CCoord> CPawn::getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const {
     std::set<CCoord> s_coords;
 
     int direction = m_Side == SIDE::RED ? -1 : 1;
@@ -51,8 +51,8 @@ std::set<CCoord> CSoldier::getPossibleMoves ( const std::shared_ptr<CTroop> curr
     return s_coords;
 }
 
-char CSoldier::getName () const {
+char CPawn::getName () const {
     return m_Name;
 }
 
-CSoldier::CSoldier ( SIDE side, const CCoord &coord ) : CTroop ( side, coord ) {}
+CPawn::CPawn ( SIDE side, const CCoord &coord ) : CTroop ( side, coord ) {}

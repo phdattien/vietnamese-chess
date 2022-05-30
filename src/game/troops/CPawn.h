@@ -7,16 +7,16 @@
 #include "CTroop.h"
 
 
-class CSoldier : public CTroop {
+class CPawn : public CTroop {
 public:
-    CSoldier ( SIDE side, const CCoord &coord );
+    CPawn ( SIDE side, const CCoord &coord );
 
     std::set<CCoord> getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const override;
 
     char getName () const override;
 
 private:
-    char m_Name = 'S';
+    char m_Name = 'P';
     static const std::vector<int> POS_COL;
     static const std::vector<int> POS_ROW;
     bool isValidCoord ( const CCoord &newCoord, const std::shared_ptr<CTroop> (*currBoard)[9] ) const;

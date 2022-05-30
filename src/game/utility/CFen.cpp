@@ -11,7 +11,7 @@
 #include "../troops/CElephant.h"
 #include "../troops/CGeneral.h"
 #include "../troops/CHorse.h"
-#include "../troops/CSoldier.h"
+#include "../troops/CPawn.h"
 
 std::optional<CPositionInf> CFen::loadTroops ( const std::string &fen ) {
     //const std::string startBoard = "rheagaehr/9/1c5c1/s1s1s1s1s/9/9/S1S1S1S1S/1C5C1/9/RHEAGAEHR r";
@@ -70,8 +70,8 @@ std::shared_ptr<CTroop> CFen::getTroopByType ( char name, SIDE side, const CCoor
             return std::make_shared<CGeneral>(side, coord);
         case 'H':
             return std::make_shared<CHorse>(side, coord);
-        case 'S':
-            return std::make_shared<CSoldier>(side, coord);
+        case 'P':
+            return std::make_shared<CPawn>( side, coord);
         default:
             return nullptr;
     }

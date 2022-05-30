@@ -116,10 +116,11 @@ void CBoard::MakeMove ( const Move &movement ) {
     CCoord from = movement.m_From;
     CCoord to = movement.m_To;
 
-
-    m_PrevCapturedTroop = getTroopOnCoord (to); // can be null
+    auto capturedTroop = getTroopOnCoord (to);
+    m_HistoryCapturedTroops.push (capturedTroop);
+//    m_PrevCapturedTroop = getTroopOnCoord (to); // can be null
     std::vector<std::shared_ptr<CTroop>> &troops = getTroopsOnOpositePlay();
-    auto it = std::find(troops.begin(), troops.end(), m_PrevCapturedTroop);
+    auto it = std::find(troops.begin(), troops.end(), capturedTroop);
 
     if ( it != troops.end() ) {
         troops.erase ( it );
@@ -145,9 +146,14 @@ void CBoard::UnMakeMove ( const Move &movement ) {
     troopOnPos->setCoord (from); // set where he came from
     // move troop to desired destination
     m_Board[from.m_Colum][from.m_Row] = move ( troopOnPos );
-    m_Board[to.m_Colum][to.m_Row] = m_PrevCapturedTroop;
-    if (  m_PrevCapturedTroop )
-        troops.push_back (m_PrevCapturedTroop);
+    auto prevCapturedTroop = m_HistoryCapturedTroops.top();
+    m_HistoryCapturedTroops.pop();
+
+//    m_Board[to.m_Colum][to.m_Row] = m_PrevCapturedTroop;
+    m_Board[to.m_Colum][to.m_Row] = prevCapturedTroop;
+
+    if (  prevCapturedTroop )
+        troops.push_back ( prevCapturedTroop);
 }
 
 const std::vector<Move> &CBoard::generateMoves () {

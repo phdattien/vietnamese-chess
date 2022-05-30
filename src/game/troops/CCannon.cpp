@@ -33,8 +33,9 @@ void CCannon::getSlidingCoords ( int start, char still, int direction, int end, 
         }
 
 
-        if ( troopOnPos && skip && troopOnPos->getSide() != m_Side ) { // adding a jump take movement
-            cords.insert (newCoord);
+        if ( troopOnPos && skip ) { // adding a jump take movement
+            if ( troopOnPos->getSide() != m_Side )
+                cords.insert (newCoord);
             break;
         }
 

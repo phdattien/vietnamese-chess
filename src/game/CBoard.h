@@ -3,6 +3,7 @@
 #include <vector>
 #include <memory>
 #include "Move.h"
+#include <stack>
 //#include "utility/CBoardUi.h"
 
 const size_t ROW_SIZE = 9;
@@ -12,7 +13,7 @@ const size_t COL_SIZE = 10;
 class CBoard {
 public:
     // takes all troops in vector and fill the board
-    CBoard ( const std::string & fen = "rheagaehr/9/1c5c1/s1s1s1s1s/9/9/S1S1S1S1S/1C5C1/9/RHEAGAEHR r" );
+    CBoard ( const std::string & fen = "rheagaehr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RHEAGAEHR r" );
 
 
     bool isLegalMove ( const std::shared_ptr<CTroop> & troopOnPos, const CCoord & dest ) const;
@@ -57,7 +58,10 @@ private:
     std::vector<std::shared_ptr<CTroop>> m_RedTroops;
     std::shared_ptr<CTroop> m_RedGeneral;
     std::shared_ptr<CTroop> m_BlackGeneral;
-    std::shared_ptr<CTroop> m_PrevCapturedTroop;
+//    std::shared_ptr<CTroop> m_PrevCapturedTroop;
+
+    std::stack<std::shared_ptr<CTroop>> m_HistoryCapturedTroops;
+
     std::vector<Move> possibleMoves;
     // who is moving right now
     bool RedToMove = true;
