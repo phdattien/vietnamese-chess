@@ -158,6 +158,7 @@ const std::vector<Move> &CBoard::generateMoves () {
         MakeMove (possibleMov);
         std::vector<Move> opponentMoves = generatePseudoLegalMoves();
 
+
         CCoord generalCoord = getGeneralOnOppositePlayCoord();
         auto res = std::find_if(opponentMoves.begin(), opponentMoves.end(), [&generalCoord]  (const Move & a ) {
             return a.m_To == generalCoord;
@@ -185,7 +186,7 @@ bool CBoard::isRedToMove () const {
     return RedToMove;
 }
 
-bool CBoard::isGeneralAttacked ()  {
+bool CBoard::isInCheck ()  {
     std::vector<Move> moves = generatePseudoLegalMovesByColour ( getTroopsOnOpositePlay() );
     CCoord generalCoord = getGeneralOnPlayCoord();
 
@@ -243,6 +244,7 @@ bool CBoard::canCross ( const std::vector<char>& troopNames ) {
     }
     return false;
 }
+
 
 
 

@@ -7,8 +7,8 @@
 #include <iostream>
 
 
-std::vector<int> pos_coll { 1,  1, -1, -1 };
-std::vector<int> pos_row  { 1, -1,  1, -1 };
+std::vector<int> pos_coll { 1,  1, -1, -1, 0};
+std::vector<int> pos_row  { 1, -1,  1, -1, 0 };
 
 const std::set<CCoord> AdvisorCoord
 {
@@ -21,12 +21,11 @@ const std::set<CCoord> AdvisorCoord
 
 
 bool CAdvisor::isInsideAdvisorMovements ( const CCoord &newCoord ) const {
-    std::set<CCoord> movements;
 
     // general on red side all his movements from E2 otherwise from E9
     CCoord start = m_Side == SIDE::RED ? CCoord("E2") : CCoord("E9");
 
-    for ( size_t i = 0; i < 4; i++ ) {
+    for ( size_t i = 0; i < pos_coll.size(); i++ ) {
         int newPosI = start.m_Colum + pos_coll[i];
         int newPosJ = start.m_Row + pos_row[i];
 

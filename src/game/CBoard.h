@@ -14,11 +14,12 @@ public:
     // takes all troops in vector and fill the board
     CBoard ( const std::string & fen = "rheagaehr/9/1c5c1/s1s1s1s1s/9/9/S1S1S1S1S/1C5C1/9/RHEAGAEHR r" );
 
+
     bool isLegalMove ( const std::shared_ptr<CTroop> & troopOnPos, const CCoord & dest ) const;
     // return true if two generals are facing each other
     bool isGeneralsFacing   ();
 
-    bool isGeneralAttacked ();
+    bool isInCheck ();
 
     std::shared_ptr<CTroop> & getTroopOnCoord ( const CCoord & from );
 
@@ -38,9 +39,6 @@ public:
 
     void MakeMove ( const Move & movement );
 
-    const CCoord & getGeneralOnPlayCoord () const;
-
-    const CCoord & getGeneralOnOppositePlayCoord () const;
 
     void UnMakeMove ( const Move & movement );
 
@@ -69,5 +67,9 @@ private:
 
     std::vector<std::shared_ptr<CTroop>> & getTroopsOnOpositePlay ();
     bool canCross ( const std::vector<char>& troopNames );
+
+    const CCoord & getGeneralOnPlayCoord () const;
+
+    const CCoord & getGeneralOnOppositePlayCoord () const;
 };
 

@@ -10,7 +10,7 @@
 const std::vector<int> CGeneral::pos_coll { 1, -1, 0,  0, 1,  1, -1, -1, 0 };
 const std::vector<int> CGeneral::pos_row  { 0,  0, 1, -1, 1, -1,  1, -1, 0};
 
-// could be better if all the new cords are initiliaze at the start
+// could be better if all the new cords are initiliaze at the movesTest
 bool CGeneral::isInsideGeneralMovements ( const CCoord &newCoord ) const {
     std::set<CCoord> movements;
 

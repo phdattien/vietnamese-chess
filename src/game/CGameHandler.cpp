@@ -46,7 +46,7 @@ void CGameHandler::Play () {
             return;
         }
 
-        if ( m_GameBoard.isGeneralAttacked() )
+        if ( m_GameBoard.isInCheck () )
             printf ( "Checked!\n");
 
         auto move = m_PlayerOnTurn->TakeAction ( m_GameBoard ); // takeAction -->  v
