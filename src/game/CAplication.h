@@ -5,26 +5,21 @@
 #pragma once
 #include "CGameHandler.h"
 
+const std::string START_POS = "rheagaehr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RHEAGAEHR r";
+
 
 class CApplication {
 public:
     void Run ();
 private:
-    enum class STATE {
-        GAME,
-        MENU
-    };
-    STATE m_GameState = STATE::MENU;
-    STATE getGameState () const;
     PLAYER_TYPE player1;
     PLAYER_TYPE player2;
-    std::string initGame = "rheagaehr/9/1c5c1/s1s1s1s1s/9/9/S1S1S1S1S/1C5C1/9/RHEAGAEHR r";
+    std::string m_BoardPosition = START_POS;
     bool quit = false;
     void makeAction();
     void newGame ( PLAYER_TYPE p1, PLAYER_TYPE p2 );
     void loadGame ();
     void setDefaultBoard();
-
 };
 
 

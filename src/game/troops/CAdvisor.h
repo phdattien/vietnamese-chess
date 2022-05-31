@@ -6,13 +6,15 @@ class CAdvisor : public CTroop {
 public:
     CAdvisor ( SIDE side, const CCoord &coord );
 
-    std::set<CCoord> getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const override;
+    std::set<CCoord> getPossibleMoves ( const Board &currBoard ) const override;
 
     char getName () const override;
 
 private:
-    char m_Name = 'A';
+    char m_Name = ADVISOR;
     bool isInsideAdvisorMovements ( const CCoord& newCoord ) const;
+    static const std::vector<int> POS_COL;
+    static const std::vector<int> POS_ROW;
 };
 
 

@@ -8,12 +8,14 @@
 class CHorse : public CTroop {
 public:
     CHorse ( SIDE side, const CCoord &coord );
-
+    std::set<CCoord> getPossibleMoves ( const Board & currBoard ) const override;
     char getName () const override;
+
 private:
-    char m_Name = 'H';
-    std::set<CCoord> getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const override;
-    bool inWay ( const CCoord& newCoord, const std::shared_ptr<CTroop> (*currBoard)[9] ) const;
+    char m_Name = HORSE;
+    static const std::vector<int> POS_COL;
+    static const std::vector<int> POS_ROW;
+    bool inWay ( const CCoord& newCoord, const Board & currBoard  ) const;
 
 };
 

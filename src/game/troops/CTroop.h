@@ -2,7 +2,9 @@
 #include <set>
 #include <string>
 #include <memory>
+#include <vector>
 #include "CCoord.h"
+#include "troopsNames.h"
 
 enum class SIDE {
     BLACK,
@@ -11,14 +13,17 @@ enum class SIDE {
 /**
  * Abstract class of all troops in game
  */
+
+
 class CTroop {
 public:
+    using Board = std::vector<std::vector<std::shared_ptr<CTroop>>>;
     CTroop ( SIDE side, CCoord coord ) :
             m_Side (side),
             m_Coord ( coord ) {};
     virtual ~CTroop() noexcept = default;
     // virtual method for a troop to get all of his possible moves from the his position and boardState
-    virtual std::set<CCoord> getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const = 0;
+    virtual std::set<CCoord> getPossibleMoves ( const Board & currBoard ) const = 0;
     // Every troop has his own default unique name - can't be chanched
     virtual char getName () const = 0;
     // get side of a troop

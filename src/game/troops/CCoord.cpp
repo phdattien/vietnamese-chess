@@ -1,9 +1,13 @@
 #include "CCoord.h"
 #include <tuple>
 #include <iostream>
+#include <regex>
 
 
 CCoord::CCoord ( const std::string & coord ) {
+    if (  ! std::regex_match (coord, std::regex("[a-iA-I]([1-9]|10)") ))
+        throw std::invalid_argument("Bad coord string");
+
     m_Colum = parseColum (coord);
     m_Row = parseRow (coord);
 }

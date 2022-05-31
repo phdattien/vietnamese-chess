@@ -1,8 +1,6 @@
 #pragma once
 #include <string>
 
-//TODO throw exception in constructor if wrong c or r
-
 struct CCoord {
 public:
     CCoord ( size_t c, size_t r ) : m_Colum ( c), m_Row( r) {};

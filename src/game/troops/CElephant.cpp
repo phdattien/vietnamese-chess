@@ -6,10 +6,10 @@
 #include "CElephant.h"
 #include <vector>
 
-const std::vector<int> pos_coll { 2,  2, -2, -2};
-const std::vector<int> pos_row  { 2, -2,  2, -2};
+const std::vector<int> CElephant::POS_COL { 2, 2, -2, -2};
+const std::vector<int> CElephant::POS_ROW  { 2, -2, 2, -2};
 
-const std::set<CCoord> ELEPHANT_MOVEMENTS_RED
+const std::set<CCoord> CElephant::ELEPHANT_MOVEMENTS_RED
         {
                 CCoord("I3"),
                 CCoord("E3"),
@@ -20,7 +20,7 @@ const std::set<CCoord> ELEPHANT_MOVEMENTS_RED
                 CCoord("G5")
         };
 
-std::set<CCoord> ELEPHANT_MOVEMENTS_BLACK
+const std::set<CCoord> CElephant::ELEPHANT_MOVEMENTS_BLACK
         {
                 CCoord("I8"),
                 CCoord("E8"),
@@ -36,7 +36,7 @@ bool CElephant::isInsideElephantMovements ( const CCoord &newCoord ) const {
     return m_Side == SIDE::RED ? ELEPHANT_MOVEMENTS_RED.count (newCoord) : ELEPHANT_MOVEMENTS_BLACK.count (newCoord);
 }
 
-bool CElephant::inWay ( const CCoord &newCoord, const std::shared_ptr<CTroop> (*currBoard)[9] ) const {
+bool CElephant::inWay ( const CCoord &newCoord, const Board (&currBoard)) const {
     // test if between new Coords and  currCoord is standing something if does remove the new cord from set
     int testCol = ( m_Coord.m_Colum + newCoord.m_Colum ) / 2;
     int testRow = ( m_Coord.m_Row + newCoord.m_Row ) / 2;
@@ -47,13 +47,13 @@ bool CElephant::inWay ( const CCoord &newCoord, const std::shared_ptr<CTroop> (*
     return false;
 }
 
-std::set<CCoord> CElephant::getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const {
+std::set<CCoord> CElephant::getPossibleMoves ( const Board &currBoard ) const {
     std::set<CCoord> s_coord;
     //  advisor can't cross river
     // generate all possible moves for Elephant
-    for ( size_t i = 0; i < pos_coll.size(); i++ ) {
-        int newPosI = m_Coord.m_Colum + pos_coll[i];
-        int newPosJ = m_Coord.m_Row + pos_row[i];
+    for ( size_t i = 0; i < POS_COL.size(); i++ ) {
+        int newPosI = m_Coord.m_Colum + POS_COL[i];
+        int newPosJ = m_Coord.m_Row + POS_ROW[i];
 
         CCoord newCoord ( newPosI, newPosJ );
         auto & troopOnPos = currBoard[newCoord.m_Colum][newCoord.m_Row];

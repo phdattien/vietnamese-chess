@@ -3,21 +3,11 @@
 //
 
 #include "CAdvisor.h"
-#include <vector>
 #include <iostream>
 
+const std::vector<int> CAdvisor::POS_COL { 1, 1, -1, -1, 0};
+const std::vector<int> CAdvisor::POS_ROW  { 1, -1, 1, -1, 0 };
 
-std::vector<int> pos_coll { 1,  1, -1, -1, 0};
-std::vector<int> pos_row  { 1, -1,  1, -1, 0 };
-
-const std::set<CCoord> AdvisorCoord
-{
-    CCoord("D1"),
-    CCoord("D3"),
-    CCoord("F1"),
-    CCoord("F3"),
-    CCoord("E2")
-};
 
 
 bool CAdvisor::isInsideAdvisorMovements ( const CCoord &newCoord ) const {
@@ -25,9 +15,9 @@ bool CAdvisor::isInsideAdvisorMovements ( const CCoord &newCoord ) const {
     // general on red side all his movements from E2 otherwise from E9
     CCoord start = m_Side == SIDE::RED ? CCoord("E2") : CCoord("E9");
 
-    for ( size_t i = 0; i < pos_coll.size(); i++ ) {
-        int newPosI = start.m_Colum + pos_coll[i];
-        int newPosJ = start.m_Row + pos_row[i];
+    for ( size_t i = 0; i < POS_COL.size(); i++ ) {
+        int newPosI = start.m_Colum + POS_COL[i];
+        int newPosJ = start.m_Row + POS_ROW[i];
 
         // newCoord is in the one of the possible general moves (8) - all movements in palace
         if ( newCoord == CCoord ( newPosI, newPosJ ) )
@@ -37,14 +27,14 @@ bool CAdvisor::isInsideAdvisorMovements ( const CCoord &newCoord ) const {
 }
 
 
-std::set<CCoord> CAdvisor::getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const {
+std::set<CCoord> CAdvisor::getPossibleMoves ( const Board &currBoard ) const {
 
     std::set<CCoord> s_coord;
     //  advisor can only move inside his "palace"
     // generate all possible moves for Advisor
     for ( size_t i = 0; i < 4; i++ ) {
-        int newPosI = m_Coord.m_Colum + pos_coll[i];
-        int newPosJ = m_Coord.m_Row + pos_row[i];
+        int newPosI = m_Coord.m_Colum + POS_COL[i];
+        int newPosJ = m_Coord.m_Row + POS_ROW[i];
 
 
         CCoord newCoord ( newPosI, newPosJ );

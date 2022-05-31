@@ -4,12 +4,9 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "../troops/CTroop.h"
 #include "../CBoard.h"
 #include "CPositionInf.h"
 #include <optional>
-
-
 
 class CFen {
 public:
@@ -19,11 +16,6 @@ public:
 
 private:
     static std::shared_ptr<CTroop> getTroopByType ( char name, SIDE side, const CCoord & coord );
-
 };
 
-struct PositionInformation {
-    std::vector<CTroop> troops;
-    bool redOnPlay;
-};
 

@@ -15,11 +15,11 @@ public:
     char getName () const override;
 
 private:
-    char m_Name = 'R';
+    char m_Name = CHARIOT;
 
-    std::set<CCoord> getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const override;
+    std::set<CCoord> getPossibleMoves ( const Board &currBoard ) const override;
     // control if on a newCoord on a currBoard state is a ally troop
-    bool isValidCoord ( const CCoord& newCoord, const std::shared_ptr<CTroop> (*currBoard)[9]) const;
-    void getSlidingCoords ( int start, char still, int direction, int end, const std::shared_ptr<CTroop> (*currBoard)[9], std::set<CCoord> & cords ) const;
+    bool isValidCoord ( const CCoord& newCoord, const Board (&currBoard)) const;
+    void getSlidingCoords ( int start, char still, int direction, int end, const Board (&currBoard), std::set<CCoord> & cords ) const;
 };
 

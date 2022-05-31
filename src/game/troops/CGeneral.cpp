@@ -3,12 +3,10 @@
 //
 
 #include <vector>
-#include <ostream>
-#include <iostream>
 #include "CGeneral.h"
 
-const std::vector<int> CGeneral::pos_coll { 1, -1, 0,  0, 1,  1, -1, -1, 0 };
-const std::vector<int> CGeneral::pos_row  { 0,  0, 1, -1, 1, -1,  1, -1, 0};
+const std::vector<int> CGeneral::POS_COL { 1, -1, 0,  0, 1,  1, -1, -1, 0 };
+const std::vector<int> CGeneral::POS_ROW  { 0,  0, 1, -1, 1, -1,  1, -1, 0};
 
 // could be better if all the new cords are initiliaze at the movesTest
 bool CGeneral::isInsideGeneralMovements ( const CCoord &newCoord ) const {
@@ -17,9 +15,9 @@ bool CGeneral::isInsideGeneralMovements ( const CCoord &newCoord ) const {
     // general on red side all his movements from E2 otherwise from E9
     CCoord start = m_Side == SIDE::RED ? CCoord("E2") : CCoord("E9");
 
-    for ( size_t i = 0; i < pos_coll.size(); i++ ) {
-        int newPosI = start.m_Colum + pos_coll[i];
-        int newPosJ = start.m_Row + pos_row[i];
+    for ( size_t i = 0; i < POS_COL.size(); i++ ) {
+        int newPosI = start.m_Colum + POS_COL[i];
+        int newPosJ = start.m_Row + POS_ROW[i];
 
         // newCoord is in the one of the possible general moves (8) - all movements in palace
         if ( newCoord == CCoord ( newPosI, newPosJ ) )
@@ -29,14 +27,14 @@ bool CGeneral::isInsideGeneralMovements ( const CCoord &newCoord ) const {
 }
 
 
-std::set<CCoord> CGeneral::getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const {
+std::set<CCoord> CGeneral::getPossibleMoves ( const Board &currBoard ) const {
     std::set<CCoord> s_coord;
 
     // general can only move inside his "palace"
     // generate all possible moves for CGeneral
     for ( size_t i = 0; i < 4; i++ ) {
-        int newPosI = m_Coord.m_Colum + pos_coll[i];
-        int newPosJ = m_Coord.m_Row + pos_row[i];
+        int newPosI = m_Coord.m_Colum + POS_COL[i];
+        int newPosJ = m_Coord.m_Row + POS_ROW[i];
 
         CCoord newCoord ( newPosI, newPosJ );
 

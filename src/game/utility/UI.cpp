@@ -2,18 +2,18 @@
 // Created by tiendat on 25.05.22.
 //
 
-#include "CBoardUi.h"
+#include "UI.h"
 #include "iostream"
 #include "sstream"
-const std::string CBoardUi::ESCAPE = "\u001b[";
-const std::string CBoardUi::RESET = "\u001b[0m";
-const std::string CBoardUi::BRIGHT = ";1m";
+const std::string UI::ESCAPE = "\u001b[";
+const std::string UI::RESET = "\u001b[0m";
+const std::string UI::BRIGHT = ";1m";
 #define WHITE 37
 #define RED_BACKGROUND 41
 #define BLACK_BACKGROUND 40
 #define BLACK 30
 
-void CBoardUi::printHead () {
+void UI::printHead () {
     int width = 6;
     char c = 'A';
     printf ( "%*c", width, c );
@@ -24,7 +24,7 @@ void CBoardUi::printHead () {
     }
 }
 
-void CBoardUi::printSep () {
+void UI::printSep () {
     std::stringstream ss;
     ss << ESCAPE << BLACK << BRIGHT << '|' << RESET;
 
@@ -37,7 +37,7 @@ void CBoardUi::printSep () {
 
 
 
-void CBoardUi::printBoard ( const CBoard &currBoard ) {
+void UI::printBoard ( const CBoard &currBoard ) {
 //    std::cout << "\x1b[1J" << "\x1b[H"; //-> clear screan
     printf ( "%s TURN\n", currBoard.isRedToMove()  ? "RED" : "BLACK" ); // header
     // --------------- printing header  -----------------------
@@ -83,7 +83,7 @@ void CBoardUi::printBoard ( const CBoard &currBoard ) {
     printf ( "press: (h)elp | (s)save <file> | (q)uit | (m)move | (p)rint\n");
 }
 
-void CBoardUi::printHelpMenu () {
+void UI::printHelpMenu () {
     printf ( "=========== GAME HELP MENU ========================\n");
     printf ( "(s)save\n");
     printf ( "save game state to file\n");
@@ -95,7 +95,7 @@ void CBoardUi::printHelpMenu () {
     printf ( "=========== HELP MENU ========================\n");
 }
 
-void CBoardUi::printUserMenu () {
+void UI::printUserMenu () {
     printf ("============== VIETNAMESE CHESS =====================\n");
     printf ( "(1)PVP\n");
     printf ( "(2)PVCo\n");

@@ -8,8 +8,6 @@
 class CQuitException : std::exception {
 public:
     const char * what () const noexcept override {
-        return "BEY";
+        return "";
     }
 };
-
-

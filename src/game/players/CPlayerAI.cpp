@@ -3,8 +3,6 @@
 //
 
 #include "CPlayerAI.h"
-#include "cstdio"
-
 
 std::optional<Move> CPlayerAI::TakeAction ( CBoard &board ) {
 

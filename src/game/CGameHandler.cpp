@@ -5,30 +5,24 @@
 #include "CGameHandler.h"
 #include <iostream>
 #include <cstdio>
-#include <sstream>
-#include <regex>
-#include <utility>
 #include <chrono>
 #include <thread>
-#include <ctime>
-#include <deque>
 #include "players/CPlayerHuman.h"
 #include "players/CPlayerAI.h"
-#include "utility/CBoardUi.h"
+#include "utility/UI.h"
 
 using namespace std::chrono_literals;
 #define SLEEP_TIME 50ms
 
 CGameHandler::CGameHandler ( CBoard board, PLAYER_TYPE playerOne, PLAYER_TYPE playerTwo ): m_GameBoard (std::move(board)) {
-    CreatePlayer ( m_RedPlayer, playerOne);
-    CreatePlayer ( m_BlackPlayer, playerTwo);
+    createPlayer ( m_RedPlayer, playerOne );
+    createPlayer ( m_BlackPlayer, playerTwo );
 
     m_PlayerOnTurn = m_GameBoard.isRedToMove() ? m_RedPlayer : m_BlackPlayer;
 }
 
 
-
-void CGameHandler::CreatePlayer ( CGameHandler::Player & player, PLAYER_TYPE type ) {
+void CGameHandler::createPlayer ( CGameHandler::Player & player, PLAYER_TYPE type ) {
     if ( type == PLAYER_TYPE::HUMAN ) {
         player = std::make_shared<CPlayerHuman> ();
     } else {
@@ -36,11 +30,10 @@ void CGameHandler::CreatePlayer ( CGameHandler::Player & player, PLAYER_TYPE typ
     }
 }
 
-
 void CGameHandler::Play () {
     while ( true ) {
         //getState  -- playerOnTrun ( under attack > checked, takeAction
-        CBoardUi::printBoard (m_GameBoard);
+        UI::printBoard ( m_GameBoard);
         if ( m_GameBoard.isDraw() ) {
             printf ( "DRAW\n");
             return;
@@ -51,18 +44,17 @@ void CGameHandler::Play () {
 
         auto move = m_PlayerOnTurn->TakeAction ( m_GameBoard ); // takeAction -->  v
         if ( ! move ) {
-            PrintResult();
+            printResult ();
             break;
         }
         std::cout << move.value() << std::endl;
         m_GameBoard.MakeMove (move.value() );
         changePlayer ();
-//        std::cin.get();
         std::this_thread::sleep_for(SLEEP_TIME);
     }
 }
 
-void CGameHandler::PrintResult () const {
+void CGameHandler::printResult () const {
     printf ( "You LOST %s\n", m_GameBoard.isRedToMove() ? "RED" : "BLACK");
 
 }

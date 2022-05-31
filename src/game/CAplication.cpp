@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include "CAplication.h"
-#include "utility/CBoardUi.h"
+#include "utility/UI.h"
 #include "fstream"
 #include "CGameHandler.h"
 #include "CBoard.h"
@@ -12,12 +12,12 @@
 
 void CApplication::Run () {
     for ( ;; ) {
-        CBoardUi::printUserMenu();
-        makeAction();
-        if ( quit )
-            break;
+        UI::printUserMenu();
         try {
-            CBoard b ( initGame );
+            makeAction();
+            if ( quit )
+                break;
+            CBoard b ( m_BoardPosition );
             CGameHandler game ( b, player1, player2 );
             game.Play();
             setDefaultBoard();
@@ -25,12 +25,10 @@ void CApplication::Run () {
             std::cout << e.what() << std::endl;
         } catch ( CQuitException & e ) {
             std::cout << e.what() << std::endl;
+        } catch  ( std::ios::failure & e ) {
+            return;
         }
     }
-}
-
-CApplication::STATE CApplication::getGameState () const {
-    return m_GameState;
 }
 
 void CApplication::makeAction () {
@@ -38,6 +36,9 @@ void CApplication::makeAction () {
         std::string  command;
         printf ( ">>> ");
         std::cin >> command;
+        if ( std::cin.eof() )
+            throw std::ios::failure ("");
+
         if ( command.size() > 2 ) {
             printf ("Wrong command, try again\n");
             continue;
@@ -74,17 +75,19 @@ void CApplication::loadGame () {
     std::string ifName;
     printf ( "fileName: ");
     std::cin >> ifName;
+    if ( std::cin.eof() )
+        throw std::ios::failure ("");
+
     std::ifstream ifs (ifName);
     if ( ! ifs ) {
         printf ("Bad File\n");
         return;
     }
-
-    std::getline ( ifs, initGame );
-    std::cout << initGame << std::endl;
+    std::getline ( ifs, m_BoardPosition );
+    std::cout << m_BoardPosition << std::endl;
     printf ("Choose game 1 - 3\n");
 }
 
 void CApplication::setDefaultBoard () {
-    initGame = "rheagaehr/9/1c5c1/s1s1s1s1s/9/9/S1S1S1S1S/1C5C1/9/RHEAGAEHR r";
+    m_BoardPosition = START_POS;
 }

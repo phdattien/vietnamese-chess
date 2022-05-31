@@ -12,10 +12,11 @@ public:
 
     char getName () const override;
 
+    std::set<CCoord> getPossibleMoves ( const Board &currBoard) const override;
+
 private:
-    char m_Name = 'C';
-    std::set<CCoord> getPossibleMoves ( const std::shared_ptr<CTroop> (*currBoard)[9] ) const override;
-    void getSlidingCoords ( int start, char still, int direction, int end, const std::shared_ptr<CTroop> (*currBoard)[9], std::set<CCoord> & cords ) const;
+    char m_Name = CANNON;
+    void getSlidingCoords ( int start, char still, int direction, int end, const Board (&currBoard), std::set<CCoord> & cords ) const;
 };
 
 

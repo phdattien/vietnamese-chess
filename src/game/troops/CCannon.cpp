@@ -12,9 +12,8 @@ char CCannon::getName () const {
     return m_Name;
 }
 
-
-void CCannon::getSlidingCoords ( int start, char still, int direction, int end, const std::shared_ptr<CTroop> (*currBoard)[9],
-                            std::set<CCoord> &cords ) const {
+void CCannon::getSlidingCoords ( int start, char still, int direction, int end, const Board (&currBoard),
+                                 std::set<CCoord> &cords ) const {
     if ( start == end )
         return;
 
@@ -46,7 +45,7 @@ void CCannon::getSlidingCoords ( int start, char still, int direction, int end, 
 
 }
 
-std::set<CCoord> CCannon::getPossibleMoves ( const std::shared_ptr<CTroop> (*currBoard)[9] ) const {
+std::set<CCoord> CCannon::getPossibleMoves ( const Board (&currBoard)) const {
     std::set<CCoord> s_coord;
     // add coords right directions, 9 - is width of board
     getSlidingCoords ( m_Coord.m_Row, 'r', 1, 8, currBoard, s_coord ) ; // right cords

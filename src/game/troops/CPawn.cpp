@@ -7,10 +7,7 @@
 const std::vector<int> CPawn::POS_COL  { 0, 0 };
 const std::vector<int> CPawn::POS_ROW  { 1, -1 };
 
-
-
-
-bool CPawn::isValidCoord ( const CCoord &newCoord, const std::shared_ptr<CTroop> (*currBoard)[9] ) const {
+bool CPawn::isValidCoord ( const CCoord &newCoord, const Board & currBoard ) const {
     // if newCoord is outside of board or there is a troop but, on the same side or it is outside of the palace
     auto & troopOnPos = currBoard[newCoord.m_Colum][newCoord.m_Row];
     if (     ! newCoord.isInsideBoard ()
@@ -22,7 +19,7 @@ bool CPawn::isValidCoord ( const CCoord &newCoord, const std::shared_ptr<CTroop>
 }
 
 
-std::set<CCoord> CPawn::getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const {
+std::set<CCoord> CPawn::getPossibleMoves ( const CTroop::Board &currBoard ) const  {
     std::set<CCoord> s_coords;
 
     int direction = m_Side == SIDE::RED ? -1 : 1;
@@ -56,3 +53,4 @@ char CPawn::getName () const {
 }
 
 CPawn::CPawn ( SIDE side, const CCoord &coord ) : CTroop ( side, coord ) {}
+

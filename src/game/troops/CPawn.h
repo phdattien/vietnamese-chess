@@ -6,19 +6,18 @@
 #include <vector>
 #include "CTroop.h"
 
-
 class CPawn : public CTroop {
 public:
     CPawn ( SIDE side, const CCoord &coord );
 
-    std::set<CCoord> getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const override;
+    std::set<CCoord> getPossibleMoves ( const Board & currBoard ) const override;
+
 
     char getName () const override;
 
 private:
-    char m_Name = 'P';
+    char m_Name = PAWN;
     static const std::vector<int> POS_COL;
     static const std::vector<int> POS_ROW;
-    bool isValidCoord ( const CCoord &newCoord, const std::shared_ptr<CTroop> (*currBoard)[9] ) const;
+    bool isValidCoord ( const CCoord &newCoord, const Board & currBoard  ) const;
 };
-

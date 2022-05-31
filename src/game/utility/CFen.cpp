@@ -12,10 +12,9 @@
 #include "../troops/CGeneral.h"
 #include "../troops/CHorse.h"
 #include "../troops/CPawn.h"
+#include "src/game/troops/troopsNames.h"
 
 std::optional<CPositionInf> CFen::loadTroops ( const std::string &fen ) {
-    //const std::string startBoard = "rheagaehr/9/1c5c1/s1s1s1s1s/9/9/S1S1S1S1S/1C5C1/9/RHEAGAEHR r";
-
     CPositionInf inf;
     std::stringstream ss ( fen );
     std::string positions, colour;
@@ -58,19 +57,19 @@ std::optional<CPositionInf> CFen::loadTroops ( const std::string &fen ) {
 
 std::shared_ptr<CTroop> CFen::getTroopByType ( char name, SIDE side, const CCoord & coord ) {
     switch ( toupper (name) ) {
-        case 'A':
+        case ADVISOR:
             return std::make_shared<CAdvisor>(side, coord);
-        case 'C':
+        case CANNON:
             return std::make_shared<CCannon>(side, coord);
-        case 'R':
+        case CHARIOT:
             return std::make_shared<CChariot>(side, coord);
-        case 'E':
+        case ELEPHANT:
             return std::make_shared<CElephant>(side, coord);
-        case 'G':
+        case GENERAL:
             return std::make_shared<CGeneral>(side, coord);
-        case 'H':
+        case HORSE:
             return std::make_shared<CHorse>(side, coord);
-        case 'P':
+        case PAWN:
             return std::make_shared<CPawn>( side, coord);
         default:
             return nullptr;
@@ -83,7 +82,7 @@ std::string CFen::getFen ( const CBoard &currBoard ) {
     for ( size_t i = 0; i < COL_SIZE; i++ ) {
         int empty = 0;
         for ( size_t j = 0; j < ROW_SIZE; j++ ) {
-            const auto & troop = currBoard.getTroopOnCoord ( CCoord (i, j ) );
+            const auto troop = currBoard.getTroopOnCoord ( CCoord (i, j ) );
             if ( ! troop )  {
                 empty++;
             }
@@ -99,9 +98,7 @@ std::string CFen::getFen ( const CBoard &currBoard ) {
             fen.push_back ( ( empty + '0') );
         fen.push_back ('/');
     }
-
     // add colour on play
-
     char sideOnPlay = currBoard.isRedToMove() ? 'r' : 'b';
     fen.push_back (' ');
     fen.push_back (sideOnPlay);

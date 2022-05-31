@@ -9,10 +9,9 @@ public:
     CPlayerHuman () = default;
     std::optional<Move> TakeAction ( CBoard &board ) override;
 
-    static bool isValidCoord ( const std::string& from, const std::string& to ) ;
 private:
-    Move chosenMove;
-    std::optional<Move> chooseMove ( CBoard &board ) const;
+    bool chooseMove ( CBoard &board, Move &move ) const;
     void safeGame ( const CBoard &board ) const;
-
+    bool isValidCoord ( const std::string& from, const std::string& to ) const;
+    bool validateCommand ( const std::string & command );
 };

@@ -4,7 +4,7 @@
 #pragma once
 #include "../CBoard.h"
 
-class CBoardUi {
+class UI {
 public:
     static void printBoard ( const CBoard &currBoard );
     static void printHelpMenu();
@@ -14,7 +14,6 @@ private:
     static const std::string ESCAPE;
     static const std::string RESET;
     static const std::string BRIGHT;
-
     static void printHead ();
     static void printSep ();
 };

@@ -11,9 +11,7 @@ class CPlayerAI : public CPlayer {
 public:
     CPlayerAI () = default;
     std::optional<Move> TakeAction ( CBoard &board ) override;
-
 private:
-    Move chosenMove;
 };
 
 

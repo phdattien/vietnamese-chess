@@ -5,7 +5,7 @@
 #include "CChariot.h"
 
 
-bool CChariot::isValidCoord ( const CCoord &newCoord, const std::shared_ptr<CTroop> (*currBoard)[9] ) const {
+bool CChariot::isValidCoord ( const CCoord &newCoord, const Board (&currBoard)) const {
     // if newCoord is outside of board or there is a troop but, on the same side or it is outside of the palace
     auto & troopOnPos = currBoard[newCoord.m_Colum][newCoord.m_Row];
     if ( troopOnPos && troopOnPos->getSide() == m_Side )
@@ -13,9 +13,8 @@ bool CChariot::isValidCoord ( const CCoord &newCoord, const std::shared_ptr<CTro
     return true;
 }
 
-
 void CChariot::getSlidingCoords ( int start, char still, int direction, int end,
-                                  const std::shared_ptr<CTroop> (*currBoard)[9],
+                                  const Board (&currBoard),
                                   std::set<CCoord> & cords ) const {
     if ( start == end )
         return;
@@ -40,7 +39,7 @@ void CChariot::getSlidingCoords ( int start, char still, int direction, int end,
 
 
 
-std::set<CCoord> CChariot::getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const {
+std::set<CCoord> CChariot::getPossibleMoves ( const Board &currBoard ) const {
     std::set<CCoord> s_coord;
     // add coords right directions, 9 - is width of board
     getSlidingCoords ( m_Coord.m_Row, 'r', 1, 8, currBoard, s_coord ) ; // right cords

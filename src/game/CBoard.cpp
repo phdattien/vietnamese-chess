@@ -7,11 +7,11 @@
 #include <iostream>
 #include <algorithm>
 #include "utility/CFen.h"
-#include <exception>
 #include "utility/CPositionInf.h"
+#include <exception>
+#include "troops/troopsNames.h"
 
-
-CBoard::CBoard ( const std::string &  fen  ) {
+CBoard::CBoard ( const std::string &  fen  ) : m_Board ( COL_SIZE, std::vector<std::shared_ptr<CTroop>> ( ROW_SIZE,nullptr) ){
     auto inf = CFen::loadTroops (fen);
     if ( ! inf ) {
         throw std::invalid_argument ("Bad Fen");
@@ -28,16 +28,9 @@ CBoard::CBoard ( const std::string &  fen  ) {
                 m_BlackGeneral = troop;
             m_BlackTroops.push_back (troop);
         }
-
         m_Board[troop->getCoord().m_Colum][troop->getCoord().m_Row] = move ( troop ) ;
     }
     RedToMove = inf->isRedOnPlay;
-}
-
-
-bool CBoard::isLegalMove ( const std::shared_ptr<CTroop> &troopOnPos, const CCoord &dest ) const {
-    // if destination is in set of a troops all possible moves thatn true
-    return troopOnPos->getPossibleMoves ( m_Board ).count (dest);
 }
 
 bool CBoard::isGeneralsFacing ( ) {
@@ -53,7 +46,7 @@ bool CBoard::isGeneralsFacing ( ) {
     return true;
 }
 
-std::shared_ptr<CTroop> &CBoard::getTroopOnCoord ( const CCoord &from ) {
+std::shared_ptr<CTroop> &CBoard::getTroopOnCoord ( const CCoord &from )  {
     return m_Board[from.m_Colum][from.m_Row];
 }
 
@@ -61,18 +54,11 @@ std::shared_ptr<CTroop> CBoard::getTroopOnCoord ( const CCoord &from ) const {
     return m_Board[from.m_Colum][from.m_Row];
 }
 
-//void CBoard::Move ( const CCoord &from, const CCoord &to )  {
-//    auto & troopOnPos =  m_Board[from.m_Colum][from.m_Row];
-//    troopOnPos->setCoord (to); // set new coordinates
-//    m_Board[to.m_Colum][to.m_Row] = move ( troopOnPos );
-//
-//}
-
 std::vector<std::shared_ptr<CTroop>> &CBoard::getTroopsOnPlay ()  {
     return RedToMove ? m_RedTroops : m_BlackTroops;
 }
 
-std::vector<std::shared_ptr<CTroop>> &CBoard::getTroopsOnOpositePlay () {
+std::vector<std::shared_ptr<CTroop>> &CBoard::getTroopsOnOppositePlay () {
     return RedToMove ? m_BlackTroops : m_RedTroops;
 }
 
@@ -119,7 +105,7 @@ void CBoard::MakeMove ( const Move &movement ) {
     auto capturedTroop = getTroopOnCoord (to);
     m_HistoryCapturedTroops.push (capturedTroop);
 //    m_PrevCapturedTroop = getTroopOnCoord (to); // can be null
-    std::vector<std::shared_ptr<CTroop>> &troops = getTroopsOnOpositePlay();
+    std::vector<std::shared_ptr<CTroop>> &troops = getTroopsOnOppositePlay();
     auto it = std::find(troops.begin(), troops.end(), capturedTroop);
 
     if ( it != troops.end() ) {
@@ -193,7 +179,7 @@ bool CBoard::isRedToMove () const {
 }
 
 bool CBoard::isInCheck ()  {
-    std::vector<Move> moves = generatePseudoLegalMovesByColour ( getTroopsOnOpositePlay() );
+    std::vector<Move> moves = generatePseudoLegalMovesByColour ( getTroopsOnOppositePlay() );
     CCoord generalCoord = getGeneralOnPlayCoord();
 
     auto res = std::find_if( moves.begin(), moves.end(), [&generalCoord]  (const Move & a ) {
@@ -213,8 +199,6 @@ std::vector<Move> CBoard::generatePseudoLegalMovesByColour ( const std::vector<s
     }
     return moves;
 }
-
-
 
 std::vector<Move> CBoard::generatePseudoLegalMoves () {
     return generatePseudoLegalMovesByColour ( getTroopsOnPlay() );
@@ -238,8 +222,6 @@ bool CBoard::isDraw () {
         return true;
 
     return false;
-
-
 }
 
 bool CBoard::canCross ( const std::vector<char>& troopNames ) {
@@ -250,8 +232,3 @@ bool CBoard::canCross ( const std::vector<char>& troopNames ) {
     }
     return false;
 }
-
-
-
-
-

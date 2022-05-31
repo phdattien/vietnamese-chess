@@ -9,12 +9,12 @@ class CGeneral : public CTroop {
 public:
     CGeneral ( SIDE side, const CCoord &coord );
 
-    std::set<CCoord> getPossibleMoves ( const std::shared_ptr<CTroop> currBoard[10][9] ) const override;
+    std::set<CCoord> getPossibleMoves ( const Board &currBoard ) const override;
     char getName () const override;
 
 private:
-    char  m_Name = 'G';
+    char  m_Name = GENERAL;
     bool isInsideGeneralMovements ( const CCoord& newCoord ) const;
-    static const std::vector<int> pos_coll;
-    static const std::vector<int> pos_row;
+    static const std::vector<int> POS_COL;
+    static const std::vector<int> POS_ROW;
 };
