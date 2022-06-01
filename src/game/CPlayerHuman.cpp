@@ -4,32 +4,37 @@
 
 #include <regex>
 #include <fstream>
+#include <algorithm>
 #include "CPlayerHuman.h"
 #include "iostream"
-#include "src/game/utility/UI.h"
-#include "src/game/utility/CFen.h"
+#include "UI.h"
+#include "CFen.h"
 #include "CQuitException.h"
+#include "Move.h"
 
-std::optional<Move> CPlayerHuman::TakeAction ( CBoard &board ) {
-    std::string  command;
-    Move move{};
+bool CPlayerHuman::TakeAction ( CBoard &board, DRAW_STATE drawState ) {
+    if ( isEmpty ( board ) )
+        return false;
+
+
     while (true) {
         printf ( ">>> ");
-        std::cin >> command;
-        if ( ! validateCommand (command) )
+        std::cin >> m_Command;
+        if ( ! validateCommand ( m_Command) )
             continue;
-            switch ( tolower (command [0]) ) {
+            switch ( tolower ( m_Command [0]) ) {
                 case 'q': // quit
                     std::cout << "Good bye have a nice day";
                     throw CQuitException();
                 case 'h': // help
                     UI::printHelpMenu();
                     break;
-                case 'm': // move
-                    if ( chooseMove ( board, move ) )
-                        return move;
-                    printf ( "Invalid Move\n");
-                    break;
+                case 'm': // m_Move
+                    if ( ! chooseMove ( board ) ) {
+                        printf ( "Invalid Move\n");
+                        break;
+                    }
+                    return true;
                 case 's': // save
                     safeGame ( board );
                     break;
@@ -37,7 +42,7 @@ std::optional<Move> CPlayerHuman::TakeAction ( CBoard &board ) {
                     UI::printBoard( board);
                     break;
                 default:
-                    printf ( "Wrong command, try again\n" );
+                    printf ( "Wrong m_Command, try again\n" );
             }
     }
 }
@@ -59,15 +64,9 @@ void CPlayerHuman::safeGame ( const CBoard & board ) const {
     ofs.close();
 }
 
-bool CPlayerHuman::chooseMove ( CBoard &board, Move &move ) const {
+bool CPlayerHuman::chooseMove ( CBoard &board ) const {
     std::string from;
     std::string to;
-    std::vector<Move> possibleMoves = board.generateMoves();
-
-    if ( possibleMoves.empty() ) {
-        move = {};
-        return true;
-    }
 
     printf ( "From: ");
     std::cin >> from;
@@ -83,11 +82,11 @@ bool CPlayerHuman::chooseMove ( CBoard &board, Move &move ) const {
         return false;
     }
     Move nextMove ((CCoord(from)),CCoord(to));
-    if ( std::find(possibleMoves.begin(), possibleMoves.end(), nextMove) == possibleMoves.end() ) {
+    if ( std::find(m_PossibleMoves.begin(), m_PossibleMoves.end(), nextMove) == m_PossibleMoves.end() ) {
         return false;
     }
 
-    move = nextMove;
+    board.MakeMove (nextMove);
     return true;
 }
 
@@ -104,4 +103,10 @@ bool CPlayerHuman::validateCommand ( const std::string& command ) {
     if ( std::cin.eof() )
         throw std::ios::failure ("");
     return true;
+}
+
+
+bool CPlayerHuman::isEmpty ( CBoard &board ) {
+    m_PossibleMoves = board.generateMoves();
+    return m_PossibleMoves.empty();
 }

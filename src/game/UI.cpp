@@ -80,7 +80,7 @@ void UI::printBoard ( const CBoard &currBoard ) {
     printHead();
     // --------------- printing footer  -----------------------
     printf("\n");
-    printf ( "press: (h)elp | (s)save <file> | (q)uit | (m)move | (p)rint\n");
+    printf ( "press: (h)elp | (s)save <file> | (q)uit | (m)m_Move | (p)rint\n");
 }
 
 void UI::printHelpMenu () {
@@ -88,7 +88,7 @@ void UI::printHelpMenu () {
     printf ( "(s)save\n");
     printf ( "save game state to file\n");
     printf ( "(m)ove \n");
-    printf ( "move Troop from current position to destination:  \n");
+    printf ( "m_Move Troop from current position to destination:  \n");
     printf ( "(q)uit\n");
     printf ( "quit chess game and go back to user menu\n");
     printf ( "(p)rint\n");

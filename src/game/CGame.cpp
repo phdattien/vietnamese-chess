@@ -12,7 +12,7 @@
 #include "UI.h"
 
 using namespace std::chrono_literals;
-#define SLEEP_TIME 50ms
+#define SLEEP_TIME 30ms
 
 CGame::CGame ( CBoard board, PLAYER_TYPE playerOne, PLAYER_TYPE playerTwo ): m_GameBoard (std::move(board)) {
     createPlayer ( m_RedPlayer, playerOne );
@@ -34,7 +34,7 @@ void CGame::Play () {
     while ( true ) {
         //getState  -- playerOnTrun ( under attack > checked, takeAction
         UI::printBoard ( m_GameBoard);
-        if ( m_GameBoard.isDraw() ) {
+        if ( m_GameBoard.isDraw() || m_Draw == DRAW_STATE::ACCEPT ) {
             printf ( "DRAW\n");
             return;
         }
@@ -42,13 +42,12 @@ void CGame::Play () {
         if ( m_GameBoard.isInCheck () )
             printf ( "Checked!\n");
 
-        auto move = m_PlayerOnTurn->TakeAction ( m_GameBoard ); // takeAction -->  v
-        if ( ! move ) {
+        if ( ! m_PlayerOnTurn->TakeAction ( m_GameBoard, m_Draw ) ) {
             printResult ();
             break;
         }
-        std::cout << move.value() << std::endl;
-        m_GameBoard.MakeMove (move.value() );
+//        std::cout << m_Move.value() << std::endl;
+//        m_GameBoard.MakeMove (m_Move.value() );
         changePlayer ();
         std::this_thread::sleep_for(SLEEP_TIME);
     }
@@ -61,4 +60,12 @@ void CGame::printResult () const {
 
 void CGame::changePlayer () {
     m_PlayerOnTurn = m_GameBoard.isRedToMove() ? m_RedPlayer : m_BlackPlayer;
+}
+
+DRAW_STATE CGame::GetDrawState () const {
+    return m_Draw;
+}
+
+void CGame::SetDrawState ( DRAW_STATE newState ) {
+    m_Draw = newState;
 }

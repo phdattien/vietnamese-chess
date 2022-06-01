@@ -10,7 +10,7 @@
 class CPlayerAI : public CPlayer {
 public:
     CPlayerAI () = default;
-    std::optional<Move> TakeAction ( CBoard &board ) override;
+    bool TakeAction ( CBoard &board, DRAW_STATE drawState ) override;
 private:
 };
 

@@ -11,7 +11,8 @@ std::ostream &operator<< ( std::ostream &os, const Move &move ) {
     return os;
 }
 
-bool Move::operator== ( const Move &rhs ) {
-   return m_From == rhs.m_From && m_To == rhs.m_To;
+bool Move::operator== ( const Move &rhs ) const {
+    return m_From == rhs.m_From && m_To == rhs.m_To;
 }
+
 

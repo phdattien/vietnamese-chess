@@ -4,13 +4,15 @@
 
 #include "CPlayerAI.h"
 
-std::optional<Move> CPlayerAI::TakeAction ( CBoard &board ) {
+bool CPlayerAI::TakeAction ( CBoard &board, DRAW_STATE drawState ) {
 
     std::vector<Move> moves =  board.generateMoves();
     if ( moves.empty() ) {
-        return {};
+        return false;
     }
     int k = rand();
-    return moves[k % moves.size()];
+    Move move = moves[k % moves.size()];
+    board.MakeMove ( move );
+    return true;
 }
 

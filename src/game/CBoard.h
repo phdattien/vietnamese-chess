@@ -1,5 +1,5 @@
 #pragma once
-#include "troops/CTroop.h"
+#include "CTroop.h"
 #include <vector>
 #include <memory>
 #include "Move.h"
@@ -13,6 +13,8 @@ class CBoard {
 public:
     // takes all troops in vector and fill the board
     CBoard ( const std::string & fen );
+
+    void ChangeSide ();
 
     bool isInCheck ();
 

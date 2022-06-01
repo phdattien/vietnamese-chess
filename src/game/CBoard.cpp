@@ -6,10 +6,10 @@
 #include <cstdio>
 #include <iostream>
 #include <algorithm>
-#include "utility/CFen.h"
-#include "utility/CPositionInf.h"
+#include "CFen.h"
+#include "CPositionInf.h"
 #include <exception>
-#include "troops/troopsNames.h"
+#include "troopsNames.h"
 
 CBoard::CBoard ( const std::string &  fen  ) : m_Board ( COL_SIZE, std::vector<std::shared_ptr<CTroop>> ( ROW_SIZE,nullptr) ){
     auto inf = CFen::loadTroops (fen);
@@ -115,22 +115,24 @@ void CBoard::MakeMove ( const Move &movement ) {
     auto & troopOnPos = getTroopOnCoord (from);
     troopOnPos->setCoord (to); // set new coordinates
 
-    // move troop to desired destination
+    // m_Move troop to desired destination
     m_Board[to.m_Colum][to.m_Row] = move ( troopOnPos );
-    RedToMove = !RedToMove; // after making movements switch sides
+//    RedToMove = !RedToMove; // after making movements switch sides
+    ChangeSide();
 }
 
 // can only used after MakeMove
 void CBoard::UnMakeMove ( const Move &movement ) {
     std::vector<std::shared_ptr<CTroop>> &troops = getTroopsOnPlay();
-    RedToMove = !RedToMove; // after making movements switch sides
+//    RedToMove = !RedToMove; // after making movements switch sides
+    ChangeSide();
     CCoord from = movement.m_From;
     CCoord to = movement.m_To;
     auto & troopOnPos = getTroopOnCoord (to);
 //    m_PrevCapturedTroop = getTroopOnCoord (to); // can be null
 
     troopOnPos->setCoord (from); // set where he came from
-    // move troop to desired destination
+    // m_Move troop to desired destination
     m_Board[from.m_Colum][from.m_Row] = move ( troopOnPos );
     auto prevCapturedTroop = m_HistoryCapturedTroops.top();
     m_HistoryCapturedTroops.pop();
@@ -156,7 +158,7 @@ const std::vector<Move> &CBoard::generateMoves () {
             return a.m_To == generalCoord;
         });
 
-        // if there is any move that will make out King in danger
+        // if there is any m_Move that will make out King in danger
         if ( res == opponentMoves.end() &&  ! isGeneralsFacing() ) {
             possibleMoves.push_back (possibleMov);
         }
@@ -231,4 +233,8 @@ bool CBoard::canCross ( const std::vector<char>& troopNames ) {
             return true;
     }
     return false;
+}
+
+void CBoard::ChangeSide () {
+    RedToMove = !RedToMove; // after making movements switch sides
 }

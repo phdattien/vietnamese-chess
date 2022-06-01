@@ -30,7 +30,7 @@ bool CGeneral::isInsideGeneralMovements ( const CCoord &newCoord ) const {
 std::set<CCoord> CGeneral::getPossibleMoves ( const Board &currBoard ) const {
     std::set<CCoord> s_coord;
 
-    // general can only move inside his "palace"
+    // general can only m_Move inside his "palace"
     // generate all possible moves for CGeneral
     for ( size_t i = 0; i < 4; i++ ) {
         int newPosI = m_Coord.m_Colum + POS_COL[i];

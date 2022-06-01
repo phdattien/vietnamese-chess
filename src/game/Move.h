@@ -2,7 +2,7 @@
 // Created by tiendat on 21.05.22.
 //
 #pragma once
-#include "troops/CCoord.h"
+#include "CCoord.h"
 #include <ostream>
 
 
@@ -16,7 +16,7 @@ struct Move {
     CCoord m_From;
     CCoord m_To;
 
-    bool operator == ( const Move & rhs );
+    bool operator == ( const Move & rhs ) const;
     friend std::ostream & operator << ( std::ostream & os, const Move & move );
 };
 

@@ -4,9 +4,9 @@
 
 #include <iostream>
 #include "CAplication.h"
-#include "utility/UI.h"
+#include "UI.h"
 #include "fstream"
-#include "CGameHandler.h"
+#include "CGame.h"
 #include "CBoard.h"
 #include "CQuitException.h"
 
@@ -18,7 +18,7 @@ void CApplication::Run () {
             if ( quit )
                 break;
             CBoard b ( m_BoardPosition );
-            CGameHandler game ( b, player1, player2 );
+            CGame game ( b, player1, player2 );
             game.Play();
             setDefaultBoard();
         } catch ( std::invalid_argument & e ) {
@@ -40,7 +40,7 @@ void CApplication::makeAction () {
             throw std::ios::failure ("");
 
         if ( command.size() > 2 ) {
-            printf ("Wrong command, try again\n");
+            printf ("Wrong m_Command, try again\n");
             continue;
         }
         switch ( tolower (command [0]) ) {
@@ -61,7 +61,7 @@ void CApplication::makeAction () {
                 quit = true;
                 return;
             default:
-                printf ( "Wrong command, try again\n" );
+                printf ( "Wrong m_Command, try again\n" );
         }
     }
 }

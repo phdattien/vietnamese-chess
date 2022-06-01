@@ -30,7 +30,7 @@ bool CAdvisor::isInsideAdvisorMovements ( const CCoord &newCoord ) const {
 std::set<CCoord> CAdvisor::getPossibleMoves ( const Board &currBoard ) const {
 
     std::set<CCoord> s_coord;
-    //  advisor can only move inside his "palace"
+    //  advisor can only m_Move inside his "palace"
     // generate all possible moves for Advisor
     for ( size_t i = 0; i < 4; i++ ) {
         int newPosI = m_Coord.m_Colum + POS_COL[i];
