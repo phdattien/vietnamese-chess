@@ -2,7 +2,7 @@
 // Created by tiendat on 25.05.22.
 //
 #pragma once
-#include "../CBoard.h"
+#include "CBoard.h"
 
 class UI {
 public:

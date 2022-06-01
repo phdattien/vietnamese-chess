@@ -4,7 +4,7 @@
 
 #pragma once
 #include "CBoard.h"
-#include "players/CPlayer.h"
+#include "CPlayer.h"
 
 enum class PLAYER_TYPE {
     HUMAN,

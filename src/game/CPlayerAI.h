@@ -4,8 +4,8 @@
 #pragma once
 
 #include "CPlayer.h"
-#include "../CBoard.h"
-#include "../Move.h"
+#include "CBoard.h"
+#include "Move.h"
 
 class CPlayerAI : public CPlayer {
 public:

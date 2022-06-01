@@ -2,19 +2,19 @@
 // Created by tiendat on 14.05.22.
 //
 
-#include "CGameHandler.h"
+#include "CGame.h"
 #include <iostream>
 #include <cstdio>
 #include <chrono>
 #include <thread>
-#include "players/CPlayerHuman.h"
-#include "players/CPlayerAI.h"
-#include "utility/UI.h"
+#include "CPlayerHuman.h"
+#include "CPlayerAI.h"
+#include "UI.h"
 
 using namespace std::chrono_literals;
 #define SLEEP_TIME 50ms
 
-CGameHandler::CGameHandler ( CBoard board, PLAYER_TYPE playerOne, PLAYER_TYPE playerTwo ): m_GameBoard (std::move(board)) {
+CGame::CGame ( CBoard board, PLAYER_TYPE playerOne, PLAYER_TYPE playerTwo ): m_GameBoard (std::move(board)) {
     createPlayer ( m_RedPlayer, playerOne );
     createPlayer ( m_BlackPlayer, playerTwo );
 
@@ -22,7 +22,7 @@ CGameHandler::CGameHandler ( CBoard board, PLAYER_TYPE playerOne, PLAYER_TYPE pl
 }
 
 
-void CGameHandler::createPlayer ( CGameHandler::Player & player, PLAYER_TYPE type ) {
+void CGame::createPlayer ( CGame::Player & player, PLAYER_TYPE type ) {
     if ( type == PLAYER_TYPE::HUMAN ) {
         player = std::make_shared<CPlayerHuman> ();
     } else {
@@ -30,7 +30,7 @@ void CGameHandler::createPlayer ( CGameHandler::Player & player, PLAYER_TYPE typ
     }
 }
 
-void CGameHandler::Play () {
+void CGame::Play () {
     while ( true ) {
         //getState  -- playerOnTrun ( under attack > checked, takeAction
         UI::printBoard ( m_GameBoard);
@@ -54,11 +54,11 @@ void CGameHandler::Play () {
     }
 }
 
-void CGameHandler::printResult () const {
+void CGame::printResult () const {
     printf ( "You LOST %s\n", m_GameBoard.isRedToMove() ? "RED" : "BLACK");
 
 }
 
-void CGameHandler::changePlayer () {
+void CGame::changePlayer () {
     m_PlayerOnTurn = m_GameBoard.isRedToMove() ? m_RedPlayer : m_BlackPlayer;
 }

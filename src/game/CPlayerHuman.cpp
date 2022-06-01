@@ -6,9 +6,9 @@
 #include <fstream>
 #include "CPlayerHuman.h"
 #include "iostream"
-#include "../utility/UI.h"
-#include "../utility/CFen.h"
-#include "../CQuitException.h"
+#include "src/game/utility/UI.h"
+#include "src/game/utility/CFen.h"
+#include "CQuitException.h"
 
 std::optional<Move> CPlayerHuman::TakeAction ( CBoard &board ) {
     std::string  command;

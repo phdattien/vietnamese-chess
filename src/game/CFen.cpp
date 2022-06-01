@@ -5,14 +5,14 @@
 #include "CFen.h"
 #include <sstream>
 #include <memory>
-#include "../troops/CAdvisor.h"
-#include "../troops/CCannon.h"
-#include "../troops/CChariot.h"
-#include "../troops/CElephant.h"
-#include "../troops/CGeneral.h"
-#include "../troops/CHorse.h"
-#include "../troops/CPawn.h"
-#include "src/game/troops/troopsNames.h"
+#include "src/game/CAdvisor.h"
+#include "src/game/CCannon.h"
+#include "src/game/CChariot.h"
+#include "src/game/CElephant.h"
+#include "src/game/CGeneral.h"
+#include "src/game/CHorse.h"
+#include "src/game/CPawn.h"
+#include "src/game/troopsNames.h"
 
 std::optional<CPositionInf> CFen::loadTroops ( const std::string &fen ) {
     CPositionInf inf;

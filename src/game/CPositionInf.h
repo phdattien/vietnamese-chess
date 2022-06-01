@@ -3,7 +3,7 @@
 //
 #pragma once
 #include <vector>
-#include "../troops/CTroop.h"
+#include "src/game/CTroop.h"
 #include <memory>
 
 class CPositionInf {

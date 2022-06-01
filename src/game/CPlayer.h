@@ -3,8 +3,8 @@
 //
 #pragma once
 
-#include "../Move.h"
-#include "../CBoard.h"
+#include "Move.h"
+#include "CBoard.h"
 #include "optional"
 
 class CPlayer {
