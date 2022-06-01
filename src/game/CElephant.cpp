@@ -78,3 +78,4 @@ char CElephant::getName () const {
 
 CElephant::CElephant ( SIDE side, const CCoord &coord ) : CTroop ( side, coord ) {}
 
+

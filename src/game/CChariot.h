@@ -14,8 +14,10 @@ public:
 
     char getName () const override;
 
+
 private:
     char m_Name = CHARIOT;
+
 
     std::set<CCoord> getPossibleMoves ( const Board &currBoard ) const override;
     // control if on a newCoord on a currBoard state is a ally troop

@@ -56,3 +56,4 @@ std::set<CCoord> CCannon::getPossibleMoves ( const Board (&currBoard)) const {
     return s_coord;
 
 }
+

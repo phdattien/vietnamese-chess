@@ -12,7 +12,7 @@
 #include "src/game/CGeneral.h"
 #include "src/game/CHorse.h"
 #include "src/game/CPawn.h"
-#include "src/game/troopsNames.h"
+#include "src/game/Constants.h"
 
 std::optional<CPositionInf> CFen::loadTroops ( const std::string &fen ) {
     CPositionInf inf;

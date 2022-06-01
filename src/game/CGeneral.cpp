@@ -59,3 +59,5 @@ char CGeneral::getName () const {
 }
 
 CGeneral::CGeneral ( SIDE side, const CCoord &coord ) : CTroop ( side, coord ) {}
+
+

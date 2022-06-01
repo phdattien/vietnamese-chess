@@ -11,12 +11,17 @@ const size_t ROW_SIZE = 9;
 
 class CBoard {
 public:
+    using TroopsArr = std::vector<std::shared_ptr<CTroop>>;
     // takes all troops in vector and fill the board
     CBoard ( const std::string & fen );
 
     void ChangeSide ();
 
     bool isInCheck ();
+
+    const TroopsArr & getRedTroops () const;
+
+    const TroopsArr & getBlackTroops () const;
 
     std::shared_ptr<CTroop> & getTroopOnCoord ( const CCoord & from );
 
@@ -41,8 +46,8 @@ public:
 private:
 //    std::shared_ptr<CTroop> m_Board[COL_SIZE][ROW_SIZE];
     std::vector<std::vector<std::shared_ptr<CTroop>>> m_Board;
-    std::vector<std::shared_ptr<CTroop>> m_BlackTroops;
-    std::vector<std::shared_ptr<CTroop>> m_RedTroops;
+    TroopsArr m_BlackTroops;
+    TroopsArr m_RedTroops;
     std::shared_ptr<CTroop> m_RedGeneral;
     std::shared_ptr<CTroop> m_BlackGeneral;
 
@@ -52,14 +57,14 @@ private:
     // who is moving right now
     bool RedToMove = true;
 
-    std::vector<Move> generatePseudoLegalMovesByColour ( const std::vector<std::shared_ptr<CTroop>>& troops );
+    std::vector<Move> generatePseudoLegalMovesByColour ( const TroopsArr & troops );
     std::vector<std::shared_ptr<CTroop>> & getTroopsOnOppositePlay ();
     bool canCross ( const std::vector<char>& troopNames );
     const CCoord & getGeneralOnPlayCoord () const;
     const CCoord & getGeneralOnOppositePlayCoord () const;
     void addMoves ( const CCoord & start, const std::set<CCoord>& cords, std::vector<Move>& moves );
     std::vector<Move> generatePseudoLegalMoves ();
-    std::vector<std::shared_ptr<CTroop>> & getTroopsOnPlay ();
+    TroopsArr & getTroopsOnPlay ();
     bool isGeneralsFacing   ();
 };
 

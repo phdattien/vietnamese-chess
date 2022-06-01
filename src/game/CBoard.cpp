@@ -9,7 +9,7 @@
 #include "CFen.h"
 #include "CPositionInf.h"
 #include <exception>
-#include "troopsNames.h"
+#include "Constants.h"
 
 CBoard::CBoard ( const std::string &  fen  ) : m_Board ( COL_SIZE, std::vector<std::shared_ptr<CTroop>> ( ROW_SIZE,nullptr) ){
     auto inf = CFen::loadTroops (fen);
@@ -194,7 +194,7 @@ bool CBoard::isInCheck ()  {
     return true;
 }
 
-std::vector<Move> CBoard::generatePseudoLegalMovesByColour ( const std::vector<std::shared_ptr<CTroop>>& troops ) {
+std::vector<Move> CBoard::generatePseudoLegalMovesByColour ( const TroopsArr & troops ) {
     std::vector<Move> moves;
     for ( const auto & troop : troops ) {
         addMoves ( troop->getCoord(), troop->getPossibleMoves (m_Board), moves );
@@ -237,4 +237,12 @@ bool CBoard::canCross ( const std::vector<char>& troopNames ) {
 
 void CBoard::ChangeSide () {
     RedToMove = !RedToMove; // after making movements switch sides
+}
+
+const CBoard::TroopsArr &CBoard::getRedTroops () const {
+    return m_RedTroops;
+}
+
+const CBoard::TroopsArr &CBoard::getBlackTroops () const {
+    return m_BlackTroops;
 }

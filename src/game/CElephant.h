@@ -8,6 +8,7 @@ public:
     std::set<CCoord> getPossibleMoves ( const Board &currBoard ) const override;
     char getName () const override;
 
+
 private:
     char m_Name = ELEPHANT;
     bool isInsideElephantMovements( const CCoord& newCoord ) const;

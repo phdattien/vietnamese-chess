@@ -14,6 +14,7 @@ public:
 
     std::set<CCoord> getPossibleMoves ( const Board &currBoard) const override;
 
+
 private:
     char m_Name = CANNON;
     void getSlidingCoords ( int start, char still, int direction, int end, const Board (&currBoard), std::set<CCoord> & cords ) const;

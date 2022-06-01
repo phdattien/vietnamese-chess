@@ -56,3 +56,5 @@ char CChariot::getName () const {
 CChariot::CChariot ( SIDE side, const CCoord &coord ) : CTroop ( side, coord ) {}
 
 
+
+

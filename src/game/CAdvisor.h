@@ -10,6 +10,8 @@ public:
 
     char getName () const override;
 
+    int getValue () const override;
+
 private:
     char m_Name = ADVISOR;
     bool isInsideAdvisorMovements ( const CCoord& newCoord ) const;
