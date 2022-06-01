@@ -4,7 +4,7 @@
 
 #include "CPlayerAI.h"
 
-bool CPlayerAI::TakeAction ( CBoard &board, DRAW_STATE drawState ) {
+bool CPlayerAI::TakeAction ( CBoard &board, DRAW_STATE &drawState ) {
 
     std::vector<Move> moves =  board.generateMoves();
     if ( moves.empty() ) {

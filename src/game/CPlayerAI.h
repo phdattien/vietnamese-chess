@@ -10,7 +10,7 @@
 class CPlayerAI : public CPlayer {
 public:
     CPlayerAI () = default;
-    bool TakeAction ( CBoard &board, DRAW_STATE drawState ) override;
+    bool TakeAction ( CBoard &board, DRAW_STATE &drawState ) override;
 private:
 };
 

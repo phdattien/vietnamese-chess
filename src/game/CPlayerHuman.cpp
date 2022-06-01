@@ -12,17 +12,24 @@
 #include "CQuitException.h"
 #include "Move.h"
 
-bool CPlayerHuman::TakeAction ( CBoard &board, DRAW_STATE drawState ) {
+bool CPlayerHuman::TakeAction ( CBoard &board, DRAW_STATE &drawState ) {
     if ( isEmpty ( board ) )
         return false;
-
-
+    if ( drawState == DRAW_STATE::SUGGEST ) {
+        drawDecide ( drawState );
+        board.ChangeSide();
+        return true;
+    }
     while (true) {
         printf ( ">>> ");
         std::cin >> m_Command;
         if ( ! validateCommand ( m_Command) )
             continue;
             switch ( tolower ( m_Command [0]) ) {
+                case 'd': // draw
+                    drawSuggest (drawState);
+                    board.ChangeSide();
+                    return true;
                 case 'q': // quit
                     std::cout << "Good bye have a nice day";
                     throw CQuitException();
@@ -109,4 +116,23 @@ bool CPlayerHuman::validateCommand ( const std::string& command ) {
 bool CPlayerHuman::isEmpty ( CBoard &board ) {
     m_PossibleMoves = board.generateMoves();
     return m_PossibleMoves.empty();
+}
+
+void CPlayerHuman::drawDecide ( DRAW_STATE &drawState ) {
+    while ( true ) {
+        std::cout << "Do you wanna draw? (y)/(n)\n";
+        std::cin >> m_Command;
+        if ( std::cin.eof() )
+            throw std::ios::failure ("");
+        if ( m_Command != "y" && m_Command != "n" ) {
+            std::cout << "Wrong!\n";
+            continue;
+        }
+        drawState = m_Command == "y" ? DRAW_STATE::ACCEPT : DRAW_STATE::NEUTRAL;
+        return;
+    }
+}
+
+void CPlayerHuman::drawSuggest ( DRAW_STATE & drawState) {
+    drawState = DRAW_STATE::SUGGEST;
 }

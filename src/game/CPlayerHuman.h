@@ -10,13 +10,15 @@
 class CPlayerHuman : public CPlayer {
 public:
     CPlayerHuman () = default;
-    bool TakeAction ( CBoard &board, DRAW_STATE drawState ) override;
+    bool TakeAction ( CBoard &board, DRAW_STATE &drawState ) override;
 
 private:
     bool chooseMove ( CBoard &board ) const;
     void safeGame ( const CBoard &board ) const;
     bool isValidCoord ( const std::string& from, const std::string& to ) const;
     bool validateCommand ( const std::string & command );
+    void drawSuggest ( DRAW_STATE &drawState);
+    void drawDecide ( DRAW_STATE &drawState );
     std::vector<Move> m_PossibleMoves;
     bool isEmpty ( CBoard & board );
     std::string  m_Command;
