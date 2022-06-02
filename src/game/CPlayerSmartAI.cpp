@@ -5,6 +5,7 @@
 #include "CPlayerSmartAI.h"
 
 bool CPlayerSmartAI::TakeAction ( CBoard &board, GAME_STATE &gameState ) {
+    // if best evaluation for a best move is below zero we accpet a draw
     if ( gameState == GAME_STATE::SUGGEST ) {
         CSearch search( board );
         search.StartSearch ();

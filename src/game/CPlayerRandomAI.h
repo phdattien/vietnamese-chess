@@ -7,6 +7,9 @@
 #include "CBoard.h"
 #include "Move.h"
 
+/**
+ * Random Player choose his movements randomly, when other players for draw, always accept
+ */
 class CPlayerRandomAI : public CPlayer {
 public:
     CPlayerRandomAI () = default;

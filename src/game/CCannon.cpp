@@ -38,7 +38,6 @@ void CCannon::getSlidingCoords ( int start, char still, int direction, int end, 
             break;
         }
 
-        //TODO refactor as a sliding piece troop
         if ( ! skip )
             cords.insert (newCoord);
     }

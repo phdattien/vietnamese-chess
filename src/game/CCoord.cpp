@@ -13,11 +13,11 @@ CCoord::CCoord ( const std::string & coord ) {
 }
 
 bool CCoord::isInsideBoard () const {
-    if ( m_Colum < 0 || m_Colum >= 10) {
+    if ( m_Colum < 0 || m_Colum >= COL) {
         return false;
     }
 
-    if ( m_Row < 0 || m_Row >= 9)
+    if ( m_Row < 0 || m_Row >= ROW)
         return false;
     return true;
 }

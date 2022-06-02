@@ -4,6 +4,9 @@
 #pragma once
 #include "CBoard.h"
 
+/*
+ * CLass Handle all static console UI
+ */
 class UI {
 public:
     static void printBoard ( const CBoard &currBoard );

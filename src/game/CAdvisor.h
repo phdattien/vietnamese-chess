@@ -14,6 +14,7 @@ public:
 private:
     char m_Name = ADVISOR;
     bool isInsideAdvisorMovements ( const CCoord& newCoord ) const;
+    /* static arrays to iterate Advisor's movements */
     static const std::vector<int> POS_COL;
     static const std::vector<int> POS_ROW;
 };

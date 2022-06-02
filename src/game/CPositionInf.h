@@ -6,6 +6,9 @@
 #include "CTroop.h"
 #include <memory>
 
+/**
+ * Helper class for CBoard implementation
+ */
 class CPositionInf {
 public:
     std::vector<std::shared_ptr<CTroop>> troopsOnBoard;

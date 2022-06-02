@@ -45,13 +45,13 @@ void CSearch::StartSearch () {
     m_BestEval = Search ( DEPTH, -9999999, 9999999 );
 }
 
+/* order from more valuable moves to least, by a capture move */
 void CSearch::OrderMoves ( std::vector<Move> &moves ) {
     for ( auto & move : moves ) {
         auto capturedTroop = m_Board.getTroopOnCoord ( move.m_To );
         if ( capturedTroop )
             move.m_Score += 30;
     }
-
     std::sort( moves.begin(), moves.end() );
 }
 

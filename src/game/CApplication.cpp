@@ -9,6 +9,9 @@
 #include "CGame.h"
 #include "CBoard.h"
 #include "CQuitException.h"
+#include "CPlayerHuman.h"
+#include "CPlayerRandomAI.h"
+#include "CPlayerSmartAI.h"
 
 void CApplication::Run () {
     for ( ;; ) {
@@ -17,6 +20,7 @@ void CApplication::Run () {
             makeAction();
             if ( quit )
                 break;
+            // new Board
             CBoard b ( m_BoardPosition );
             CGame game ( b, player1, player2 );
             game.Play();
@@ -38,7 +42,7 @@ void CApplication::makeAction () {
         std::cin >> command;
         if ( std::cin.eof() )
             throw std::ios::failure ("");
-
+        // control of input
         if ( command.size() > 2 ) {
             printf ("Wrong m_Command, try again\n");
             continue;
@@ -66,9 +70,21 @@ void CApplication::makeAction () {
     }
 }
 
+// creating a newGame with types of players
 void CApplication::newGame ( PLAYER_TYPE p1, PLAYER_TYPE p2 ) {
-    player1 = p1;
-    player2 = p2;
+    createPlayer (player1, p1);
+    createPlayer (player2, p2);
+}
+
+void CApplication::createPlayer ( CApplication::Player & player, PLAYER_TYPE type ) {
+    if ( type == PLAYER_TYPE::HUMAN )
+        player = std::make_shared<CPlayerHuman> ();
+
+    if ( type == PLAYER_TYPE::RANDOM_AI )
+        player = std::make_shared<CPlayerRandomAI>();
+
+    if ( type == PLAYER_TYPE::SMART_AI )
+        player = std::make_shared<CPlayerSmartAI>();
 }
 
 void CApplication::loadGame () {

@@ -6,6 +6,9 @@
 #include "CCoord.h"
 #include "Constants.h"
 
+/*
+ * enum for two board sides
+ */
 enum class SIDE {
     BLACK,
     RED
@@ -14,29 +17,39 @@ enum class SIDE {
  * Abstract class of all troops in game
  */
 
-
 class CTroop {
 public:
     using Board = std::vector<std::vector<std::shared_ptr<CTroop>>>;
+    /*
+     * Constructor takes whick side and on what coord is troop is on Board
+     *
+     * @param side on
+     * @param coord on what coord
+     */
     CTroop ( SIDE side, CCoord coord ) :
             m_Side (side),
             m_Coord ( coord ) {};
     virtual ~CTroop() noexcept = default;
-    // virtual method for a troop to get all of his possible moves from the his position and boardState
+    /**
+     * Virtual method to get all Possible moves from troops position
+     * @param currBoard on Play
+     * @return set of Coordinates of possibleMoves
+     */
     virtual std::set<CCoord> getPossibleMoves ( const Board & currBoard ) const = 0;
-    // Every troop has his own default unique name - can't be chanched
+    /**
+     * Every troop has his own default unique name - can't be chanche
+     * @return his name as char
+     */
     virtual char getName () const = 0;
     // get side of a troop
     const SIDE & getSide  () const { return m_Side; };
     // setter for a newCoordinate
     void setCoord ( const CCoord & newCoord ) { m_Coord = newCoord; };
-    // get a current Coordinate of a troop
     const CCoord & getCoord () const { return m_Coord; };
 
 protected:
-    // which color Troop belongs to
     SIDE m_Side;
-    // where the troop is currently on the board
+    /** @var Troop current position */
     CCoord m_Coord;
 };
 

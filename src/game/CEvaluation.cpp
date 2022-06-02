@@ -5,7 +5,6 @@
 #include "CEvaluation.h"
 #include <map>
 
-
 std::map<char, int> CEvaluation::SCORE {
         { GENERAL, GENERAL_VALUE},
         { ADVISOR, ADVISOR_VALUE},
@@ -21,9 +20,10 @@ std::map<char, int> CEvaluation::SCORE {
 int CEvaluation::Evaluate ( const CBoard &board ) const {
     int redEval = 0;
     int blackEval = 0;
-    redEval += countMaterial ( board.getRedTroops() );
+    redEval += countMaterial ( board.getRedTroops() ); //
     blackEval += countMaterial ( board.getBlackTroops() );
 
+    // the closer are troops near  enemy kings the better, -> count by manhattan distance
     redEval += countDistance ( board.getRedTroops(), board.getRedKingCoord() );
     blackEval += countDistance ( board.getBlackTroops(), board.getBlackKingCoord() );
 

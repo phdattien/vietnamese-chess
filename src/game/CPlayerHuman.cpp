@@ -15,7 +15,7 @@
 bool CPlayerHuman::TakeAction ( CBoard &board, GAME_STATE &gameState ) {
     if ( isEmpty ( board ) )
         return false;
-    if ( gameState == GAME_STATE::SUGGEST ) {
+    if ( gameState == GAME_STATE::SUGGEST ) { // we can either accept or decline a draw
         drawDecide ( gameState );
         board.ChangeSide();
         return true;

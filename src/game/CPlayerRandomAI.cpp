@@ -3,6 +3,7 @@
 //
 
 #include "CPlayerRandomAI.h"
+#include <ctime>
 
 bool CPlayerRandomAI::TakeAction ( CBoard &board, GAME_STATE &gameState ) {
     if ( gameState == GAME_STATE::SUGGEST ) {
@@ -15,6 +16,8 @@ bool CPlayerRandomAI::TakeAction ( CBoard &board, GAME_STATE &gameState ) {
     if ( moves.empty() ) {
         return false;
     }
+
+    srand(time(0));
     int k = rand();
     Move move = moves[k % moves.size()];
     board.MakeMove ( move );

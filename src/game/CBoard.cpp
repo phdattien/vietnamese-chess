@@ -12,11 +12,12 @@
 #include "Constants.h"
 
 CBoard::CBoard ( const std::string &  fen  ) : m_Board ( COL_SIZE, std::vector<std::shared_ptr<CTroop>> ( ROW_SIZE,nullptr) ){
-    auto inf = CFen::loadTroops (fen);
+    auto inf = CFen::loadTroops (fen); // static method to parse fen string
     if ( ! inf ) {
         throw std::invalid_argument ("Bad Fen");
     }
 
+    // loop for initialazing private atributes
     for ( auto & troop : inf->troopsOnBoard ) {
         if ( troop->getSide() == SIDE::RED ) {
             if ( troop->getName() == GENERAL )
@@ -68,15 +69,8 @@ void CBoard::addMoves ( const CCoord & start, const std::set<CCoord>& cords, std
     }
 }
 
-void CBoard::printAttackedMoves () {
-    std::vector<Move> moves = generateMoves();
-    for ( const auto move : moves ) {
-        std::cout << move << std::endl;
-    }
-}
 
 void CBoard::printAttackedMap () {
-//    std::vector<Move> moves = generatePseudoLegalMoves();
     std::vector<Move> moves = generateMoves();
     std::vector<CCoord> cords;
 
@@ -98,13 +92,11 @@ void CBoard::printAttackedMap () {
 }
 
 void CBoard::MakeMove ( const Move &movement ) {
-//    std::vector<std::shared_ptr<CTroop>> troops = m_BlackTroops;
     CCoord from = movement.m_From;
     CCoord to = movement.m_To;
 
     auto capturedTroop = getTroopOnCoord (to);
     m_HistoryCapturedTroops.push (capturedTroop);
-//    m_PrevCapturedTroop = getTroopOnCoord (to); // can be null
     std::vector<std::shared_ptr<CTroop>> &troops = getTroopsOnOppositePlay();
     auto it = std::find(troops.begin(), troops.end(), capturedTroop);
 
@@ -117,25 +109,21 @@ void CBoard::MakeMove ( const Move &movement ) {
 
     // m_Move troop to desired destination
     m_Board[to.m_Colum][to.m_Row] = move ( troopOnPos );
-//    RedToMove = !RedToMove; // after making movements switch sides
     ChangeSide();
 }
 
-// can only used after MakeMove
 void CBoard::UnMakeMove ( const Move &movement ) {
     std::vector<std::shared_ptr<CTroop>> &troops = getTroopsOnPlay();
-//    RedToMove = !RedToMove; // after making movements switch sides
     ChangeSide();
     CCoord from = movement.m_From;
     CCoord to = movement.m_To;
     auto & troopOnPos = getTroopOnCoord (to);
-//    m_PrevCapturedTroop = getTroopOnCoord (to); // can be null
 
     troopOnPos->setCoord (from); // set where he came from
     // m_Move troop to desired destination
     m_Board[from.m_Colum][from.m_Row] = move ( troopOnPos );
     auto prevCapturedTroop = m_HistoryCapturedTroops.top();
-    m_HistoryCapturedTroops.pop();
+    m_HistoryCapturedTroops.pop(); //
 
 //    m_Board[to.m_Colum][to.m_Row] = m_PrevCapturedTroop;
     m_Board[to.m_Colum][to.m_Row] = prevCapturedTroop;
@@ -144,6 +132,7 @@ void CBoard::UnMakeMove ( const Move &movement ) {
         troops.push_back ( prevCapturedTroop);
 }
 
+// generate all PseudoLegalMoves and then filter out dangerMoves
 const std::vector<Move> &CBoard::generateMoves () {
     possibleMoves.clear();
     std::vector<Move> pseudoLegalMoves = generatePseudoLegalMoves();
@@ -206,6 +195,7 @@ std::vector<Move> CBoard::generatePseudoLegalMoves () {
     return generatePseudoLegalMovesByColour ( getTroopsOnPlay() );
 }
 
+// draw  is detected if are enough troops to be able to make a check
 bool CBoard::isDraw () {
     if ( m_RedTroops.size() <= 2 && m_BlackTroops.size() <= 2)
         return true;

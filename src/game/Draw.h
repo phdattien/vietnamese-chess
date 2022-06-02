@@ -3,6 +3,9 @@
 //
 #pragma once
 
+/**
+ * Enum GAME_STATE
+ */
 enum class GAME_STATE{
     SUGGEST,
     ACCEPT,
