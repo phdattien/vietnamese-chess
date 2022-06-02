@@ -26,7 +26,6 @@ public:
     virtual std::set<CCoord> getPossibleMoves ( const Board & currBoard ) const = 0;
     // Every troop has his own default unique name - can't be chanched
     virtual char getName () const = 0;
-    virtual int getValue () const = 0;
     // get side of a troop
     const SIDE & getSide  () const { return m_Side; };
     // setter for a newCoordinate

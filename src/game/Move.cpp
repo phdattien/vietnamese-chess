@@ -15,4 +15,8 @@ bool Move::operator== ( const Move &rhs ) const {
     return m_From == rhs.m_From && m_To == rhs.m_To;
 }
 
+bool Move::operator< ( const Move & rhs ) const {
+    return  m_Score > rhs.m_Score;
+}
+
 

@@ -3,7 +3,7 @@
 //
 #pragma once
 #include <vector>
-#include "src/game/CTroop.h"
+#include "CTroop.h"
 #include <memory>
 
 class CPositionInf {

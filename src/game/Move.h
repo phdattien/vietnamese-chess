@@ -15,8 +15,10 @@ struct Move {
 
     CCoord m_From;
     CCoord m_To;
+    int m_Score = 0;
 
     bool operator == ( const Move & rhs ) const;
+    bool operator < ( const Move & rhs ) const;
     friend std::ostream & operator << ( std::ostream & os, const Move & move );
 };
 

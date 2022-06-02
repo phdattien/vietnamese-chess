@@ -56,11 +56,13 @@ std::set<CCoord> CElephant::getPossibleMoves ( const Board &currBoard ) const {
         int newPosJ = m_Coord.m_Row + POS_ROW[i];
 
         CCoord newCoord ( newPosI, newPosJ );
+        if (     ! newCoord.isInsideBoard () )
+            continue;
+
         auto & troopOnPos = currBoard[newCoord.m_Colum][newCoord.m_Row];
 
         // if newCoord is outside of board or there is a troop but, on the same side or it is outside of the palace
-        if (     ! newCoord.isInsideBoard ()
-                 ||  ( troopOnPos && troopOnPos->getSide() == m_Side )
+        if (    ( troopOnPos && troopOnPos->getSide() == m_Side )
                  ||  !  isInsideElephantMovements( newCoord )
                  ||   inWay ( newCoord, currBoard ) )
         {

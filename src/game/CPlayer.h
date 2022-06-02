@@ -11,7 +11,7 @@ class CPlayer {
 public:
     virtual ~CPlayer() noexcept = default;
     // virtual function to make a player choose a movement on board
-    virtual bool TakeAction ( CBoard &board, DRAW_STATE &drawState ) = 0;
+    virtual bool TakeAction ( CBoard &board, GAME_STATE &gameState ) = 0;
 protected:
 };
 

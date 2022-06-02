@@ -39,6 +39,9 @@ public:
 
     const std::vector<Move> & generateMoves ();
 
+    const CCoord & getRedKingCoord () const;
+
+    const CCoord & getBlackKingCoord () const;
     bool isDraw();
 
     friend class UI;

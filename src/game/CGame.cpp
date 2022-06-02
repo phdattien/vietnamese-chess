@@ -8,7 +8,8 @@
 #include <chrono>
 #include <thread>
 #include "CPlayerHuman.h"
-#include "CPlayerAI.h"
+#include "CPlayerRandomAI.h"
+#include "CPlayerSmartAI.h"
 #include "UI.h"
 
 using namespace std::chrono_literals;
@@ -23,18 +24,21 @@ CGame::CGame ( CBoard board, PLAYER_TYPE playerOne, PLAYER_TYPE playerTwo ): m_G
 
 
 void CGame::createPlayer ( CGame::Player & player, PLAYER_TYPE type ) {
-    if ( type == PLAYER_TYPE::HUMAN ) {
+    if ( type == PLAYER_TYPE::HUMAN )
         player = std::make_shared<CPlayerHuman> ();
-    } else {
-        player = std::make_shared<CPlayerAI> ();
-    }
+
+    if ( type == PLAYER_TYPE::RANDOM_AI )
+        player = std::make_shared<CPlayerRandomAI>();
+
+    if ( type == PLAYER_TYPE::SMART_AI )
+        player = std::make_shared<CPlayerSmartAI>();
 }
 
 void CGame::Play () {
     while ( true ) {
         //getState  -- playerOnTrun ( under attack > checked, takeAction
         UI::printBoard ( m_GameBoard);
-        if ( m_GameBoard.isDraw() || m_Draw == DRAW_STATE::ACCEPT ) {
+        if ( m_GameBoard.isDraw() || m_STATE == GAME_STATE::ACCEPT ) {
             printf ( "DRAW\n");
             return;
         }
@@ -42,10 +46,12 @@ void CGame::Play () {
         if ( m_GameBoard.isInCheck () )
             printf ( "Checked!\n");
 
-        if ( ! m_PlayerOnTurn->TakeAction ( m_GameBoard, m_Draw ) ) {
+        if ( ! m_PlayerOnTurn->TakeAction ( m_GameBoard, m_STATE ) || m_STATE == GAME_STATE::GIVEUP ) {
             printResult ();
             break;
         }
+
+
 //        std::cout << m_Move.value() << std::endl;
 //        m_GameBoard.MakeMove (m_Move.value() );
         changePlayer ();
@@ -62,10 +68,10 @@ void CGame::changePlayer () {
     m_PlayerOnTurn = m_GameBoard.isRedToMove() ? m_RedPlayer : m_BlackPlayer;
 }
 
-DRAW_STATE CGame::GetDrawState () const {
-    return m_Draw;
+GAME_STATE CGame::GetDrawState () const {
+    return m_STATE;
 }
 
-void CGame::SetDrawState ( DRAW_STATE newState ) {
-    m_Draw = newState;
+void CGame::SetDrawState ( GAME_STATE newState ) {
+    m_STATE = newState;
 }

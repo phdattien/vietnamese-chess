@@ -81,8 +81,8 @@ void CBoard::printAttackedMap () {
     std::vector<CCoord> cords;
 
     cords.reserve(moves.size());
-    for ( const auto [from, to] : moves ) {
-        cords.push_back (to);
+    for ( const auto move : moves ) {
+        cords.push_back (move.m_To);
     }
 
     for ( size_t i = 0; i < COL_SIZE; i++ ) {
@@ -245,4 +245,12 @@ const CBoard::TroopsArr &CBoard::getRedTroops () const {
 
 const CBoard::TroopsArr &CBoard::getBlackTroops () const {
     return m_BlackTroops;
+}
+
+const CCoord &CBoard::getRedKingCoord () const {
+    return m_RedGeneral->getCoord();
+}
+
+const CCoord &CBoard::getBlackKingCoord () const {
+    return m_BlackGeneral->getCoord();
 }

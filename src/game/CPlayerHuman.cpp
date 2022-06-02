@@ -12,23 +12,28 @@
 #include "CQuitException.h"
 #include "Move.h"
 
-bool CPlayerHuman::TakeAction ( CBoard &board, DRAW_STATE &drawState ) {
+bool CPlayerHuman::TakeAction ( CBoard &board, GAME_STATE &gameState ) {
     if ( isEmpty ( board ) )
         return false;
-    if ( drawState == DRAW_STATE::SUGGEST ) {
-        drawDecide ( drawState );
+    if ( gameState == GAME_STATE::SUGGEST ) {
+        drawDecide ( gameState );
         board.ChangeSide();
         return true;
     }
     while (true) {
         printf ( ">>> ");
         std::cin >> m_Command;
-        if ( ! validateCommand ( m_Command) )
+        if ( ! validateCommand ( m_Command) ) {
+            printf ( "Wrong m_Command, try again\n" );
             continue;
+        }
             switch ( tolower ( m_Command [0]) ) {
                 case 'd': // draw
-                    drawSuggest (drawState);
+                    drawSuggest ( gameState);
                     board.ChangeSide();
+                    return true;
+                case 'g': // draw
+                    gameState = GAME_STATE::GIVEUP;
                     return true;
                 case 'q': // quit
                     std::cout << "Good bye have a nice day";
@@ -118,7 +123,7 @@ bool CPlayerHuman::isEmpty ( CBoard &board ) {
     return m_PossibleMoves.empty();
 }
 
-void CPlayerHuman::drawDecide ( DRAW_STATE &drawState ) {
+void CPlayerHuman::drawDecide ( GAME_STATE &drawState ) {
     while ( true ) {
         std::cout << "Do you wanna draw? (y)/(n)\n";
         std::cin >> m_Command;
@@ -128,11 +133,11 @@ void CPlayerHuman::drawDecide ( DRAW_STATE &drawState ) {
             std::cout << "Wrong!\n";
             continue;
         }
-        drawState = m_Command == "y" ? DRAW_STATE::ACCEPT : DRAW_STATE::NEUTRAL;
+        drawState = m_Command == "y" ? GAME_STATE::ACCEPT : GAME_STATE::NEUTRAL;
         return;
     }
 }
 
-void CPlayerHuman::drawSuggest ( DRAW_STATE & drawState) {
-    drawState = DRAW_STATE::SUGGEST;
+void CPlayerHuman::drawSuggest ( GAME_STATE & drawState) {
+    drawState = GAME_STATE::SUGGEST;
 }

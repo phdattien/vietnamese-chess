@@ -12,6 +12,7 @@ public:
     char getName () const override;
 
 private:
+    char m_Name = HORSE;
     static const std::vector<int> POS_COL;
     static const std::vector<int> POS_ROW;
     bool inWay ( const CCoord& newCoord, const Board & currBoard  ) const;

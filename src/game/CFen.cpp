@@ -5,14 +5,14 @@
 #include "CFen.h"
 #include <sstream>
 #include <memory>
-#include "src/game/CAdvisor.h"
-#include "src/game/CCannon.h"
-#include "src/game/CChariot.h"
-#include "src/game/CElephant.h"
-#include "src/game/CGeneral.h"
-#include "src/game/CHorse.h"
-#include "src/game/CPawn.h"
-#include "src/game/Constants.h"
+#include "CAdvisor.h"
+#include "CCannon.h"
+#include "CChariot.h"
+#include "CElephant.h"
+#include "CGeneral.h"
+#include "CHorse.h"
+#include "CPawn.h"
+#include "Constants.h"
 
 std::optional<CPositionInf> CFen::loadTroops ( const std::string &fen ) {
     CPositionInf inf;
@@ -29,6 +29,8 @@ std::optional<CPositionInf> CFen::loadTroops ( const std::string &fen ) {
 
     for ( auto c : positions ) {
         if ( c == '/') {
+            if ( row != 9 )
+                return {};
             col++;
             row = 0;
         }
@@ -47,6 +49,11 @@ std::optional<CPositionInf> CFen::loadTroops ( const std::string &fen ) {
         else
             return {};
     }
+    if ( row != 9 )
+        return {};
+
+    if ( col != 9 )
+        return {};
 
     if ( colour != "r" && colour != "b")
         return {};

@@ -38,7 +38,7 @@ void UI::printSep () {
 
 
 void UI::printBoard ( const CBoard &currBoard ) {
-//    std::cout << "\x1b[1J" << "\x1b[H"; //-> clear screan
+    std::cout << "\x1b[1J" << "\x1b[H"; //-> clear screan
     printf ( "%s TURN\n", currBoard.isRedToMove()  ? "RED" : "BLACK" ); // header
     // --------------- printing header  -----------------------
     auto & Board = currBoard.m_Board;
@@ -100,7 +100,7 @@ void UI::printUserMenu () {
     printf ("============== VIETNAMESE CHESS =====================\n");
     printf ( "(1)PVP\n");
     printf ( "(2)PVCo\n");
-    printf ( "(3)CoVCo\n");
+    printf ( "(3)CoVSmarterCo\n");
     printf ( "(l)load game\n");
     printf ( "(q)uit\n");
     printf ("============== VIETNAMESE CHESS =====================\n");

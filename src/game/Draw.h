@@ -3,8 +3,9 @@
 //
 #pragma once
 
-enum class DRAW_STATE{
+enum class GAME_STATE{
     SUGGEST,
     ACCEPT,
-    NEUTRAL
+    NEUTRAL,
+    GIVEUP
 };
