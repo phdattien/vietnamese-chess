@@ -1,6 +1,6 @@
 CXX= g++
 CXXFLAGS = -std=c++17 -Wall -O3 -pedantic -Wextra -g -fsanitize=address
-TARGET = phamtie2
+TARGET = chess
 BUILD_DIR = build
 TEST_DIR = test
 HEADERS = $(wildcard $(SOURCE_DIR)/game/*.h)
