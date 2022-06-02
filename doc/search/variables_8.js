@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['m_5fbesteval_408',['m_BestEval',['../classCSearch.html#aa2229139254a7b80a849f7aa444da662',1,'CSearch']]],
+  ['m_5fbestmove_409',['m_BestMove',['../classCSearch.html#a5542428f5b99a7de7c35d8317b80228a',1,'CSearch']]],
+  ['m_5fblackgeneral_410',['m_BlackGeneral',['../classCBoard.html#aba05ab069e817f227cda8dbc262588bb',1,'CBoard']]],
+  ['m_5fblackplayer_411',['m_BlackPlayer',['../classCGame.html#a7965d116ef91588adcac9ebcbcc17832',1,'CGame']]],
+  ['m_5fblacktroops_412',['m_BlackTroops',['../classCBoard.html#ab9d1a1bcfacc42e546529c485cf10b1c',1,'CBoard']]],
+  ['m_5fboard_413',['m_Board',['../classCBoard.html#ae206ee3f91ba2bebc381ae7ef9078481',1,'CBoard::m_Board()'],['../classCSearch.html#a57b49766d9a581f944e9ad4efc7d0125',1,'CSearch::m_Board()']]],
+  ['m_5fboardposition_414',['m_BoardPosition',['../classCApplication.html#ae69a8412447496650a0d29b341b20e3b',1,'CApplication']]],
+  ['m_5fcolum_415',['m_Colum',['../structCCoord.html#ad738fbfe9df67e033ee59a1bef011b36',1,'CCoord']]],
+  ['m_5fcommand_416',['m_Command',['../classCPlayerHuman.html#a4f4089843eacb4a5d41f594fb6da3eb2',1,'CPlayerHuman']]],
+  ['m_5fcoord_417',['m_Coord',['../classCTroop.html#a867c128a099f85ced17a970d8904f4f8',1,'CTroop']]],
+  ['m_5fevaluation_418',['m_Evaluation',['../classCSearch.html#af0eff64211241eb91764f1205b179d29',1,'CSearch']]],
+  ['m_5ffrom_419',['m_From',['../structMove.html#a2fb5ee867bca9b96b767ca188956bfd2',1,'Move']]],
+  ['m_5fgameboard_420',['m_GameBoard',['../classCGame.html#a062745e3560ac75c753d8b76d1370f0e',1,'CGame']]],
+  ['m_5fhistorycapturedtroops_421',['m_HistoryCapturedTroops',['../classCBoard.html#afab24bb139ac23ed3230a243ce2990da',1,'CBoard']]],
+  ['m_5fname_422',['m_Name',['../classCAdvisor.html#a1d9cf457117e13316787fac6183e2649',1,'CAdvisor::m_Name()'],['../classCCannon.html#a158975487c8e2f137698975aed7cdc39',1,'CCannon::m_Name()'],['../classCChariot.html#a331fd3c86feeebf654e8a6a6b5c1da02',1,'CChariot::m_Name()'],['../classCElephant.html#ac095a0133bfe145f647895241ee088f6',1,'CElephant::m_Name()'],['../classCGeneral.html#adec645d30651fc15633bec58f62e1692',1,'CGeneral::m_Name()'],['../classCHorse.html#a802c9ba76a524243c1f8aa285465803c',1,'CHorse::m_Name()'],['../classCPawn.html#ac47ad69e0274e18c0664ce4256dd2929',1,'CPawn::m_Name()']]],
+  ['m_5fplayeronturn_423',['m_PlayerOnTurn',['../classCGame.html#a5cb84f34abc76a1a204e5d9827105ff0',1,'CGame']]],
+  ['m_5fpossiblemoves_424',['m_PossibleMoves',['../classCPlayerHuman.html#adf52d5c3300e140a786d8527f782a7c0',1,'CPlayerHuman']]],
+  ['m_5fredgeneral_425',['m_RedGeneral',['../classCBoard.html#a90a5914b319c9e6c921a82e60c7728c0',1,'CBoard']]],
+  ['m_5fredplayer_426',['m_RedPlayer',['../classCGame.html#a80ffae5009a3904a5fac4329ee20c105',1,'CGame']]],
+  ['m_5fredtroops_427',['m_RedTroops',['../classCBoard.html#a633faaddd98bd534fa74e7f10726efed',1,'CBoard']]],
+  ['m_5frow_428',['m_Row',['../structCCoord.html#a8c84b329cc60cab21f3bf7ac4f2a7c1c',1,'CCoord']]],
+  ['m_5fscore_429',['m_Score',['../structMove.html#aaf123770553051de2ffbb28447e530b5',1,'Move']]],
+  ['m_5fside_430',['m_Side',['../classCTroop.html#a85f6efd038bd0f93c79cbd2d5644b0d2',1,'CTroop']]],
+  ['m_5fstate_431',['m_STATE',['../classCGame.html#ad9d59638bebd47924b0632a157dfe7cf',1,'CGame']]],
+  ['m_5fto_432',['m_To',['../structMove.html#a9e1277d35d883fd83a5b2f11e9b77df4',1,'Move']]]
+];

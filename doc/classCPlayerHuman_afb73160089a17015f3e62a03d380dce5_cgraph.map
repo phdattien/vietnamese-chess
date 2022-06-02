@@ -1,0 +1,28 @@
+<map id="CPlayerHuman::TakeAction" name="CPlayerHuman::TakeAction">
+<area shape="rect" id="node1" title=" " alt="" coords="5,344,189,371"/>
+<area shape="rect" id="node2" href="$classCBoard.html#a2919bbd3b8336b0c6b24f1aa30212004" title=" " alt="" coords="1045,32,1190,59"/>
+<area shape="rect" id="node3" href="$classCPlayerHuman.html#a66a109c95041481c7dd4ce4f5711a507" title=" " alt="" coords="253,139,446,165"/>
+<area shape="rect" id="node8" href="$classCPlayerHuman.html#a110784d3b1f11ecdd094b2992f3a01f2" title=" " alt="" coords="255,395,443,421"/>
+<area shape="rect" id="node9" href="$classCPlayerHuman.html#abf150b6999fde96965dd38e770eb1bd1" title=" " alt="" coords="252,445,447,472"/>
+<area shape="rect" id="node10" href="$classCPlayerHuman.html#a5bd5a2d6632e0f2afc2f9a41cae3aa6f" title=" " alt="" coords="266,213,433,240"/>
+<area shape="rect" id="node19" href="$classUI.html#ac7f3ac35d01a644cb2fd79d6042c1f8a" title=" " alt="" coords="298,344,401,371"/>
+<area shape="rect" id="node23" href="$classUI.html#a3e000b787b0ec56d31b833587f158dbc" title=" " alt="" coords="285,496,413,523"/>
+<area shape="rect" id="node24" href="$classCPlayerHuman.html#a1b80c700d5f5012c59d3f091d825b5ff" title=" " alt="" coords="260,293,439,320"/>
+<area shape="rect" id="node26" href="$classCPlayerHuman.html#a09d37aa3acf40cd45be22a546de6c392" title=" " alt="" coords="237,547,461,573"/>
+<area shape="rect" id="node4" href="$classCPlayerHuman.html#a34ae141d14df6f742490d7c99acedc29" title=" " alt="" coords="509,139,701,165"/>
+<area shape="rect" id="node5" href="$classCBoard.html#a8d0a765165efa6a2b4ae52d13ff7151a" title=" " alt="" coords="783,83,922,109"/>
+<area shape="rect" id="node6" href="$classCBoard.html#adddd2caeb25169b45b8f47cf0fe0c2d4" title=" " alt="" coords="1029,133,1206,160"/>
+<area shape="rect" id="node7" href="$classCBoard.html#a3d689360c191f2e2e3317fd08616632f" title=" " alt="" coords="1004,83,1231,109"/>
+<area shape="rect" id="node11" href="$classCBoard.html#a316a158565a71287bcaf8ccdbb4e9b92" title=" " alt="" coords="524,199,687,225"/>
+<area shape="rect" id="node12" href="$classCBoard.html#a91e0c9a7322efb279143d87fb3140204" title=" " alt="" coords="753,353,952,394"/>
+<area shape="rect" id="node16" href="$classCBoard.html#af93c749be940b9c247c97104733e02b6" title=" " alt="" coords="749,185,956,226"/>
+<area shape="rect" id="node17" href="$classCBoard.html#ab04b99d00937533a65add6adcc2f63e5" title=" " alt="" coords="765,251,940,277"/>
+<area shape="rect" id="node18" href="$classCBoard.html#a7863f2de5bddd67fff3cdc5766e08ea3" title=" " alt="" coords="775,133,930,160"/>
+<area shape="rect" id="node13" href="$classCBoard.html#a3549881e220f79444222253c5c38490e" title=" " alt="" coords="1018,353,1217,394"/>
+<area shape="rect" id="node15" href="$classCBoard.html#ab98ba366780c62d62bb8c77314435644" title=" " alt="" coords="1030,243,1205,269"/>
+<area shape="rect" id="node14" href="$classCBoard.html#af2746917d962843c821fc551031dba7b" title=" " alt="" coords="1279,360,1413,387"/>
+<area shape="rect" id="node20" href="$classCBoard.html#a4d530df245fdaa5827d1280255756777" title=" " alt="" coords="775,419,930,445"/>
+<area shape="rect" id="node21" href="$classUI.html#a0209b187676b2a5150accd706476a344" title=" " alt="" coords="555,395,655,421"/>
+<area shape="rect" id="node22" href="$classUI.html#a7c9402b98e45b7099bbd124526736ba4" title=" " alt="" coords="559,445,651,472"/>
+<area shape="rect" id="node25" href="$classCFen.html#a50e019ca3b27e7877a39abc6fcb0e58e" title=" " alt="" coords="554,293,657,320"/>
+</map>

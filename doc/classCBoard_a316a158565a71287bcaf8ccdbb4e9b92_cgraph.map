@@ -1,0 +1,14 @@
+<map id="CBoard::generateMoves" name="CBoard::generateMoves">
+<area shape="rect" id="node1" title=" " alt="" coords="5,173,168,199"/>
+<area shape="rect" id="node2" href="$classCBoard.html#a91e0c9a7322efb279143d87fb3140204" title=" " alt="" coords="220,56,419,97"/>
+<area shape="rect" id="node6" href="$classCBoard.html#af93c749be940b9c247c97104733e02b6" title=" " alt="" coords="216,224,423,265"/>
+<area shape="rect" id="node7" href="$classCBoard.html#ab04b99d00937533a65add6adcc2f63e5" title=" " alt="" coords="232,290,407,317"/>
+<area shape="rect" id="node8" href="$classCBoard.html#a8d0a765165efa6a2b4ae52d13ff7151a" title=" " alt="" coords="250,173,389,199"/>
+<area shape="rect" id="node12" href="$classCBoard.html#a7863f2de5bddd67fff3cdc5766e08ea3" title=" " alt="" coords="242,122,397,149"/>
+<area shape="rect" id="node3" href="$classCBoard.html#a3549881e220f79444222253c5c38490e" title=" " alt="" coords="485,5,683,47"/>
+<area shape="rect" id="node5" href="$classCBoard.html#ab98ba366780c62d62bb8c77314435644" title=" " alt="" coords="497,71,671,98"/>
+<area shape="rect" id="node4" href="$classCBoard.html#af2746917d962843c821fc551031dba7b" title=" " alt="" coords="745,13,880,39"/>
+<area shape="rect" id="node9" href="$classCBoard.html#a2919bbd3b8336b0c6b24f1aa30212004" title=" " alt="" coords="511,173,657,199"/>
+<area shape="rect" id="node10" href="$classCBoard.html#adddd2caeb25169b45b8f47cf0fe0c2d4" title=" " alt="" coords="495,122,673,149"/>
+<area shape="rect" id="node11" href="$classCBoard.html#a3d689360c191f2e2e3317fd08616632f" title=" " alt="" coords="471,223,697,250"/>
+</map>

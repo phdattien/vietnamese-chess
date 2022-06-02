@@ -1,0 +1,10 @@
+<map id="CBoard::generateMoves" name="CBoard::generateMoves">
+<area shape="rect" id="node1" title=" " alt="" coords="728,107,891,133"/>
+<area shape="rect" id="node2" href="$classCPlayerHuman.html#a5bd5a2d6632e0f2afc2f9a41cae3aa6f" title=" " alt="" coords="495,5,661,32"/>
+<area shape="rect" id="node4" href="$classCBoard.html#a27986c26c63f2d983d1ac66bc2be581f" title=" " alt="" coords="490,56,666,83"/>
+<area shape="rect" id="node5" href="$classCSearch.html#acc5d4dbb08d39694c4f3ec2c9bec8f06" title=" " alt="" coords="517,107,639,133"/>
+<area shape="rect" id="node7" href="$classCPlayerSmartAI.html#a12b3aca9a425d0082dc8096876f198a9" title=" " alt="" coords="5,132,196,159"/>
+<area shape="rect" id="node8" href="$classCPlayerRandomAI.html#a68c3dc136a84a8507a0de1c5728c11fb" title=" " alt="" coords="476,208,680,235"/>
+<area shape="rect" id="node3" href="$classCPlayerHuman.html#afb73160089a17015f3e62a03d380dce5" title=" " alt="" coords="244,5,428,32"/>
+<area shape="rect" id="node6" href="$classCSearch.html#a4cd557e2b13d5e40d6119e470133e02f" title=" " alt="" coords="261,107,411,133"/>
+</map>

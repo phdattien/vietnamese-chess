@@ -1,0 +1,8 @@
+<map id="CPlayerHuman::chooseMove" name="CPlayerHuman::chooseMove">
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,199,57"/>
+<area shape="rect" id="node2" href="$classCPlayerHuman.html#a34ae141d14df6f742490d7c99acedc29" title=" " alt="" coords="247,5,439,32"/>
+<area shape="rect" id="node3" href="$classCBoard.html#a8d0a765165efa6a2b4ae52d13ff7151a" title=" " alt="" coords="273,56,412,83"/>
+<area shape="rect" id="node4" href="$classCBoard.html#a2919bbd3b8336b0c6b24f1aa30212004" title=" " alt="" coords="527,5,673,32"/>
+<area shape="rect" id="node5" href="$classCBoard.html#adddd2caeb25169b45b8f47cf0fe0c2d4" title=" " alt="" coords="511,56,689,83"/>
+<area shape="rect" id="node6" href="$classCBoard.html#a3d689360c191f2e2e3317fd08616632f" title=" " alt="" coords="487,107,713,133"/>
+</map>

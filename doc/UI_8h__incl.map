@@ -1,0 +1,14 @@
+<map id="src/game/UI.h" name="src/game/UI.h">
+<area shape="rect" id="node1" title=" " alt="" coords="415,5,521,32"/>
+<area shape="rect" id="node2" href="$CBoard_8h.html" title=" " alt="" coords="429,80,507,107"/>
+<area shape="rect" id="node3" href="$CTroop_8h.html" title=" " alt="" coords="353,155,429,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="435,229,504,256"/>
+<area shape="rect" id="node7" title=" " alt="" coords="528,229,587,256"/>
+<area shape="rect" id="node10" href="$Move_8h.html" title=" " alt="" coords="106,155,171,181"/>
+<area shape="rect" id="node12" title=" " alt="" coords="557,155,611,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="371,229,411,256"/>
+<area shape="rect" id="node5" title=" " alt="" coords="150,304,205,331"/>
+<area shape="rect" id="node8" href="$CCoord_8h.html" title=" " alt="" coords="99,229,178,256"/>
+<area shape="rect" id="node9" href="$Constants_8h.html" title=" " alt="" coords="253,229,347,256"/>
+<area shape="rect" id="node11" title=" " alt="" coords="5,229,75,256"/>
+</map>
