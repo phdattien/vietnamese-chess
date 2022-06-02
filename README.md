@@ -35,7 +35,7 @@ Hra bude čistě konzolová, a bude se ovládat z terminálu, na začátek bude 
 
 
 - `status` zobrazí aktuální stav hry
-- `move [r][c] [r][c]  na řádek a sloupec  (`r`, `c`) pohne figurkou 
+- `m_Move [r][c] [r][c]  na řádek a sloupec  (`r`, `c`) pohne figurkou 
 - `help` zobrazí nápovědu
 - `quit` ukončí program
 
