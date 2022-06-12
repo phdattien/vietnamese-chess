@@ -1,0 +1,5 @@
+<map id="CPawn" name="CPawn">
+<area shape="rect" id="node1" title=" " alt="" coords="5,477,155,628"/>
+<area shape="rect" id="node2" href="$classCTroop.html" title=" " alt="" coords="5,263,155,428"/>
+<area shape="rect" id="node3" href="$structCCoord.html" title=" " alt="" coords="19,5,141,200"/>
+</map>

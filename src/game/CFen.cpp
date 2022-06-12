@@ -24,6 +24,7 @@ std::optional<CPositionInf> CFen::loadTroops ( const std::string &fen ) {
     size_t col = 0;
     size_t row = 0;
 
+
     CCoord coord{};
     SIDE side;
 
@@ -51,6 +52,7 @@ std::optional<CPositionInf> CFen::loadTroops ( const std::string &fen ) {
         return {};
 
     if ( col != COL_SIZE - 1 )
+
         return {};
 
     if ( colour != "r" && colour != "b")

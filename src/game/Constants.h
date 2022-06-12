@@ -4,6 +4,7 @@
 #pragma once
 #include <string>
 
+
 const char GENERAL = 'G';
 const char ADVISOR = 'A';
 const char CANNON = 'C';
@@ -26,3 +27,4 @@ const int ROW_SIZE = 7;
 
 const std::string RED_MID = "D2";
 const std::string  BLACK_MID = "D5";
+

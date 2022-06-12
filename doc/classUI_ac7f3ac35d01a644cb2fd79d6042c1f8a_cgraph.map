@@ -1,0 +1,6 @@
+<map id="UI::printBoard" name="UI::printBoard">
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,108,83"/>
+<area shape="rect" id="node2" href="$classCBoard.html#a4d530df245fdaa5827d1280255756777" title=" " alt="" coords="156,5,311,32"/>
+<area shape="rect" id="node3" href="$classUI.html#a0209b187676b2a5150accd706476a344" title=" " alt="" coords="183,56,283,83"/>
+<area shape="rect" id="node4" href="$classUI.html#a7c9402b98e45b7099bbd124526736ba4" title=" " alt="" coords="187,107,279,133"/>
+</map>

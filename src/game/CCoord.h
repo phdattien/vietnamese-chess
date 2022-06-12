@@ -2,6 +2,7 @@
 #include <string>
 #include "Constants.h"
 
+
 /**
  * Structure CCoord
  */

@@ -1,0 +1,6 @@
+<map id="CPlayer" name="CPlayer">
+<area shape="rect" id="node1" title=" " alt="" coords="194,5,301,97"/>
+<area shape="rect" id="node2" href="$classCPlayerHuman.html" title=" " alt="" coords="5,145,148,355"/>
+<area shape="rect" id="node3" href="$classCPlayerRandomAI.html" title=" " alt="" coords="172,204,323,296"/>
+<area shape="rect" id="node4" href="$classCPlayerSmartAI.html" title=" " alt="" coords="347,204,484,296"/>
+</map>

@@ -45,6 +45,7 @@ std::set<CCoord> CChariot::getPossibleMoves ( const Board &currBoard ) const {
     getSlidingCoords ( m_Coord.m_Row, 'r', 1, ROW_SIZE - 1, currBoard, s_coord ) ; // right cords
     getSlidingCoords ( m_Coord.m_Row, 'r', -1, 0, currBoard, s_coord ); // left cords
     getSlidingCoords ( m_Coord.m_Colum, 'c', 1, COL_SIZE - 1, currBoard, s_coord ); // up cords
+
     getSlidingCoords ( m_Coord.m_Colum, 'c', -1, 0, currBoard, s_coord ); // down cords
     return s_coord;
 }

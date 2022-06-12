@@ -1,0 +1,7 @@
+<map id="CBoard::getRedTroops" name="CBoard::getRedTroops">
+<area shape="rect" id="node1" title=" " alt="" coords="813,5,969,32"/>
+<area shape="rect" id="node2" href="$classCEvaluation.html#a98089bd6d0d240a195d100f21bb78bbc" title=" " alt="" coords="613,5,765,32"/>
+<area shape="rect" id="node3" href="$classCSearch.html#acc5d4dbb08d39694c4f3ec2c9bec8f06" title=" " alt="" coords="443,5,565,32"/>
+<area shape="rect" id="node4" href="$classCSearch.html#a4cd557e2b13d5e40d6119e470133e02f" title=" " alt="" coords="244,5,395,32"/>
+<area shape="rect" id="node5" href="$classCPlayerSmartAI.html#a12b3aca9a425d0082dc8096876f198a9" title=" " alt="" coords="5,5,196,32"/>
+</map>

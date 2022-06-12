@@ -1,0 +1,9 @@
+<map id="CCoord::isInsideBoard" name="CCoord::isInsideBoard">
+<area shape="rect" id="node1" title=" " alt="" coords="480,107,635,133"/>
+<area shape="rect" id="node2" href="$classCElephant.html#ab0a052af9751e5946135d6b3499cb29b" title=" " alt="" coords="233,5,432,32"/>
+<area shape="rect" id="node3" href="$classCAdvisor.html#ad6996bf61d2c6fc308a0bedc70b523f9" title=" " alt="" coords="237,56,428,83"/>
+<area shape="rect" id="node4" href="$classCHorse.html#a8603e6c74bfd82a7659c7d7c76de6718" title=" " alt="" coords="241,107,424,133"/>
+<area shape="rect" id="node5" href="$classCGeneral.html#ad6c60482b69fbfbc76ff94608b3ec9bc" title=" " alt="" coords="237,157,429,184"/>
+<area shape="rect" id="node6" href="$classCPawn.html#a134d112b87ed914f0ca020fc6d725424" title=" " alt="" coords="259,208,406,235"/>
+<area shape="rect" id="node7" href="$classCPawn.html#a954186fdfe9e86b8d2a65f5830e7cbad" title=" " alt="" coords="5,208,185,235"/>
+</map>

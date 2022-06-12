@@ -1,0 +1,15 @@
+<map id="CPlayerRandomAI::TakeAction" name="CPlayerRandomAI::TakeAction">
+<area shape="rect" id="node1" title=" " alt="" coords="5,39,209,66"/>
+<area shape="rect" id="node2" href="$classCBoard.html#a2919bbd3b8336b0c6b24f1aa30212004" title=" " alt="" coords="763,64,909,91"/>
+<area shape="rect" id="node3" href="$classCBoard.html#a316a158565a71287bcaf8ccdbb4e9b92" title=" " alt="" coords="257,127,420,154"/>
+<area shape="rect" id="node10" href="$classCBoard.html#a8d0a765165efa6a2b4ae52d13ff7151a" title=" " alt="" coords="502,39,641,66"/>
+<area shape="rect" id="node4" href="$classCBoard.html#a91e0c9a7322efb279143d87fb3140204" title=" " alt="" coords="472,258,671,300"/>
+<area shape="rect" id="node8" href="$classCBoard.html#af93c749be940b9c247c97104733e02b6" title=" " alt="" coords="468,90,675,132"/>
+<area shape="rect" id="node9" href="$classCBoard.html#ab04b99d00937533a65add6adcc2f63e5" title=" " alt="" coords="484,156,659,183"/>
+<area shape="rect" id="node13" href="$classCBoard.html#a7863f2de5bddd67fff3cdc5766e08ea3" title=" " alt="" coords="494,207,649,234"/>
+<area shape="rect" id="node5" href="$classCBoard.html#a3549881e220f79444222253c5c38490e" title=" " alt="" coords="737,258,935,300"/>
+<area shape="rect" id="node7" href="$classCBoard.html#ab98ba366780c62d62bb8c77314435644" title=" " alt="" coords="749,207,923,234"/>
+<area shape="rect" id="node6" href="$classCBoard.html#af2746917d962843c821fc551031dba7b" title=" " alt="" coords="997,266,1132,292"/>
+<area shape="rect" id="node11" href="$classCBoard.html#adddd2caeb25169b45b8f47cf0fe0c2d4" title=" " alt="" coords="747,123,925,150"/>
+<area shape="rect" id="node12" href="$classCBoard.html#a3d689360c191f2e2e3317fd08616632f" title=" " alt="" coords="723,14,949,40"/>
+</map>

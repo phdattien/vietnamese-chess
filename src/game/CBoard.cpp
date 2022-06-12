@@ -38,7 +38,7 @@ bool CBoard::isGeneralsFacing ( ) {
     if ( m_BlackGeneral->getCoord().m_Row != m_RedGeneral->getCoord().m_Row)
         return false;
 
-    for ( size_t i = m_BlackGeneral->getCoord().m_Colum + 1; i < m_RedGeneral->getCoord().m_Colum; i++ ) {
+    for ( int i = m_BlackGeneral->getCoord().m_Colum + 1; i < m_RedGeneral->getCoord().m_Colum; i++ ) {
         auto & troopOnPos =  m_Board[i][m_RedGeneral->getCoord().m_Row];
         if (  troopOnPos ) {
             return false;
@@ -62,6 +62,10 @@ std::vector<std::shared_ptr<CTroop>> &CBoard::getTroopsOnPlay ()  {
 std::vector<std::shared_ptr<CTroop>> &CBoard::getTroopsOnOppositePlay () {
     return RedToMove ? m_BlackTroops : m_RedTroops;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 16a454b12db163492cb2dbed260160b4319fbbe2
 void CBoard::addMoves ( const CCoord & start, const std::set<CCoord>& cords, std::vector<Move>& moves ) {
     for ( const auto & coord : cords ) {
         moves.emplace_back(start, coord);

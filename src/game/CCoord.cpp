@@ -36,7 +36,14 @@ std::ostream &operator<< ( std::ostream &os, const CCoord &coord ) {
 }
 
 int CCoord::parseColum ( const std::string& coord ) {
+<<<<<<< HEAD
     return COL_SIZE - ( coord[1] - '0' );
+=======
+    if ( coord.size() == 3)
+        return 0;
+    else
+        return 10 - ( coord[1] - '0' );
+>>>>>>> 16a454b12db163492cb2dbed260160b4319fbbe2
 }
 
 int CCoord::parseRow ( const std::string& coord ) {

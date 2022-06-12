@@ -4,7 +4,6 @@
 
 #include <vector>
 #include "CGeneral.h"
-#include <iostream>
 
 const std::vector<int> CGeneral::POS_COL { 1, -1, 0,  0, 1,  1, -1, -1, 0 };
 const std::vector<int> CGeneral::POS_ROW  { 0,  0, 1, -1, 1, -1,  1, -1, 0};

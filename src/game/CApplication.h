@@ -9,6 +9,7 @@
 // default starting position
 const std::string START_POS = "rchghcr/p1ppp1p/7/7/P1PPP1P/RCHGHCR r";
 
+
 class CApplication {
 public:
     using Player = std::shared_ptr<CPlayer>;

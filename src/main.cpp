@@ -35,7 +35,5 @@ int main () {
 //    testBoard (map2, 3);
 //    testBoard (map3, 3);
 
-    CApplication app;
-    app.Run();
-    return 0;
+
 }
