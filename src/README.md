@@ -1,0 +1,78 @@
+## VIETNAMSKÉ ŠACHY
+Autor: Pham Tien Dat
+
+## Téma z Progtestu
+Klasická hra Šachy (příp. libovolná varianta - asijské šachy, ...)
+
+Implementujte následující varianty:
+
+    1. pro 2 hráče na jednom počítači
+    2. pro hru proti počítači
+
+Hra musí splňovat následující funkcionality:
+
+    - Dodržování všech pravidel dané varianty (u klasické varianty tedy i rošáda, braní mimochodem, proměna pěšce).
+    - Ukládání (resp. načítání) rozehrané hry do (resp. ze) souboru (vytvořte vhodný formát a uživatelské rozhraní)
+    - Oznamovat stav a konec hry (šach, mat, pat) a její výsledek.
+    - Umělá inteligence (škálovatelná nebo alespoň 3 různé druhy, jeden druh můžou být náhodné tahy, ale nestačí implementovat pouze náhodné tahy)
+
+Kde lze využít polymorfismus? (doporučené)
+
+    Ovládání hráčů: lokální hráč, umělá inteligence (různé druhy), síťový hráč
+    Pohyby figurek: král, dáma, věž, jezdec,...
+    Uživatelské rozhraní: konzolové, ncurses, SDL, OpenGL (různé druhy),...
+    Pravidla různých variant: klasické šachy, žravé šachy, asijské šachy
+    Jednotlivá pravidla: tahy, rošáda, braní mimochodem, proměna (jejich výběr pak může být konfigurovatelný)
+
+
+## Specifikace
+
+Hra odpovidá pravidlům vietnamských šach, cílem je šachovat generála nebo mu zablokovat jakýkoliv pohyb
+
+Hra bude čistě konzolová, a bude se ovládat z terminálu, na začátek bude USERMENU
+- `1v1` hra pro dva hráče 
+- `1vCo` hra proti počítači 
+- `CovSmartCo` hra randomAI porti smartAI
+- `load` načte hru ze souboru
+
+
+Po zapnutí hry je uživalem možno tyhle 
+- `print` zobrazí aktuální stav hry
+- `move` pohne figurkou 
+- `help` zobrazí nápovědu
+- `quit` ukončí program
+- `give up` vzdát se
+- `draw` nabidnout remízu
+- `save [filename]` uloží hru do souboru
+
+```     
+      A    B    C    D    E    F    G    H    I
+        
+  10  R----H----E----A~~~~G~~~~A----E----H----R
+      |    |    |    #    |    #    |    |    |
+  9   +---------+----+~~~~+~~~~+----+----+----|
+      |    |    |    #    |    #    |    |    |
+  8   +----C----+----+~~~~+~~~~+----|----C----+
+      |    |    |    |    |    |    |    |    |
+  7   S----+----S----+----S----+----S----+----S
+      |    |    |    |    |    |    |    |    |
+  6   +----+----+----+----+----+----+----+----+
+      |                                       |
+  5   +----+----+----+----+----+----+----+----+
+      |    |    |    |    |    |    |    |    |
+  4   S----+----S----+----S----+----S----+----S
+      |    |    |    |    |    |    |    |    |
+  3   +----F----+----+~~~~+~~~~+----+----F----|
+      |    |    |    #    |    #    |    |    |
+  2   +----+----+----+~~~~+~~~~+----+----+----|
+      |    |    |    #    |    #    |    |    |
+  1   R----H----E----A~~~~G~~~~A----E----H----R 
+  
+      A    B    C    D    E    F    G    H    I
+```     
+### Kde mám polymorfismus?
+Polymorfismus budu využívat u třídy `CTroops`, abstraktni metody `getPossibleMoves`. Implementace ruzné pohyby figurek ( CChariot ... ).
+
+Dále je polymorfismus u ruzných typů hráčů, kteří nějakým způsobem ovládají hru.
+
+
