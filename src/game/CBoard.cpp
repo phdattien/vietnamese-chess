@@ -62,10 +62,7 @@ std::vector<std::shared_ptr<CTroop>> &CBoard::getTroopsOnPlay ()  {
 std::vector<std::shared_ptr<CTroop>> &CBoard::getTroopsOnOppositePlay () {
     return RedToMove ? m_BlackTroops : m_RedTroops;
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 16a454b12db163492cb2dbed260160b4319fbbe2
 void CBoard::addMoves ( const CCoord & start, const std::set<CCoord>& cords, std::vector<Move>& moves ) {
     for ( const auto & coord : cords ) {
         moves.emplace_back(start, coord);

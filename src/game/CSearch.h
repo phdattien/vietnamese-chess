@@ -15,7 +15,7 @@
  */
 class CSearch {
 public:
-    CSearch ( CBoard board ) : m_Board ( std::move ( board ) ){};
+    CSearch ( CBoard board, int depth ) : m_Board ( std::move ( board ) ), m_Depth (depth) {};
     /**
      * search
      */
@@ -40,6 +40,7 @@ private:
     int Search ( int depth, int alpha, int beta );
     void OrderMoves ( std::vector<Move> & moves );
     CBoard m_Board;
+    int m_Depth;
     CEvaluation m_Evaluation;
     /**
      * Best move after Search

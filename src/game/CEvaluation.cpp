@@ -47,11 +47,11 @@ int CEvaluation::countDistance ( const CEvaluation::TroopsArr &troops, const CCo
     int count = 0;
     for ( const auto & troop : troops ) {
         if ( troop->getName() == PAWN ) {
-            count += ( abs (troop->getCoord().m_Row - enemyGeneralCoord.m_Row ) + abs ( troop->getCoord().m_Colum - enemyGeneralCoord.m_Colum) ) * 50;
+            count += ( abs (troop->getCoord().m_Row - enemyGeneralCoord.m_Row ) + abs ( troop->getCoord().m_Colum - enemyGeneralCoord.m_Colum) ) * 60;
         }
         if ( SCORE[troop->getName()] < 500 || troop->getName() == GENERAL)
             continue;
-        count += ( abs (troop->getCoord().m_Row - enemyGeneralCoord.m_Row ) + abs ( troop->getCoord().m_Colum - enemyGeneralCoord.m_Colum) ) * 50;
+        count += ( abs (troop->getCoord().m_Row - enemyGeneralCoord.m_Row ) + abs ( troop->getCoord().m_Colum - enemyGeneralCoord.m_Colum) ) * 60;
     }
     return count;
 }

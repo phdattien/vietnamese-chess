@@ -18,14 +18,15 @@ public:
      */
     void Run ();
 private:
-    Player player1;
-    Player player2;
+    Player m_Player1;
+    Player m_Player2;
     std::string m_BoardPosition = START_POS;
     bool quit = false;
     void makeAction();
-    void newGame ( PLAYER_TYPE p1, PLAYER_TYPE p2 );
-    void createPlayer ( Player & player, PLAYER_TYPE type );
+    bool newGame ();
+    void createPlayer ( Player & player, char type );
     void loadGame ();
     void setDefaultBoard();
+    bool choosePlayerPrompt ( Player & player );
 };
 

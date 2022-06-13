@@ -13,6 +13,11 @@ const std::string UI::BRIGHT = ";1m";
 #define BLACK_BACKGROUND 40
 #define BLACK 30
 
+
+void UI::printChoosePlayer() {
+    printf ( "n) normal player, r) random player, s) smart player\n" );
+}
+
 void UI::printHead () {
     int width = 6;
     char c = 'A';
@@ -102,9 +107,10 @@ void UI::printHelpMenu () {
 
 void UI::printUserMenu () {
     printf ("============== VIETNAMESE CHESS =====================\n");
-    printf ( "(1)PVP\n");
-    printf ( "(2)PVCo\n");
-    printf ( "(3)CoVSmarterCo\n");
+//    printf ( "(1)PVP\n");
+//    printf ( "(2)PVCo\n");
+//    printf ( "(3)CoVSmarterCo\n");
+    printf ( "(n)new game\n");
     printf ( "(l)load game\n");
     printf ( "(q)uit\n");
     printf ("============== VIETNAMESE CHESS =====================\n");

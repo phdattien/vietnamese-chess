@@ -2,6 +2,7 @@
 // Created by tiendat on 26.05.22.
 //
 
+#include <cctype>
 #include <iostream>
 #include "CApplication.h"
 #include "UI.h"
@@ -15,14 +16,13 @@
 
 void CApplication::Run () {
     for ( ;; ) {
-        UI::printUserMenu();
         try {
             makeAction();
             if ( quit )
                 break;
             // new Board
             CBoard b ( m_BoardPosition );
-            CGame game ( b, player1, player2 );
+            CGame game ( b, m_Player1, m_Player2 );
             game.Play();
             setDefaultBoard();
         } catch ( std::invalid_argument & e ) {
@@ -37,6 +37,7 @@ void CApplication::Run () {
 
 void CApplication::makeAction () {
     while ( true ) {
+        UI::printUserMenu();
         std::string  command;
         printf ( ">>> ");
         std::cin >> command;
@@ -48,18 +49,13 @@ void CApplication::makeAction () {
             continue;
         }
         switch ( tolower (command [0]) ) {
-            case '1':
-                newGame ( PLAYER_TYPE::HUMAN, PLAYER_TYPE::HUMAN);
-                return;
-            case '2':
-                newGame ( PLAYER_TYPE::HUMAN, PLAYER_TYPE::SMART_AI);
-                return;
-            case '3':
-                newGame ( PLAYER_TYPE::RANDOM_AI, PLAYER_TYPE::SMART_AI);
+            case 'n':
+                if ( ! newGame () ) 
+                    break;
                 return;
             case 'l':
                 loadGame();
-                break;
+                return;
             case 'q':
                 std::cout << "Good bye have a nice day";
                 quit = true;
@@ -70,21 +66,47 @@ void CApplication::makeAction () {
     }
 }
 
-// creating a newGame with types of players
-void CApplication::newGame ( PLAYER_TYPE p1, PLAYER_TYPE p2 ) {
-    createPlayer (player1, p1);
-    createPlayer (player2, p2);
+bool CApplication::choosePlayerPrompt ( CApplication::Player & player ) {
+    char command;
+    printf ( "player: " );
+    std::cin >> command;
+    if ( std::cin.eof() )
+        throw std::ios::failure ("");
+    if ( command != 'n' && command != 'r' && command != 's' )  {
+        printf ( "Wrong m_Command, try again\n" );
+        return false;
+    }
+
+    createPlayer ( player, tolower ( command ) );
+    return true;
 }
 
-void CApplication::createPlayer ( CApplication::Player & player, PLAYER_TYPE type ) {
-    if ( type == PLAYER_TYPE::HUMAN )
+// creating a newGame with types of players
+bool CApplication::newGame () {
+        UI::printChoosePlayer();
+    if ( ! choosePlayerPrompt ( m_Player1 ) ) {
+        return false;
+    }
+    if ( ! choosePlayerPrompt ( m_Player2 ) ) {
+        return false;
+    }
+    /* createPlayer (player2, p2); */
+    return true;
+}
+
+void CApplication::createPlayer ( CApplication::Player & player, char type ) {
+    if ( type == 'n' )
         player = std::make_shared<CPlayerHuman> ();
 
-    if ( type == PLAYER_TYPE::RANDOM_AI )
+    if ( type == 'r' )
         player = std::make_shared<CPlayerRandomAI>();
 
-    if ( type == PLAYER_TYPE::SMART_AI )
-        player = std::make_shared<CPlayerSmartAI>();
+    if ( type == 's' ) {
+        int n;
+        printf ( "how smart? input number: ");
+        std::cin >> n;
+        player = std::make_shared<CPlayerSmartAI>(n);
+    }
 }
 
 void CApplication::loadGame () {

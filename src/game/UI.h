@@ -12,6 +12,7 @@ public:
     static void printBoard ( const CBoard &currBoard );
     static void printHelpMenu();
     static void printUserMenu();
+    static void printChoosePlayer();
 
 private:
     static const std::string ESCAPE;

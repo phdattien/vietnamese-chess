@@ -10,8 +10,9 @@
  */
 class CPlayerSmartAI : public CPlayer {
 public:
-    CPlayerSmartAI () = default;
+    CPlayerSmartAI ( int depth ): m_Depth ( depth ) {};
     bool TakeAction ( CBoard &board, GAME_STATE &gameState ) override;
 private:
+    int m_Depth;
 };
 

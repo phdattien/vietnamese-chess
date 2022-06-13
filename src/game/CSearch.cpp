@@ -42,7 +42,7 @@ int CSearch::Search ( int depth, int alpha, int beta ) {
 }
 
 void CSearch::StartSearch () {
-    m_BestEval = Search ( DEPTH, -9999999, 9999999 );
+    m_BestEval = Search ( m_Depth, -9999999, 9999999 );
 }
 
 /* order from more valuable moves to least, by a capture move */

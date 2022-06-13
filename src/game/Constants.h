@@ -17,9 +17,10 @@ const int GENERAL_VALUE = 7000;
 const int CHARIOT_VALUE = 1300;
 const int CANNON_VALUE = 900;
 const int HORSE_VALUE = 900;
-const int ELEPHANT_VALUE = 300;
+const int PAWN_VALUE = 500;
+
 const int ADVISOR_VALUE = 300;
-const int PAWN_VALUE = 100;
+const int ELEPHANT_VALUE = 300;
 
 
 const int COL_SIZE = 6;

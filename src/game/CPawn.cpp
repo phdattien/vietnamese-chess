@@ -31,7 +31,6 @@ std::set<CCoord> CPawn::getPossibleMoves ( const CTroop::Board &currBoard ) cons
     if ( isValidCoord ( newCoord, currBoard ) )
         s_coords.insert (newCoord);
 
-<<<<<<< HEAD
 
     for ( size_t i = 0; i < POS_COL.size(); i++ ) {
         int newPosI = m_Coord.m_Colum + POS_COL[i];
@@ -44,7 +43,6 @@ std::set<CCoord> CPawn::getPossibleMoves ( const CTroop::Board &currBoard ) cons
             continue;
         s_coords.insert ( newCoord );
     }
-=======
     if ( ( m_Side == SIDE::RED && ( m_Coord.m_Colum <= 4) )
            || ( m_Side == SIDE::BLACK && ( m_Coord.m_Colum >= 5 ) ) ) {
 
@@ -61,7 +59,6 @@ std::set<CCoord> CPawn::getPossibleMoves ( const CTroop::Board &currBoard ) cons
         }
     }
 
->>>>>>> 16a454b12db163492cb2dbed260160b4319fbbe2
     return s_coords;
 }
 
