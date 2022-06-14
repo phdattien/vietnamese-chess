@@ -8,7 +8,7 @@
 class Perft {
 public:
     explicit Perft ( CBoard board );
-    int movesTest ( int depth );
+    void movesTest ( int depth, int &sum );
 private:
     CBoard m_Board;
 

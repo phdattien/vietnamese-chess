@@ -54,7 +54,8 @@ void CApplication::makeAction () {
                     break;
                 return;
             case 'l':
-                loadGame();
+                if ( ! loadGame () )
+                    break;
                 return;
             case 'q':
                 std::cout << "Good bye have a nice day";
@@ -109,7 +110,7 @@ void CApplication::createPlayer ( CApplication::Player & player, char type ) {
     }
 }
 
-void CApplication::loadGame () {
+bool CApplication::loadGame () {
     std::string ifName;
     printf ( "fileName: ");
     std::cin >> ifName;
@@ -119,11 +120,11 @@ void CApplication::loadGame () {
     std::ifstream ifs (ifName);
     if ( ! ifs ) {
         printf ("Bad File\n");
-        return;
+        return false;
     }
     std::getline ( ifs, m_BoardPosition );
     std::cout << m_BoardPosition << std::endl;
-    printf ("Choose game 1 - 3\n");
+    return newGame();
 }
 
 void CApplication::setDefaultBoard () {

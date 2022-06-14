@@ -18,10 +18,11 @@ void testBoard ( const std::string & map, size_t depth ) {
     std::cout << map << std::endl;
     for ( size_t i = 1; i <= depth; i++ ) {
         std::cout <<  "depth: " << i << " number of movement:  " <<std::endl;
-        std::cout << perf.movesTest (i) << std::endl;
+        int sum = 0;
+        perf.movesTest (i, sum);
+        std::cout << sum << std::endl;
     }
 }
-
 
 int main () {
 //    CBoard b ("1chgh1r/1pppp1p/4c2/7/3G2r/7 r");
@@ -31,9 +32,9 @@ int main () {
 
 
 //    CBoard b ( map1 );
-//    testBoard (map1, 10);
+//    testBoard (map1, 5);
 //    testBoard (map2, 3);
 //    testBoard (map3, 3);
-
-
+    CApplication app;
+    app.Run();
 }

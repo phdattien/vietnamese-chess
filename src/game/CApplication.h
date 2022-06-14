@@ -25,7 +25,7 @@ private:
     void makeAction();
     bool newGame ();
     void createPlayer ( Player & player, char type );
-    void loadGame ();
+    bool loadGame ();
     void setDefaultBoard();
     bool choosePlayerPrompt ( Player & player );
 };
