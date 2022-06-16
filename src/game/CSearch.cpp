@@ -18,7 +18,7 @@ int CSearch::Search ( int depth, int alpha, int beta ) {
 
     std::vector<Move> possibleMoves = m_Board.generateMoves();
     if ( possibleMoves.empty() ) {
-        return -10000;
+        return CHECKED;
     }
     OrderMoves (possibleMoves);
     Move bestMove{};
@@ -42,7 +42,7 @@ int CSearch::Search ( int depth, int alpha, int beta ) {
 }
 
 void CSearch::StartSearch () {
-    m_BestEval = Search ( m_Depth, -9999999, 9999999 );
+    m_BestEval = Search ( m_Depth, NEG_INFINITY, INFINITY );
 }
 
 /* order from more valuable moves to least, by a capture move */

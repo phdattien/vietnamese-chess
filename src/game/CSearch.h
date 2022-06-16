@@ -41,6 +41,9 @@ private:
     void OrderMoves ( std::vector<Move> & moves );
     CBoard m_Board;
     int m_Depth;
+    const int CHECKED = -100000;
+    const int INFINITY = 9999999;
+    const int NEG_INFINITY = -INFINITY;
     CEvaluation m_Evaluation;
     /**
      * Best move after Search
