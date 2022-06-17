@@ -4,6 +4,7 @@
 #include <memory>
 #include "Move.h"
 #include <stack>
+#include <deque>
 
 
 
@@ -72,14 +73,14 @@ public:
      * movement must be correct
      * @param movement structure containing from an to
      */
-    void MakeMove ( const Move & movement );
+    void MakeMove ( const Move & movement, bool searching = false );
 
     /**
      * Method to unmake a move, returns to previous position
      * movement must be correct
      * @param movement structure containing from an to
      */
-    void UnMakeMove ( const Move & movement );
+    void UnMakeMove ( const Move & movement, bool searching = false  );
 
     /**
      * Generate all possible Moves from a playing side
@@ -97,6 +98,8 @@ public:
      * @return true if current position is a draw, false otherwise
      */
     bool isDraw();
+
+    bool isRepetition () const;
 
     /**
      * friend class to be able to print a board to console
@@ -125,9 +128,11 @@ private:
     const CCoord & getGeneralOnPlayCoord () const;
     const CCoord & getGeneralOnOppositePlayCoord () const;
     void addMoves ( const CCoord & start, const std::set<CCoord>& cords, std::vector<Move>& moves );
+    std::deque<std::string> m_RepetitionHistory;
     /** generate all moves, without take account of making own king in danger */
     std::vector<Move> generatePseudoLegalMoves ();
     TroopsArr & getTroopsOnPlay ();
+    std::string currentFen;
     /** method to recognize if two generals are facing each other, return true if do */
     bool isGeneralsFacing   ();
 };

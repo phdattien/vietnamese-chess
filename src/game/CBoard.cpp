@@ -91,7 +91,7 @@ void CBoard::printAttackedMap () {
     }
 }
 
-void CBoard::MakeMove ( const Move &movement ) {
+void CBoard::MakeMove ( const Move &movement, bool searching ) {
     CCoord from = movement.m_From;
     CCoord to = movement.m_To;
 
@@ -109,10 +109,16 @@ void CBoard::MakeMove ( const Move &movement ) {
 
     // m_Move troop to desired destination
     m_Board[to.m_Colum][to.m_Row] = move ( troopOnPos );
+    std::string fen = CFen::getFen (*this);
+    currentFen = fen; // update our position;
+    if ( ! searching )
+        m_RepetitionHistory.emplace_front( fen ); // add this position to top, later to find repettions
     ChangeSide();
 }
 
-void CBoard::UnMakeMove ( const Move &movement ) {
+void CBoard::UnMakeMove ( const Move &movement, bool searching ) {
+    if ( m_RepetitionHistory.size() > 0 && ! searching )
+        m_RepetitionHistory.pop_front(); // pop, was in search so it doesn't matter
     std::vector<std::shared_ptr<CTroop>> &troops = getTroopsOnPlay();
     ChangeSide();
     CCoord from = movement.m_From;
@@ -244,3 +250,10 @@ const CCoord &CBoard::getRedKingCoord () const {
 const CCoord &CBoard::getBlackKingCoord () const {
     return m_BlackGeneral->getCoord();
 }
+
+bool CBoard::isRepetition () const {
+    auto it = std::find(m_RepetitionHistory.begin(), m_RepetitionHistory.end(), currentFen);
+    return it != m_RepetitionHistory.end(); // if not in the end meaning already exists -> is repetition;
+
+}
+

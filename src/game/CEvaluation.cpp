@@ -46,12 +46,14 @@ int CEvaluation::countMaterial ( const CEvaluation::TroopsArr &troops ) const {
 int CEvaluation::countDistance ( const CEvaluation::TroopsArr &troops, const CCoord &enemyGeneralCoord ) const {
     int count = 0;
     for ( const auto & troop : troops ) {
-        if ( troop->getName() == PAWN ) {
-            count += ( abs (troop->getCoord().m_Row - enemyGeneralCoord.m_Row ) + abs ( troop->getCoord().m_Colum - enemyGeneralCoord.m_Colum) ) * 60;
+        if ( troop->getName() == PAWN || troop->getName() == HORSE ) {
+            int distance = ( abs (troop->getCoord().m_Row - enemyGeneralCoord.m_Row ) + abs ( troop->getCoord().m_Colum - enemyGeneralCoord.m_Colum) ) * 10;
+            count += ( 400 - distance );
+
         }
-        if ( SCORE[troop->getName()] < 500 || troop->getName() == GENERAL)
-            continue;
-        count += ( abs (troop->getCoord().m_Row - enemyGeneralCoord.m_Row ) + abs ( troop->getCoord().m_Colum - enemyGeneralCoord.m_Colum) ) * 60;
+//        if ( SCORE[troop->getName()] < 500 || troop->getName() == GENERAL)
+//            continue;
+//        count += ( abs (troop->getCoord().m_Row - enemyGeneralCoord.m_Row ) + abs ( troop->getCoord().m_Colum - enemyGeneralCoord.m_Colum) ) * 60;
     }
     return count;
 }

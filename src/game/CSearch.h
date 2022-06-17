@@ -37,7 +37,8 @@ private:
      * @param beta
      * @return
      */
-    int Search ( int depth, int alpha, int beta );
+    int Search ( int depth, int alpha, int beta, int recCnt );
+    int QuiescenceSearch ( int alpha, int beta );
     void OrderMoves ( std::vector<Move> & moves );
     CBoard m_Board;
     int m_Depth;
